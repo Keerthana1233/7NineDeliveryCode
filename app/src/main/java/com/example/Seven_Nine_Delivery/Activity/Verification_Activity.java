@@ -36,10 +36,10 @@ public class Verification_Activity extends AppCompatActivity {
 
 
 
-        selectedFragment = Verification_Fragment.newInstance();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout1, selectedFragment);
-        transaction.commit();
+//        selectedFragment = Verification_Fragment.newInstance();
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.frame_layout1, selectedFragment);
+//        transaction.commit();
     }
 
 
