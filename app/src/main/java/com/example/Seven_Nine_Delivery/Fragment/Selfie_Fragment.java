@@ -538,7 +538,7 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
                } catch (FileNotFoundException e) {
                 e.printStackTrace();
 
-                Toast.makeText(getActivity().getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
+             //   Toast.makeText(getActivity().getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
             }
 
         } else {
