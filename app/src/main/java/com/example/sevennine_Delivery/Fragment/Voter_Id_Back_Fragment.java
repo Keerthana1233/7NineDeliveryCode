@@ -175,7 +175,7 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
         final TextView front_tips4 = sheetView.findViewById(R.id.front_tips4);
 
 
-        title.setText("Voter ID: Back");
+        title.setText("Driving License: Back");
 
 
 

@@ -215,10 +215,10 @@ public class VoterId_Front_Preview_Fragment extends Fragment {
 
                 // uploadImage(getResizedBitmap(VoterId_Photo_Fragment.selectedImage, 100, 100));
 
-//                selectedFragment = Shop_Camera_Fragment_Edit.newInstance();
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                transaction.replace(R.id.frame_layout1, selectedFragment);
-//                transaction.commit();
+                selectedFragment = Verification_Fragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout1, selectedFragment);
+                transaction.commit();
 
             }
         });

@@ -131,7 +131,34 @@ public class Shop_Current_Location_Fragment extends Fragment implements
 
 
 
+     back_feed.setOnClickListener(new View.OnClickListener() {
+        @Override
+         public void onClick(View v) {
 
+        selectedFragment = Verification_Fragment.newInstance();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout1, selectedFragment);
+        transaction.commit();
+
+
+    }
+    });
+
+
+
+
+        capture_loc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectedFragment = Verification_Fragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout1, selectedFragment);
+                transaction.commit();
+
+
+            }
+        });
 
 
 
@@ -154,9 +181,6 @@ public class Shop_Current_Location_Fragment extends Fragment implements
 
 
 
-
-
-
                 }
                 return false;
             }
@@ -164,12 +188,11 @@ public class Shop_Current_Location_Fragment extends Fragment implements
 
 
 
-        back_feed.setOnClickListener(this);
-        capture_loc.setOnClickListener(this);
+      //  back_feed.setOnClickListener(this);
+        //capture_loc.setOnClickListener(this);
 
         return view;
     }
-
 
 
 

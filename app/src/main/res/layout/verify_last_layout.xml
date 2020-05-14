@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="91"
+        android:weightSum="100"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="horizontal"
+        android:background="@color/menu_green">
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verification"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center"
+            android:id="@+id/setting_tittle" />
+
+
+    </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="35"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mobile_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:textStyle="bold"
+                android:paddingLeft="15dp"
+                android:textColorHint="#999999"
+                android:fontFamily="@font/segoeui"
+                android:layout_marginTop="20dp"
+                android:paddingRight="10dp"
+                android:textSize="19dp"
+                />
+
+
+            <TextView
+                android:id="@+id/ph_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_transperent"
+                android:fontFamily="@font/segoeui"
+                android:hint="1234567890"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:textColorHint="#000"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/user_status_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/segoeui"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:text="Status"
+                android:textColorHint="#999999"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="100"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
+
+
+
+                <TextView
+                    android:id="@+id/user_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In Progress"
+                    android:textStyle="bold"
+                    android:paddingLeft="15dp"
+                    android:textColor="#005474"
+                    android:fontFamily="@font/segoeui"
+                    android:paddingRight="10dp"
+                    android:textSize="19dp"
+                    android:layout_weight="70"
+                    />
+
+                <ImageView
+                    android:id="@+id/refresh"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end"
+                    android:layout_weight="30"
+                    android:src="@drawable/ic_reload"
+
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="55"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:id="@+id/in_progress_image"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+
+                android:src="@drawable/ic_call_center_agent"
+                android:layout_weight="40"
+                />
+
+
+            <ImageView
+                android:id="@+id/success_image"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:src="@drawable/ic_success"
+                android:layout_weight="40"
+                />
+
+
+            <TextView
+                android:id="@+id/in_progress_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/verification"
+                android:paddingLeft="10dp"
+                android:textColor="#000"
+                android:fontFamily="@font/segoeui"
+                android:paddingRight="10dp"
+                android:textSize="19dp"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+
+                />
+
+            <TextView
+                android:id="@+id/success_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/verification_success"
+                android:paddingLeft="10dp"
+                android:textColor="#000"
+                android:visibility="gone"
+                android:fontFamily="@font/segoeui"
+                android:paddingRight="10dp"
+                android:textSize="19dp"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+
+                />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/cont_btn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="9"
+        android:background="@drawable/border_filled_red_not_curved"
+        >
+
+        <TextView
+            android:id="@+id/proceed_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui"
+            android:text="PROCEED"
+            android:textAllCaps="true"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:padding="15dp"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

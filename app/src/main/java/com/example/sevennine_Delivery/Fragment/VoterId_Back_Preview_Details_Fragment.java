@@ -95,8 +95,8 @@ public class VoterId_Back_Preview_Details_Fragment extends Fragment {
         upload_img=view.findViewById(R.id.upload_img);
         tips_voter_layout=view.findViewById(R.id.tips_voter_layout);
         take_voter_photo=view.findViewById(R.id.take_voter_photo);
-
         tips_voter_layout.setVisibility(View.VISIBLE);
+
 
 
         upload_imge=view.findViewById(R.id.upload_imge);
@@ -278,10 +278,10 @@ public class VoterId_Back_Preview_Details_Fragment extends Fragment {
 
                 // uploadImage(getResizedBitmap(VoterId_Photo_Fragment.selectedImage, 100, 100));
 
-//                selectedFragment = Shop_Camera_Fragment_Edit.newInstance();
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                transaction.replace(R.id.frame_layout1, selectedFragment);
-//                transaction.commit();
+                selectedFragment = Verification_Fragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout1, selectedFragment);
+                transaction.commit();
 
 
             }

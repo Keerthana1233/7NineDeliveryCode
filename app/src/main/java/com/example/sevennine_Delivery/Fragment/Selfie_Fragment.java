@@ -66,7 +66,7 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
     View sheetView;
     public static JSONObject lngObject;
     private static final int REQUEST_PERMISSIONS = 100;
-    public  static Bitmap selectedImage;
+    public  static  Bitmap selectedImage;
     Fragment selectedFragment;
 
 
@@ -90,11 +90,10 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
         //  System.out.println("sdfjhsdfgjsgfjsd"+ HomePage_With_Bottom_Navigation.farm_latitude);
 
 
-         imageView=view.findViewById(R.id.image);
+        imageView=view.findViewById(R.id.image);
         backfeed=view.findViewById(R.id.backfeed);
 
-
-      //  selfie=view.findViewById(R.id.selfie);
+        //  selfie=view.findViewById(R.id.selfie);
 
 
         constraintLayout=view.findViewById(R.id.const_lyt);
@@ -105,10 +104,12 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
 
 
 
+
                     selectedFragment = Verification_Fragment.newInstance();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout1, selectedFragment);
                     transaction.commit();
+
 
 
             }
@@ -125,13 +126,10 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
-
-
-                        selectedFragment = Verification_Fragment.newInstance();
-                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.frame_layout1, selectedFragment);
-                        transaction.commit();
-
+                    selectedFragment = Verification_Fragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout1, selectedFragment);
+                    transaction.commit();
 
 
                     return true;
@@ -178,7 +176,7 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
 
         final TextView title_details_front = sheetView.findViewById(R.id.selfie_details);
 
-        final TextView front_tips1 = sheetView.findViewById(R.id.selfie_tips1);
+        final TextView  front_tips1 = sheetView.findViewById(R.id.selfie_tips1);
         final TextView front_tips2 = sheetView.findViewById(R.id.selfie_tips2);
         final TextView front_tips3 = sheetView.findViewById(R.id.selfie_tips3);
         final TextView front_tips4 = sheetView.findViewById(R.id.selfie_tips4);
@@ -227,7 +225,7 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
 //            @Override
 //            public void onClick(View view) {
 
-                //
+        //
 
 //        camera.takePicture(null, null, jpegCallback);
 //                camera.stopPreview();
@@ -239,38 +237,38 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
 //swap the id of the camera to be used
 //                if (currentCameraId == Camera.CameraInfo.CAMERA_FACING_BACK) {
 
-                    currentCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
+        currentCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
 
 //                } else {
 //
 //                    currentCameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
 //                }
 
-                camera = Camera.open(currentCameraId);
+        camera = Camera.open(currentCameraId);
 
-                camera.setDisplayOrientation(90);
-                Camera.Parameters param;
-                param = camera.getParameters();
+        camera.setDisplayOrientation(90);
+        Camera.Parameters param;
+        param = camera.getParameters();
 
-                try {
-                    // The Surface has been created, now tell the camera where to draw
-                    // the preview.
-                    // modify parameter
-                    // param.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
-                    param.setPreviewSize(352, 288);
-                    param.setPictureSize(1200, 900);
-                    //camera.setParameters(param);
+        try {
+            // The Surface has been created, now tell the camera where to draw
+            // the preview.
+            // modify parameter
+            // param.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
+            param.setPreviewSize(352, 288);
+            param.setPictureSize(1200, 900);
+            //camera.setParameters(param);
 
-                    camera.getParameters().getSupportedPreviewSizes();
-                    camera.startPreview();
-                    camera.setPreviewDisplay(surfaceHolder);
+            camera.getParameters().getSupportedPreviewSizes();
+            camera.startPreview();
+            camera.setPreviewDisplay(surfaceHolder);
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                camera.startPreview();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        camera.startPreview();
 
-    surfaceView = view.findViewById(R.id.surfaceView);
+        surfaceView = view.findViewById(R.id.surfaceView);
         surfaceHolder = surfaceView.getHolder();
 
         // Install a SurfaceHolder.Callback so we get notified when the
@@ -524,10 +522,10 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
 
                 }else {
 
-                    Toast.makeText(getActivity().getApplicationContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "You haven't picked Image",Toast.LENGTH_LONG).show();
                 }
 
-               } catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
 
                 Toast.makeText(getActivity().getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();

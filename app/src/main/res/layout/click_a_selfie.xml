@@ -59,7 +59,7 @@
             android:textColor="#000"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/segoeui"
-            android:text="We verify your selfie by comparing it with the photo on your voter id card."
+            android:text="We verify your selfie by comparing it with the photo on your driving license."
             android:textSize="14dp"
             />
 

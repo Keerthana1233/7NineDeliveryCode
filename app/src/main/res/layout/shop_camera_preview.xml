@@ -267,10 +267,9 @@
                 android:drawableLeft="@drawable/ic_verified_green"
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/segoeui"
-                android:text="You should have a valid voter id "
+                android:text="You should have a valid driving license "
                 android:textColor="#000"
                 android:textSize="14dp" />
-
 
 
             <TextView
@@ -282,7 +281,7 @@
                 android:drawableLeft="@drawable/ic_verified_green"
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/segoeui"
-                android:text="Place the voter id within the frame"
+                android:text="Place the driving license within the frame"
                 android:textColor="#000"
                 android:textSize="14dp" />
 
@@ -309,7 +308,7 @@
                 android:drawableLeft="@drawable/ic_verified_green"
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/segoeui"
-                android:text="Text on your voter id should be clear and sharp in the photo"
+                android:text="Text on your driving license should be clear and sharp in the photo"
                 android:textColor="#000"
                 android:textSize="14dp" />
 

@@ -1,6 +1,9 @@
 package com.example.sevennine_Delivery.Fragment;
 
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.view.KeyEvent;
@@ -23,14 +26,11 @@ import org.json.JSONObject;
 public class Verification_Fragment extends Fragment {
 
 
-
     Fragment selectedFragment;
     LinearLayout back_feed;
     public static JSONObject lngObject;
-    TextView setting_tittle,voter_id_back,voter_id_front,select_location,selfie_verify,face_verify_selfy_text,sel_loc_text,voter_front_text,voter_back_text,continue_btn;
-    String status_1,status_2;
-
-
+    TextView setting_tittle, voter_id_back, voter_id_front, select_location, selfie_verify, face_verify_selfy_text, sel_loc_text, voter_front_text, voter_back_text, continue_btn;
+    String status_1, status_2;
 
 
     public static Verification_Fragment newInstance() {
@@ -56,10 +56,6 @@ public class Verification_Fragment extends Fragment {
         continue_btn = view.findViewById(R.id.continue_btn);
         back_feed = view.findViewById(R.id.back_feed);
         setting_tittle = view.findViewById(R.id.setting_tittle);
-
-
-
-
 
 
         back_feed.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +88,6 @@ public class Verification_Fragment extends Fragment {
 
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack("verify", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
 
 
 //                    HomeMenuFragment.onBack_status = "farms";
@@ -172,7 +167,71 @@ public class Verification_Fragment extends Fragment {
         });
 
 
+        continue_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertMessage();
+
+            }
+        });
+
+
         return view;
+
+
     }
-}
+
+
+        private void AlertMessage() { // alert dialog box
+
+
+            final TextView ok_btn,cancel_btn,text_desc;
+            final Dialog dialog = new Dialog(getActivity());
+            dialog.setContentView(R.layout.verification_dialog_layout);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            //   dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setCancelable(false);
+
+
+
+            ok_btn =  dialog.findViewById(R.id.ok_btn);
+            cancel_btn =  dialog.findViewById(R.id.cancel_btn);
+            text_desc =  dialog.findViewById(R.id.text_desc);
+
+
+
+
+            ok_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    selectedFragment = Verification_Last_Fragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout1, selectedFragment);
+                    transaction.commit();
+                    dialog.dismiss();
+
+                }
+            });
+
+
+            cancel_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+
+                }
+            });
+
+            dialog.show();
+
+
+
+
+
+        }
+
+
+    }
 
