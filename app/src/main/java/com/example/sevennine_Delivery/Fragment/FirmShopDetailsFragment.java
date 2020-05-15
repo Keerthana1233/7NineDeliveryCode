@@ -29,6 +29,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.sevennine_Delivery.Activity.Status_bar_change_singleton;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 
@@ -56,7 +57,7 @@ public class FirmShopDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_firm_details_layout, container, false);
 
-     //   Status_bar_change_singleton.getInstance().color_change(getActivity());
+       Status_bar_change_singleton.getInstance().color_change(getActivity());
 
         Continue = view.findViewById(R.id.continuebtn);
         shopname = view.findViewById(R.id.shopname);
