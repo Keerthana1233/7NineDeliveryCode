@@ -33,6 +33,9 @@ import androidx.fragment.app.Fragment;
 import com.example.sevennine_Delivery.Bean.SelectLanguageBean;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
+import com.example.sevennine_Delivery.Urls;
+import com.example.sevennine_Delivery.Volly_class.Login_post;
+import com.example.sevennine_Delivery.Volly_class.VoleyJsonObjectCallback;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
@@ -225,13 +228,13 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
                 contact =  phone_no.getText().toString();
 
                 if (phone_no.getText().toString().equals("")) {
-                    /*Toast toast = Toast.makeText(NewSignUpActivity.this,mob_toast, Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(NewSignUpActivity.this,"Enter phone number to proceed", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
-                    toast.show();*/
-                    toast_text.setVisibility(View.VISIBLE);
+                    toast.show();
+                   // toast_text.setVisibility(View.VISIBLE);
 
                 } else if (!(phone_no.length() == 10)) {
-                    Toast toast = Toast.makeText(NewSignUpActivity.this,valid_no_toast, Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(NewSignUpActivity.this,"Enter valid mobile number", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
                     toast.show();
                    /* Toast toast = Toast.makeText(NewSignUpActivity.this, valid_no_toast, Toast.LENGTH_LONG);
@@ -243,12 +246,12 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
                     toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 40);
                     toast.show();*/
                 } else {
-                    toast_text.setVisibility(View.INVISIBLE);
+                   /* toast_text.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(NewSignUpActivity.this, NewEnterOTP.class);
                     // intent.putExtra("otpnumber", status);
                     // intent.putExtra("register_status","register_btn");
-                    startActivity(intent);
-                    //register();
+                    startActivity(intent);*/
+                  register();
                 }
             }
         });
@@ -267,11 +270,11 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
                 contact =  phone_no.getText().toString();
 
                 if (phone_no.getText().toString().equals("")) {
-                    toast_text.setVisibility(View.VISIBLE);
+                  //  toast_text.setVisibility(View.VISIBLE);
 
-                    /*Toast toast = Toast.makeText(NewSignUpActivity.this,mob_toast, Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(NewSignUpActivity.this,"Enter mobile number to proceed", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
-                    toast.show();*/
+                    toast.show();
                     /*Toast toast = Toast.makeText(NewSignUpActivity.this, mob_toast, Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
                     TextView toastMessage=(TextView) toast.getView().findViewById(android.R.id.message);
@@ -280,7 +283,7 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
 
 
                 } else if (!(phone_no.length() == 10)) {
-                    Toast toast = Toast.makeText(NewSignUpActivity.this,valid_no_toast, Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(NewSignUpActivity.this,"Enter valid mobile number", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
                     toast.show();
                     /*Toast toast = Toast.makeText(NewSignUpActivity.this, valid_no_toast, Toast.LENGTH_LONG);
@@ -289,12 +292,12 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
                     toastMessage.setTextColor(Color.WHITE); toast.getView().setBackgroundResource(R.drawable.black_curve_background); toast.show();*/
 
                 } else {
-                    toast_text.setVisibility(View.INVISIBLE);
-                    Intent intent = new Intent(NewSignUpActivity.this, NewEnterOTP.class);
-                   /* intent.putExtra("otpnumber", status);
-                    intent.putExtra("register_status","login_btn");*/
-                    startActivity(intent);
-                    // login();
+                    /*toast_text.setVisibility(View.INVISIBLE);*/
+                   /* Intent intent = new Intent(NewSignUpActivity.this, NewEnterOTP.class);
+                    intent.putExtra("otpnumber", status);
+                    intent.putExtra("register_status","login_btn");
+                    startActivity(intent);*/
+                   login();
                 }
             }
         });
@@ -315,7 +318,7 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
             System.out.println("post_oobject" + postjsonObject);
 
 
-           /* Login_post.login_posting(NewSignUpActivity.this, Urls.NEWLOGIN, postjsonObject, new VoleyJsonObjectCallback() {
+            Login_post.login_posting(NewSignUpActivity.this, Urls.NEWLOGIN, postjsonObject, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
                     System.out.println("statussssss" + result);
@@ -348,13 +351,13 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
 
                         } else {
 
-                            Toast toast = Toast.makeText(NewSignUpActivity.this,usernot_register, Toast.LENGTH_LONG);
+                            Toast toast = Toast.makeText(NewSignUpActivity.this,"User not register", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
                             toast.show();
-                          *//*  Toast toast = Toast.makeText(NewSignUpActivity.this, usernot_register, Toast.LENGTH_LONG);
+                           /* Toast toast = Toast.makeText(NewSignUpActivity.this, usernot_register, Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
                             TextView toastMessage=(TextView) toast.getView().findViewById(android.R.id.message);
-                            toastMessage.setTextColor(Color.WHITE); toast.getView().setBackgroundResource(R.drawable.black_curve_background); toast.show();*//*
+                            toastMessage.setTextColor(Color.WHITE); toast.getView().setBackgroundResource(R.drawable.black_curve_background); toast.show();*/
 
 
                         }
@@ -362,7 +365,7 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
                         e.printStackTrace();
                     }
                 }
-            });*/
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -604,7 +607,7 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
             postjsonObject.putOpt("objUser", userRequestjsonObject);
             System.out.println("post_oobject" + postjsonObject);
 
-           /* Login_post.login_posting(NewSignUpActivity.this, Urls.NEWSIGNUP, postjsonObject, new VoleyJsonObjectCallback() {
+            Login_post.login_posting(NewSignUpActivity.this, Urls.NEWSIGNUP, postjsonObject, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
                     System.out.println("statusssssslllll" + result);
@@ -616,18 +619,18 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
                             jsonObject_resp = result.getJSONObject("Response");
                             status_resp = jsonObject_resp.getString("Status");
 
-                            Toast toast = Toast.makeText(NewSignUpActivity.this,mobile_registered_toast, Toast.LENGTH_LONG);
+                            Toast toast = Toast.makeText(NewSignUpActivity.this,"User already registered", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
                             toast.show();
 
-                            *//*Toast toast = Toast.makeText(NewSignUpActivity.this, mobile_registered_toast, Toast.LENGTH_LONG);
+                            /*Toast toast = Toast.makeText(NewSignUpActivity.this, mobile_registered_toast, Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
                             TextView toastMessage=(TextView) toast.getView().findViewById(android.R.id.message);
-                            toastMessage.setTextColor(Color.WHITE); toast.getView().setBackgroundResource(R.drawable.black_curve_background); toast.show();*//*
+                            toastMessage.setTextColor(Color.WHITE); toast.getView().setBackgroundResource(R.drawable.black_curve_background); toast.show();*/
 
-                           *//* Toast toast = Toast.makeText(getApplicationContext(), "User  already registered", Toast.LENGTH_LONG);
+                           /* Toast toast = Toast.makeText(getApplicationContext(), "User  already registered", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 40);
-                            toast.show();*//*
+                            toast.show();*/
 
                             //  sessionManager.saveUserId(jsonObject_resp.getString("Id"));
                             //  sessionManager.save_name(jsonObject_resp.getString("FullName"),jsonObject_resp.getString("PhoneNo"),jsonObject_resp.getString("ProfilePic"));
@@ -655,10 +658,11 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
                         e.printStackTrace();
                     }
                 }
-            });*/
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
 
             /*try {

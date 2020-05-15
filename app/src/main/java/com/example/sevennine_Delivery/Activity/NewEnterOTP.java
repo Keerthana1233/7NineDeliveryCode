@@ -34,6 +34,9 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.chaos.view.PinView;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
+import com.example.sevennine_Delivery.Urls;
+import com.example.sevennine_Delivery.Volly_class.Crop_Post;
+import com.example.sevennine_Delivery.Volly_class.VoleyJsonObjectCallback;
 
 import org.json.JSONObject;
 
@@ -213,9 +216,9 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
 
 
 
-       /* number= sessionManager.getRegId("phone");
+        number= sessionManager.getRegId("phone");
         phone_number.setText(number);
-*/
+
         setupUI(linearLayout);
 
         new Handler().postDelayed(new Runnable() {
@@ -379,15 +382,15 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
             }
         });
 
-       /* if(getIntent().getExtras().getString("register_status").equals("login_btn")){
+        if(getIntent().getExtras().getString("register_status").equals("login_btn")){
 
-            submit.setText(login_txt);
+            submit.setText("Login");
 
 
         }else if(getIntent().getExtras().getString("register_status").equals("register_btn")){
 
-            submit.setText(register_txt);
-        }*/
+            submit.setText("Register");
+        }
 
 
         otpedittext.addTextChangedListener(new TextWatcher() {
@@ -462,28 +465,30 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
 
                 }
 
-               /* else if (otp_get_text.equals(sessionId)){
+                else if (otp_get_text.equals(sessionId)){
 
 
 
                     if(getIntent().getExtras().getString("register_status").equals("login_btn")){
+                        Intent intent = new Intent(NewEnterOTP.this,FirmShopDetailsActivity.class);
+                        startActivity(intent);
 
-                        Verification();
+                       // Verification();
 
                     }else if(getIntent().getExtras().getString("register_status").equals("register_btn")){
 
-                        Intent intent = new Intent(NewEnterOTP.this,R_U_Farmer_Activity.class);
+                        Intent intent = new Intent(NewEnterOTP.this,FirmShopDetailsActivity.class);
                         startActivity(intent);
 
                     }
 
-                   *//* Intent intent=new Intent(NewEnterOTP.this,FirmShopDetailsActivity.class);
+                   /* Intent intent=new Intent(NewEnterOTP.this,FirmShopDetailsActivity.class);
                     startActivity(intent);
-                    sessionManager.createLoginSession(NewSignUpActivity.contact);*//*
+                    sessionManager.createLoginSession(NewSignUpActivity.contact);
+*/
 
 
-
-                }*/else{
+                }else{
                     Intent intent = new Intent(NewEnterOTP.this,FirmShopDetailsActivity.class);
                     startActivity(intent);
                     /*Toast toast = Toast.makeText(NewEnterOTP.this,invalid_otp_toast, Toast.LENGTH_LONG);
@@ -500,9 +505,9 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
         });
     }
 
-    private void Verification() {
+   /* private void Verification() {
 
-        /*try{
+        try{
 
 
             JSONObject jsonObject = new JSONObject();
@@ -525,13 +530,13 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
 
                         if(user_status.equals(true)){
 
-                            sessionManager.createLoginSession(sessionManager.getRegId("phone"));
-                            *//*Intent intent=new Intent(NewEnterOTP.this, HomeFragment.class);
+                           *//* sessionManager.createLoginSession(sessionManager.getRegId("phone"));
+                            Intent intent=new Intent(NewEnterOTP.this, HomeFragment.class);
                             startActivity(intent);
 *//*
                         }else{
                             sessionManager.createLoginSession(sessionManager.getRegId("phone"));
-                            Intent intent=new Intent(NewEnterOTP.this,Extra_Activity.class);
+                            Intent intent=new Intent(NewEnterOTP.this,Verification_Activity.class);
                             startActivity(intent);
 
                            // progress.setText("In Progress");
@@ -551,9 +556,9 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
 
         }catch (Exception e){
             e.printStackTrace();
-        }*/
+        }
 
-    }
+    }*/
 
 
     @Override
