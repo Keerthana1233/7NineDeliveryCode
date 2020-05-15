@@ -126,11 +126,11 @@ public class Verification_Fragment extends Fragment {
             public void onClick(View view) {
 
 
-                selectedFragment = Voter_Id_Front_Fragment.newInstance();
+               /* selectedFragment = Voter_Id_Front_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("verify_voter");
-                transaction.commit();
+                transaction.commit();*/
 
 
             }

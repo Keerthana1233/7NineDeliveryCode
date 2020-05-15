@@ -154,13 +154,13 @@ public class VoterId_Front_Preview_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Bundle bundle = new Bundle();
+               /* Bundle bundle = new Bundle();
                 bundle.putString("VoterFront_Fragment","voter_front");
                 selectedFragment = Voter_Id_Front_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
                 selectedFragment.setArguments(bundle);
-                transaction.commit();
+                transaction.commit();*/
 
             }
         });
@@ -171,10 +171,10 @@ public class VoterId_Front_Preview_Fragment extends Fragment {
                 //System.out.println("khkvnkhvjhg"+getArguments().getString("VoterFront_Fragment"));
 
 
-                selectedFragment = Voter_Id_Front_Fragment.newInstance();
+               /* selectedFragment = Voter_Id_Front_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
-                transaction.commit();
+                transaction.commit();*/
 
             }
         });
@@ -191,10 +191,10 @@ public class VoterId_Front_Preview_Fragment extends Fragment {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
 
-                    selectedFragment = Voter_Id_Front_Fragment.newInstance();
+                   /* selectedFragment = Voter_Id_Front_Fragment.newInstance();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout1, selectedFragment);
-                    transaction.commit();
+                    transaction.commit();*/
 
 
                     return true;
