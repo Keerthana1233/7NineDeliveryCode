@@ -79,7 +79,7 @@ public class SliderPagerAdapter extends PagerAdapter {
                 pay=view.findViewById(R.id.pay);
                 pay_text=view.findViewById(R.id.pay_txt);
 
-                try {
+                /*try {
                     lngObject = new JSONObject(sessionManager.getRegId("language"));
 
                     how_it_works.setText(lngObject.getString("HowitWorks"));
@@ -94,7 +94,7 @@ public class SliderPagerAdapter extends PagerAdapter {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
 
             break;
 //

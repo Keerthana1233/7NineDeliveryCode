@@ -121,7 +121,7 @@ public class Slider_Activity extends AppCompatActivity implements ConnectivityRe
 
         sessionManager = new SessionManager(this);
 
-        try {
+       /* try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
 
              proceed.setText(lngObject.getString("PROCEED").replace("\n",""));
@@ -136,7 +136,7 @@ public class Slider_Activity extends AppCompatActivity implements ConnectivityRe
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+*/
 
 
 

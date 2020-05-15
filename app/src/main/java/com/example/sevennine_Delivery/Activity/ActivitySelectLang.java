@@ -52,8 +52,8 @@ public class ActivitySelectLang extends AppCompatActivity implements Connectivit
     protected void onStart() {
         super.onStart();
         System.out.println("loginonStart");
-        //  sessionManager.checkLogin();
-        // sessionManager.checkRegister();
+         //sessionManager.checkLogin();
+        sessionManager.checkRegister();
 
     }
 

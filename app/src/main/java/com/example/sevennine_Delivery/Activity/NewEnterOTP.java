@@ -216,8 +216,8 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
 
 
 
-        number= sessionManager.getRegId("phone");
-        phone_number.setText(number);
+       /* number= sessionManager.getRegId("phone");
+        phone_number.setText(number);*/
 
         setupUI(linearLayout);
 
@@ -473,7 +473,7 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
                         Intent intent = new Intent(NewEnterOTP.this,FirmShopDetailsActivity.class);
                         startActivity(intent);
 
-                       // Verification();
+                    // Verification();
 
                     }else if(getIntent().getExtras().getString("register_status").equals("register_btn")){
 
@@ -505,7 +505,7 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
         });
     }
 
-   /* private void Verification() {
+    private void Verification() {
 
         try{
 
@@ -530,10 +530,15 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
 
                         if(user_status.equals(true)){
 
-                           *//* sessionManager.createLoginSession(sessionManager.getRegId("phone"));
+                            Toast toast = Toast.makeText(NewEnterOTP.this,"Connection to home page", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.TOP| Gravity.CENTER,0,0);
+                            toast.show();
+
+                            /*sessionManager.createLoginSession(sessionManager.getRegId("phone"));
                             Intent intent=new Intent(NewEnterOTP.this, HomeFragment.class);
-                            startActivity(intent);
-*//*
+                            startActivity(intent);*/
+
+
                         }else{
                             sessionManager.createLoginSession(sessionManager.getRegId("phone"));
                             Intent intent=new Intent(NewEnterOTP.this,Verification_Activity.class);
@@ -558,7 +563,7 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
             e.printStackTrace();
         }
 
-    }*/
+    }
 
 
     @Override

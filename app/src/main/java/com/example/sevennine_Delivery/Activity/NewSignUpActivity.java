@@ -194,9 +194,9 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
         String[] localize = {"+91"};
 
         sessionManager = new SessionManager(this);
-        //    sessionManager.checkRegister();
+            sessionManager.checkRegister();
 
-        try {
+      /*  try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
 
             made_text.setText(lngObject.getString("MadeforFarmingCommunity"));
@@ -214,7 +214,7 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+*/
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
