@@ -3,6 +3,7 @@ package com.example.sevennine_Delivery.Fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,20 +27,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.sevennine_Delivery.Activity.NewSignUpActivity;
 import com.example.sevennine_Delivery.Activity.Status_bar_change_singleton;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
+import com.example.sevennine_Delivery.Urls;
+import com.example.sevennine_Delivery.Volly_class.Crop_Post;
+import com.example.sevennine_Delivery.Volly_class.VoleyJsonObjectCallback;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class FirmShopDetailsFragment extends Fragment {
     Fragment selectedFragment;
     LinearLayout Continue,linearLayout;
-    EditText shopname,gst,addressline1,addressline2;
+    EditText shopname,gst,addressline1,addressline2,mobile_no,email;
     SessionManager sessionManager;
     String status,message,shop_name_toast,shop_ads_toast;
     boolean doubleBackToExitPressedOnce = false;
@@ -72,6 +80,8 @@ public class FirmShopDetailsFragment extends Fragment {
         line1_txt = view.findViewById(R.id.line1);
         line2_txt = view.findViewById(R.id.line2);
         gst_txt = view.findViewById(R.id.vhnum);
+        mobile_no = view.findViewById(R.id.mnumbr);
+        email = view.findViewById(R.id.emailid);
 
         sessionManager = new SessionManager(getActivity());
 
@@ -208,21 +218,20 @@ public class FirmShopDetailsFragment extends Fragment {
 
                 }else{
 
-                    selectedFragment = Verification_Fragment.newInstance();
-                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_layout1, selectedFragment);
-                    transaction.addToBackStack("verify");
-                    transaction.commit();
-                  //  shoplocation();
-                   /* try{
-                        JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("FirmShopName",shopname.getText().toString());
-                        jsonObject.put("GST",gst.getText().toString());
-                        jsonObject.put("AddressLine1",addressline1.getText().toString());
-                        jsonObject.put("AddressLine2",addressline2.getText().toString());
-                        jsonObject.put("UserId",sessionManager.getRegId("userId"));
 
-                        Crop_Post.crop_posting(getActivity(), Urls.AddUpdateFirmDetails, jsonObject, new VoleyJsonObjectCallback() {
+                  //  shoplocation();
+                    try{
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("PId","1");
+                        jsonObject.put("Name",shopname.getText().toString());
+                        jsonObject.put("Mnumber",mobile_no.getText().toString());
+                        jsonObject.put("Address",addressline1.getText().toString());
+                        jsonObject.put("EmailId",email.getText().toString());
+                        jsonObject.put("Vehicalnumber",gst.getText().toString());
+                        jsonObject.put("UserId",sessionManager.getRegId("userId"));
+                        jsonObject.put("CreatedBy",sessionManager.getRegId("userId"));
+
+                        Crop_Post.crop_posting(getActivity(), Urls.PERSONALDETAILS, jsonObject, new VoleyJsonObjectCallback() {
                             @Override
                             public void onSuccessResponse(JSONObject result) {
 
@@ -232,31 +241,19 @@ public class FirmShopDetailsFragment extends Fragment {
 
                                     if(status.equals("1")) {
 
-                                        shoplocation();
+                                       // shoplocation();
 
-                                        *//*selectedFragment = Shop_Location_Fragment.newInstance();
+                                        selectedFragment = Verification_Fragment.newInstance();
                                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                                         transaction.replace(R.id.frame_layout1, selectedFragment);
-                                        transaction.addToBackStack("firm");
-                                        transaction.commit();*//*
-
+                                        transaction.addToBackStack("verify");
+                                        transaction.commit();
                                         }else {
 
-                                       *//* int duration = 1000;
-                                        Snackbar snackbar = Snackbar
-                                                .make(linearLayout, "Firm details  Not Added", duration);
-                                        View snackbarView = snackbar.getView();
-                                        TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                        tv.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.orange));
-                                        tv.setTextColor(Color.WHITE);
+                                        Toast toast = Toast.makeText(getActivity(),"Personal Details not added", Toast.LENGTH_LONG);
+                                        toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
+                                        toast.show();
 
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                            tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                                        } else {
-                                            tv.setGravity(Gravity.CENTER_HORIZONTAL);
-                                        }
-                                        snackbar.show();
-*//*
                                     }
 
 
@@ -271,7 +268,7 @@ public class FirmShopDetailsFragment extends Fragment {
 
                     }catch (Exception e){
                         e.printStackTrace();
-                    }*/
+                    }
 
 
                 }

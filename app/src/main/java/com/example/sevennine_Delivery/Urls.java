@@ -19,6 +19,7 @@ public class Urls {
     public static final String NEWSIGNUP=ROOT_URL+"Auth/RegisterNewUser";
     public static final String NEWSIGNUPDealer="http://13.232.185.209:9696/api/Auth/RegisterNewUser";
     public static final String NEWLOGIN=ROOT_URL+"Auth/ValidateRegisteredUser";
+    public static final String PERSONALDETAILS=ROOT_URL+"MasterTable/AddUpdatePersonalDetails";
     public static final String GetAllCrops=ROOT_URL+"Crops/GetCrops";
     public static final String AddToCart=ROOT_URL+"Order/AddToCart";
     public static final String Languages=ROOT_URL+"MasterTable/GetLanguages";
