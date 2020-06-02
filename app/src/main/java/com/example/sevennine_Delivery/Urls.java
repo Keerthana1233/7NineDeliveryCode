@@ -210,7 +210,7 @@ public class Urls {
     public static final String AddUpdateUserDetails= ROOT_URL+"MasterTable/AddUpdateUserDetails";
     public static final String EditSellDetails= ROOT_URL+"SellingType/UpdateSellDetails";
 
-////////Orders////////////
+////////Orders////////////llllll
 public static final String GetOrdersFrom7NineStores= ROOT_URL+"MasterTable/GetOrdersFrom7NineStores";
 
 
