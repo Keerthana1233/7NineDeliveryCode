@@ -4,10 +4,11 @@
     <color name="colorPrimaryDark">#26A541</color>
     <color name="dark_green">#1e8434</color>
     <color name="colorAccent">#1e8434</color>
-
-
+    <color name="gen_white">#FFFFFF</color>
+    <color name="grey_light">#E0E0E0</color>
     <!--<color name="colorAccent">#F72C1D</color>
 -->
+    <color name="blue">#99EBAA</color>
     <color name="gold_color">#e8bc1a</color>
     <color name="navy_blue">#3887D6</color>
     <color name="black">#0C0C0C</color>

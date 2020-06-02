@@ -42,8 +42,8 @@ public class SessionManager {
     public static final String KEY_LNG_SELECTED = "lng";
     public static final String KEY_LANGUAGE = "language";
     public static final String KEY_LANGUAGE_NAME = "language_name";
-    public static final String KEY_LATITUDE ="lat";
-    public static final String KEY_LONGITUDE ="lng";
+    public static final String KEY_LAT = "latitude";
+    public static final String KEY_LNG = "longtitude";
    // public static final String KEY_LOCATION ="loc";
 
     public static final String KEY_LOCATION = "location";
@@ -57,12 +57,9 @@ public class SessionManager {
         loginPrefsEditor=pref1.edit();
         editor = pref.edit();
     }
-    public  void storeLatLong(String lat, String long_)
-    {
-        editor.putBoolean(KEY_LOCATION,true);
-        editor.putString(KEY_LATITUDE,lat);
-        editor.putString(KEY_LONGITUDE,long_);
-        // commit changes
+    public void saveLatLng(String lat,String lng){
+        editor.putString(KEY_LAT, lat);
+        editor.putString(KEY_LNG, lng);
         editor.commit();
     }
     /**

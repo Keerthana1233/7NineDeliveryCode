@@ -209,7 +209,10 @@ public class Urls {
     public static final String GetOrdersFromCart= ROOT_URL+"SellingType/GetOrdersFromCart";
     public static final String AddUpdateUserDetails= ROOT_URL+"MasterTable/AddUpdateUserDetails";
     public static final String EditSellDetails= ROOT_URL+"SellingType/UpdateSellDetails";
-
+    //orders
+ public static final String GetOrderslist = ROOT_URL+"MasterTable/GetOrdersFrom7NineStores";
+ public static final String AddAccept = ROOT_URL+"MasterTable/AddAcceptedOrdersForDelhivery";
+ public static final String GetAcceptorder = ROOT_URL+"MasterTable/GetAcceptedOrdersForDelhivery";
 
 }
 

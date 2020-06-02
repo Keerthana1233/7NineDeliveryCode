@@ -36,7 +36,9 @@
             android:value="AIzaSyAXsifFPLFyNsK0YxpmcMld89LDRDC2SGI" />
 
 
-
+        <activity
+            android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.FirmShopDetailsActivity"
             android:screenOrientation="portrait" />
@@ -55,6 +57,10 @@
         <activity
             android:name=".Activity.Verification_Activity"
             android:screenOrientation="portrait" />
-
+        <activity android:name=".Activity.TrackerActivity" />
+        <service
+            android:name=".TrackerService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 </manifest>
