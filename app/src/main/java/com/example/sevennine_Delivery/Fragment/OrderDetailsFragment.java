@@ -28,7 +28,7 @@ import java.util.List;
 
 
 public class OrderDetailsFragment extends Fragment {
-//commit code
+//commit code eod
     public static List<OrderDetailBean> newOrderBeansList = new ArrayList<>();
     public static RecyclerView recyclerView;
     LinearLayout back_feed;
