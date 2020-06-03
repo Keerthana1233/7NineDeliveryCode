@@ -79,6 +79,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     LinearLayout back_feed;
     String orderid;
     String latid,langid;
+    String dellat,dellang;
     SessionManager sessionManager;
     AcceptOrderDetailsAdapter madapter;
     JSONObject lngObject;
@@ -121,6 +122,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
             Log.d(TAG, "Connection off");
             showSettingsAlert();
             getLastLocation();
+            updateUI(loc);
         } else {
             Log.d(TAG, "Connection on");
             // check permissions
@@ -144,7 +146,9 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
         HomeMenuFragment.toolbartxt.setText("Order Details");
         HomeMenuFragment.notificationimg.setVisibility(View.GONE);
-
+        dellat = sessionManager.getRegId("latitude");
+        dellang = sessionManager.getRegId("longtitude");
+        System.out.println("rtyr"+dellat);
    mapview=view.findViewById(R.id.mapview);
         Window window = getActivity().getWindow();
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
@@ -155,7 +159,6 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
                 FragmentTransaction transaction7 = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction7.replace(R.id.frame_layout1, selectedFragment);
                 transaction7.commit();
-
             }
         });
        mapview.setOnClickListener(new View.OnClickListener() {
@@ -176,9 +179,9 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
                 //12.9698° N, 77.7500° E
                 final LatLng custlatlong = new LatLng(Double.parseDouble("12.9698"),
                         Double.parseDouble("77.7500"));
-          final LatLng dellatlong = new LatLng(Double.parseDouble(sessionManager.getRegId("latitude"))
-                        ,Double.parseDouble(sessionManager.getRegId("longtitude")));
-       /*   final LatLng dellatlong = new LatLng(Double.parseDouble("12.9242199")
+       final LatLng dellatlong = new LatLng(Double.parseDouble(dellat)
+                        ,Double.parseDouble(dellang));
+      /*  final LatLng dellatlong = new LatLng(Double.parseDouble("12.9242199")
                         ,Double.parseDouble(" 77.51911949999999"));*/
                 final MapView mapView = convertView.findViewById(R.id.map);
                 // finally ..... thnx god
@@ -313,8 +316,8 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         String parameters = str_origin + "&" + str_dest +str_intermediate+ "&" + sensor + "&" + mode;
         // Output format
         String output = "json";
-     // String key ="&key=AIzaSyDgQSmB4zuUBFUv4rzBhY_e-ZRygBRVT4U";
-       String key ="&key=AIzaSyBMScKP4py29BqVV_LwXmMf8qANqNxpF0Y";
+       String key ="&key=AIzaSyDgQSmB4zuUBFUv4rzBhY_e-ZRygBRVT4U";
+ //String key ="&key=AIzaSyAXsifFPLFyNsK0YxpmcMld89LDRDC2SGI";
         // Building the url to the web service
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters+key;
         return url;
@@ -435,7 +438,9 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         Log.e(TAG,Double.toString(loc.getLongitude()));
         Log.e(TAG, DateFormat.getTimeInstance().format(loc.getTime()));
         sessionManager.saveLatLng(String.valueOf(loc.getLatitude()), String.valueOf(loc.getLongitude()));
-       // System.out.println("sessionManagerDS" +loc.getLatitude()+loc.getLongitude());
+        dellat = sessionManager.getRegId("latitude");
+        dellang = sessionManager.getRegId("longtitude");
+        System.out.println("rtyr"+dellat);
     }
 
     @Override

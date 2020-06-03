@@ -110,6 +110,8 @@ public class TrackerService extends Service {
             notificationManager.createNotificationChannel(channel);
         }
     }
+
+
     protected BroadcastReceiver stopReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -162,7 +164,7 @@ public class TrackerService extends Service {
                     if (location != null) {
                         Log.d(TAG, "location update " + location);
                         ref.setValue(location);
-
+//https://maps.googleapis.com/maps/api/directions/json?origin=12.9048584,77.5243252&destination=12.9698,77.75&waypoints=14.666164699999998,75.48577709999999&sensor=false&mode=driving&key=AIzaSyDgQSmB4zuUBFUv4rzBhY_e-ZRygBRVT4U
 /*                        LatLng currentlatlng = new LatLng(
                                 location.getLatitude(),location.getLongitude());
 
@@ -243,7 +245,7 @@ else
         // Output format
         String output = "json";
         //String key ="&key=AIzaSyDgQSmB4zuUBFUv4rzBhY_e-ZRygBRVT4U";
-        String key ="&key=AIzaSyAXsifFPLFyNsK0YxpmcMld89LDRDC2SGI";
+        String key ="&key=AIzaSyDLEKZFGQEq_bgN70tkfE8rrvuCJIde6NI";
         // Building the url to the web service
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters+key;
         return url;
