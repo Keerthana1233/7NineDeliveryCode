@@ -46,7 +46,6 @@ public class OrderDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.order_details_layout, container, false);
         recyclerView=view.findViewById(R.id.new_order_recy);
-
        // back_feed=view.findViewById(R.id.back_feed);
         Window window = getActivity().getWindow();
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
@@ -57,11 +56,9 @@ public class OrderDetailsFragment extends Fragment {
                 FragmentTransaction transaction7 = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction7.replace(R.id.frame_layout1, selectedFragment);
                 transaction7.commit();
-
             }
         });
 */
-
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {

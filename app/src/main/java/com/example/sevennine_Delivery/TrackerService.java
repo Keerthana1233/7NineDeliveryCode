@@ -72,24 +72,17 @@ public class TrackerService extends Service {
     public void onCreate() {
         super.onCreate();
         System.out.println("llllllllllllllllllllllllllllllllllllllllllllllll");
-
         createNotificationChannel();
         buildNotification();
         loginToFirebase();
         sessionManager=new SessionManager(getApplicationContext());
-
-
-
     }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         orderId=intent.getStringExtra("orderId");
         System.out.println("llllllllllllllllllllllllllllllllllllllllllllllll"+orderId);
-
         return super.onStartCommand(intent, flags, startId);
     }
-
     private void buildNotification() {
         String stop = "stop";
         registerReceiver(stopReceiver, new IntentFilter(stop));
@@ -136,9 +129,11 @@ public class TrackerService extends Service {
             public void onComplete(Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "firebase auth success");
+                  //  Log.e(TAG, "onComplete: Failed=" + task.getException().getMessage());
                     requestLocationUpdates();
                 } else {
                     Log.d(TAG, "firebase auth failed");
+                    Log.e(TAG, "onComplete: Failed=" + task.getException().getMessage());
                 }
             }
         });
@@ -167,6 +162,7 @@ public class TrackerService extends Service {
                     if (location != null) {
                         Log.d(TAG, "location update " + location);
                         ref.setValue(location);
+
 /*                        LatLng currentlatlng = new LatLng(
                                 location.getLatitude(),location.getLongitude());
 
@@ -284,6 +280,7 @@ else
             parserTask.execute(result);
         }
     }
+
     private String downloadUrl(String strUrl) throws IOException {
         String data = "";
         InputStream iStream = null;

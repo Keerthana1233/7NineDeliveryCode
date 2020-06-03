@@ -27,7 +27,7 @@ public class AcceptOrderAdapter extends RecyclerView.Adapter<AcceptOrderAdapter.
     private List<NewOrderBean> productList;
     Activity activity;
     Fragment selectedFragment;
-String orderid;
+String orderid,latid,langid;
     public LinearLayout linearLayout;
 
     public static CardView cardView;
@@ -78,6 +78,8 @@ String orderid;
         holder.username.setText(products.getAddr());
         holder.addr.setText(products.getAddr());
         orderid=products.getProd_name();
+        latid=products.getLatitude();
+        langid=products.getLongitude();
         Glide.with(activity).load(products.getImage()).placeholder(R.drawable.ic_gallery__default).dontAnimate().into(holder.image);
 
         holder.vieworder.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +87,8 @@ String orderid;
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putString("orderId", orderid);
+                bundle.putString("latidkey",latid);
+                bundle.putString("langidkey",langid);
                 selectedFragment = AcceptOrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);

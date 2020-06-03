@@ -29,7 +29,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.android.volley.VolleyLog;
 import com.example.sevennine_Delivery.R;
+import com.example.sevennine_Delivery.SessionManager;
 import com.google.android.gms.common.ConnectionResult;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -56,6 +58,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.List;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
@@ -80,7 +83,7 @@ public class Shop_Current_Location_Fragment extends Fragment implements
     protected static final int REQUEST_CHECK_SETTINGS = 0x1;
     String state,statelatlongi,location_captured;
     int mDimension;
-
+    SessionManager sessionManager;
     String curr_latitude,curr_longitude;
     LatLng  latLag,latLng;
     JSONArray get_location_array;
@@ -102,7 +105,7 @@ public class Shop_Current_Location_Fragment extends Fragment implements
         displayLocationSettingsRequest(getActivity());
         //  resutText = (TextView) view.findViewById(R.id.curr_address);
 
-
+        sessionManager = new SessionManager(getActivity());
         back_feed = view.findViewById(R.id.back_feed);
         //    confirm_loc = view.findViewById(R.id.confirm_loc);
         capture_loc = view.findViewById(R.id.capture_loc);
@@ -335,7 +338,8 @@ public class Shop_Current_Location_Fragment extends Fragment implements
     {
 
         mLastLocation = location;
-
+        Log.d(VolleyLog.TAG, "onLocationChanged");
+        updateUI(location);
         if (mCurrLocationMarker != null) {
             mCurrLocationMarker.remove();
 
@@ -371,7 +375,7 @@ public class Shop_Current_Location_Fragment extends Fragment implements
 
         System.out.println("djhgfhfdhfddjksdh" + curr_latitude);
 
-
+        System.out.println("djhgfhfdhfddjksdh" + curr_latitude);
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
 
         mGoogleMap.addCircle(new CircleOptions()
@@ -383,13 +387,20 @@ public class Shop_Current_Location_Fragment extends Fragment implements
         //   mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 18));
 
     }
+    private void updateUI(Location loc) {
+        Log.d(VolleyLog.TAG, "updateUI");
+        Log.e(VolleyLog.TAG,Double.toString(loc.getLatitude()));
+        Log.e(VolleyLog.TAG,Double.toString(loc.getLongitude()));
+        Log.e(VolleyLog.TAG, DateFormat.getTimeInstance().format(loc.getTime()));
+        sessionManager.saveLatLng(String.valueOf(loc.getLatitude()), String.valueOf(loc.getLongitude()));
+        System.out.println("sessionManager" +loc.getLatitude()+loc.getLongitude());
+    }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Should we show an explanation?
-
             if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
                 // Show an explanation to the user *asynchronously* -- don't block
@@ -409,11 +420,8 @@ public class Shop_Current_Location_Fragment extends Fragment implements
                                         MY_PERMISSIONS_REQUEST_LOCATION );
                             }
                         })
-
                         .create()
                         .show();
-
-
             } else {
 
                 ActivityCompat.requestPermissions(getActivity(),
@@ -422,10 +430,7 @@ public class Shop_Current_Location_Fragment extends Fragment implements
             }
         }
     }
-
-
     private void configureCameraIdle() {
-
         onCameraIdleListener = new GoogleMap.OnCameraIdleListener() {
             @Override
             public void onCameraIdle() {
