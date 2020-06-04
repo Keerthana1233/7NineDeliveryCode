@@ -7,12 +7,12 @@ public class Urls {
     // private static final String ROOT_URL = "http://3.17.6.57:9393/api/";///DEV
     // private static final String ROOT_URL = "http://3.17.6.57:8888//api/";//PRO
 
-
+   public static final String Get_Profile_Details1= ROOT_URL + "Auth/GetRegUserDetails";
     public static final String IMAGE_ROOT_URL = "http://13.232.185.209:909";//Image root
     // public static final String Add_New_Address = ROOT_URL+"MasterTable/AddUserAddress";
     public static final String Add_New_Address = ROOT_URL+"MasterTable/AddUserAddressDetails";
     public static final String GetFarmerDetailsList = ROOT_URL+"MasterTable/GetFarmersList";
-
+ public static final String AddBankAccounts=ROOT_URL+"MasterTable/AddUpdatBankDetails";
     public static final String LOGIN=ROOT_URL+"Auth/ValidateUser";
     public static final String SIGNUP=ROOT_URL+"Auth/RegisterUser";
     public static final String LOANSIGNUP="http://13.232.185.209:9292/api/Auth/RegisterNewUser";
@@ -32,12 +32,14 @@ public class Urls {
    public static final String CHANGE_LANGUAGE= ROOT_URL+"Lang/ChangeCurrentCulture";
    // public static final String CHANGE_LANGUAGE= "http://13.232.185.209:909/api/Lang/ChangeCurrentCulture";
 
-
+   public static final String BankList=ROOT_URL+"Loan/GetBankList";
+   public static final String Delete_Bank_Details = ROOT_URL + "MasterTable/DeleteBankDetails";
 
     public static final String Get_New_Address = ROOT_URL+"MasterTable/GetUserAddress";
     // Wallet
     public static final String GetFarmDetailsList = ROOT_URL+"MasterTable/GetFarmsList";
     public static final String GetFarmsListByUserId = ROOT_URL+"MasterTable/GetFarmsListByUserId";
+ public static final String GetBankList = ROOT_URL+"MasterTable/GetBankDetails";
 
 
     // Refer n Earn

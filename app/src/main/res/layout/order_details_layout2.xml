@@ -160,15 +160,15 @@
                         />
 
                     <TextView
+                        android:id="@+id/orderid"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="22-Mar-2020"
-                        android:textSize="14dp"
-                        android:fontFamily="@font/segoeui"
-                        android:layout_weight="2.5"
-                        android:textColor="#000"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
-                        />
+                        android:layout_weight="2.5"
+                        android:fontFamily="@font/segoeui"
+                        android:text="22-Mar-2020"
+                        android:textColor="#000"
+                        android:textSize="14dp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -188,6 +188,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/orderdate"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="404-8614299-2321138"
@@ -465,6 +466,7 @@
                         android:orientation="horizontal"
                         >
                         <TextView
+                            android:id="@+id/amount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Rs.502.00"
@@ -533,7 +535,7 @@
                 android:weightSum="100">
 
                 <TextView
-                    android:id="@+id/name_vw"
+                    android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui"
@@ -543,7 +545,7 @@
 
 
                 <TextView
-                    android:id="@+id/addr_vw"
+                    android:id="@+id/addr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui"
@@ -614,7 +616,7 @@
                 android:weightSum="100">
 
                 <TextView
-                    android:id="@+id/credit_card"
+                    android:id="@+id/mode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui"

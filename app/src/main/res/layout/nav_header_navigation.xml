@@ -177,7 +177,7 @@
           android:layout_marginTop="25dp"
           android:textColor="#000"
           />
-      <TextView
+    <!--  <TextView
           android:id="@+id/notification"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
           android:textSize="16dp"
           android:fontFamily="@font/segoeui"
           android:textColor="#000"
-          />
+          />-->
    </LinearLayout>
 
    </ScrollView>

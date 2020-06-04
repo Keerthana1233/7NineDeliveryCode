@@ -43,7 +43,7 @@ public class YourOrdersFragment extends Fragment {
         filter=view.findViewById(R.id.filter);
         HomeMenuFragment.toolbartxt.setText("Your Orders");
         recyclerView=view.findViewById(R.id.new_order_recy);
-           view.setFocusableInTouchMode(true);
+        view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -73,7 +73,6 @@ public class YourOrdersFragment extends Fragment {
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 selectedFragment = FilterFragment.newInstance();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.frame_layout, selectedFragment);

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:weightSum="100"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:background="@color/green"
+        android:gravity="center_vertical"
+        tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:id="@+id/back_feed"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_effect"
+                android:gravity="center">
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_go_back_left_arrow_"
+
+                    />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Loan Account"
+                android:textSize="20dp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/toolbar_title" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="77"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="16dp"
+        >
+
+        <EditText
+            android:id="@+id/acc_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border_grey"
+            android:fontFamily="@font/segoeui"
+            android:hint="Enter Account Number"
+            android:padding="12dp"
+            android:paddingVertical="10dp"
+            android:inputType="number"
+            android:textColor="#000"
+            android:textColorHint="#9d9d9d"
+            android:textSize="16dp" />
+
+
+
+        <LinearLayout
+            android:id="@+id/loan_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            >
+
+
+
+
+                <!--
+                                <EditText
+                                    android:id="@+id/ed_state"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Select Bank : "
+                                    android:paddingVertical="2dp"
+                                    android:layout_marginTop="20dp"
+                                    android:textSize="14dp"
+                                    android:background="@android:color/transparent"
+                                    android:maxLength="30"
+                                    android:editable="false"
+                                    android:layout_marginLeft="6dp"
+                                    android:paddingRight="10dp"
+                                    android:backgroundTint="#d3d3d3"
+                                    android:fontFamily="@font/segoeui"
+                                    android:textColorHint="#000"/>
+                -->
+
+
+
+                <TextView
+                    android:id="@+id/state_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Select Bank"
+                    android:padding="12dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/segoeui"
+                    android:textColor="#000"
+                    android:textColorHint="#9d9d9d"
+                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:background="@drawable/border_grey"                    android:editable="false"
+                    />
+
+
+
+<!--
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:layout_gravity="bottom|right">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/ic_right_angle_arrow"/>
+
+            </LinearLayout>
+-->
+
+
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/ifsc_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="IFSC Code"
+            android:textColorHint="#9d9d9d"
+            android:textColor="#000"
+            android:padding="12dp"
+            android:fontFamily="@font/segoeui"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_grey"             />
+
+
+
+        <EditText
+            android:id="@+id/acc_holder_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Account Holder Name"
+            android:textColorHint="#9d9d9d"
+            android:textColor="#000"
+            android:fontFamily="@font/segoeui"
+            android:padding="12dp"
+            android:textSize="16dp"
+            android:maxLength="30"
+            android:layout_marginTop="10dp"
+            android:inputType="text"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:background="@drawable/border_grey"             />
+        <TextView
+            android:id="@+id/dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date of Birth"
+            android:textColorHint="#9d9d9d"
+            android:textColor="#000"
+            android:fontFamily="@font/segoeui"
+            android:textSize="16dp"
+            android:padding="12dp"
+            android:layout_marginTop="10dp"
+            android:drawableRight="@drawable/ic_calendar"
+            android:background="@drawable/border_grey"             />
+
+        <View
+            android:id="@+id/view_dob"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dcdcdc"
+            android:layout_marginHorizontal="5dp"/>
+
+        <EditText
+            android:id="@+id/emi_paid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last EMI Amount Paid"
+            android:textColorHint="#9d9d9d"
+            android:padding="12dp"
+            android:fontFamily="@font/segoeui"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:background="@drawable/border_grey"             />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/apply_loan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SUBMIT"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/segoeui"
+            android:background="@drawable/border_filled_red"
+            android:textColor="#fff"
+            />
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

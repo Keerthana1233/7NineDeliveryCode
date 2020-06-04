@@ -77,7 +77,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     public static List<OrderDetailBean> newOrderBeansList = new ArrayList<>();
     public static RecyclerView recyclerView;
     LinearLayout back_feed;
-    String orderid;
+    String orderid,addr,mode,amount,createddate;
     String latid,langid;
     String dellat,dellang;
     SessionManager sessionManager;
@@ -99,6 +99,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
     Location loc;
+    TextView orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt;
     ArrayList<String> permissions = new ArrayList<>();
     ArrayList<String> permissionsToRequest;
     ArrayList<String> permissionsRejected = new ArrayList<>();
@@ -112,6 +113,13 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         View view = inflater.inflate(R.layout.order_details_layout2, container, false);
         recyclerView=view.findViewById(R.id.new_order_recy);
         sessionManager = new SessionManager(getActivity());
+        orderidtxt=view.findViewById(R.id.orderid);
+        orderdatetxt=view.findViewById(R.id.orderdate);
+        modetxt=view.findViewById(R.id.mode);
+        amounttxt=view.findViewById(R.id.amount);
+        nametxt=view.findViewById(R.id.name);
+        addrtxt=view.findViewById(R.id.addr);
+        orderdatetxt=view.findViewById(R.id.orderdate);
         locationManager = (LocationManager) getActivity().getSystemService(Service.LOCATION_SERVICE);
         isGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         isNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -142,6 +150,15 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
             orderid = bundle.getString("orderId");
             latid = bundle.getString("latidkey");
             langid = bundle.getString("langidkey");
+            amount = bundle.getString("totalamount");
+            createddate = bundle.getString("orderdate");
+            addr = bundle.getString("addr");
+            mode = bundle.getString("mode");
+            orderdatetxt.setText(createddate);
+            orderidtxt.setText(orderid);
+            amounttxt.setText(amount);
+            addrtxt.setText(addr);
+            modetxt.setText(mode);
         }
         HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
         HomeMenuFragment.toolbartxt.setText("Order Details");

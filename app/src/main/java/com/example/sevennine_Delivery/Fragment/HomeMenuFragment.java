@@ -159,7 +159,11 @@ static boolean fragloaded;
                 myaccounts.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        selectedFragment =AaSettingFragment.newInstance();
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout, selectedFragment);
+                        transaction.commit();
+                        drawer.closeDrawers();
                     }
                 });
 
