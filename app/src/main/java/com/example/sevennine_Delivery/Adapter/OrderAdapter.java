@@ -1,6 +1,7 @@
 package com.example.sevennine_Delivery.Adapter;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,10 +91,18 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         holder.vieworder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Bundle bundle = new Bundle();
+                bundle.putString("orderId", products.getProd_name());
+                bundle.putString("orderdate",products.getCreateddate());
+                bundle.putString("totalamount",products.getProd_price());
+                bundle.putString("addr",products.getAddr());
+                bundle.putString("mode",products.getCod());
+                bundle.putString("lat", products.getLatitude());
+                bundle.putString("long",products.getLongitude());
                 selectedFragment = OrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
+                selectedFragment.setArguments(bundle);
                 transaction.commit();
             }
         });

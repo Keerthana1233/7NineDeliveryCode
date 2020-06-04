@@ -1,6 +1,7 @@
 package com.example.sevennine_Delivery.Orders;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.sevennine_Delivery.Adapter.OrderAdapter;
 import com.example.sevennine_Delivery.Bean.NewOrderBean;
@@ -30,10 +32,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 //Our class extending fragment
-public class NewOrderTab extends Fragment {
+public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     RecyclerView recyclerView;
     public static OrderAdapter madapter;
     public static List<NewOrderBean> newOrderBeansList = new ArrayList<>();
@@ -42,6 +46,7 @@ public class NewOrderTab extends Fragment {
     int i1;
     SessionManager sessionManager;
     TextView filter;
+    SwipeRefreshLayout mSwipeRefreshLayout;
     JSONArray jsonArray;
     NewOrderBean bean;
     public static NewOrderTab newInstance() {
@@ -55,7 +60,14 @@ public class NewOrderTab extends Fragment {
         View view = inflater.inflate(R.layout.new_order_tab, container, false);
         filter=view.findViewById(R.id.filter);
         recyclerView=view.findViewById(R.id.new_order_recy);
+        setRepeatingAsyncTask();
         sessionManager=new SessionManager(getActivity());
+        mSwipeRefreshLayout = view.findViewById(R.id.swifeRefresh);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
         Window window = getActivity().getWindow();
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
         view.setFocusableInTouchMode(true);
@@ -81,33 +93,7 @@ public class NewOrderTab extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
       madapter=new OrderAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(madapter);
-        try{
-            newOrderBeansList.clear();
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("UserId",sessionManager.getRegId("userId"));
-            System.out.println("GetOrderslist"+jsonObject);
-            Crop_Post.crop_posting(getActivity(), Urls.GetOrderslist, jsonObject, new VoleyJsonObjectCallback() {
-                @Override
-                public void onSuccessResponse(JSONObject result) {
-                    System.out.println("iGetOrderslistdetails"+result);
-                    try{
-                        jsonArray = result.getJSONArray("orderfromcart");
-                        for(int i=0;i<jsonArray.length();i++){
-                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                             bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),"Cash on Delivery",jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"));
-                            newOrderBeansList.add(bean);
-                        }
-                        madapter=new OrderAdapter(getActivity(),newOrderBeansList);
-                        recyclerView.setAdapter(madapter);
-                       madapter.notifyDataSetChanged();
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        Newdata();
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,5 +109,64 @@ public class NewOrderTab extends Fragment {
 
         return view;
     }
+public  void  Newdata(){
+    mSwipeRefreshLayout.setRefreshing(true);
+    try{
 
+        newOrderBeansList.clear();
+        final JSONObject jsonObject = new JSONObject();
+        jsonObject.put("UserId",sessionManager.getRegId("userId"));
+        System.out.println("GetOrderslist"+jsonObject);
+        Crop_Post.crop_posting(getActivity(), Urls.GetOrderslist, jsonObject, new VoleyJsonObjectCallback() {
+            @Override
+            public void onSuccessResponse(JSONObject result) {
+                System.out.println("iGetOrderslistdetails"+result);
+                try{
+                    jsonArray = result.getJSONArray("orderfromcart");
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),"Cash on Delivery",jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"));
+                        newOrderBeansList.add(bean);
+                    }
+                    madapter=new OrderAdapter(getActivity(),newOrderBeansList);
+                    recyclerView.setAdapter(madapter);
+                    madapter.notifyDataSetChanged();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+    }catch (Exception e){
+        e.printStackTrace();
+    }
+    mSwipeRefreshLayout.setRefreshing(false);
+}
+    @Override
+    public void onRefresh(){
+        Newdata();
+    }
+    private void setRepeatingAsyncTask() {
+        final Handler handler = new Handler();
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    public void run() {
+                        try {
+                            mSwipeRefreshLayout.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Newdata();
+                                }
+                            });
+                        } catch (Exception e) {
+                            // error, do something
+                        }
+                    }
+                });
+            }
+        };
+        timer.schedule(task, 0, 50*1000);  // interval of one minute
+    }
 }

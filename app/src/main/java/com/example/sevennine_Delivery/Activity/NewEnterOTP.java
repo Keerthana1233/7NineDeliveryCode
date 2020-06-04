@@ -350,8 +350,6 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
                         InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
-
-
 /*
         ReadSms.bindListener(new SmsListener() {
             @Override

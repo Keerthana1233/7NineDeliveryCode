@@ -25,7 +25,7 @@
         tools:replace="android:allowBackup"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Activity.ActivitySelectLang">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -39,7 +39,7 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAXsifFPLFyNsK0YxpmcMld89LDRDC2SGI" />
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".Activity.ActivitySelectLang"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.FirmShopDetailsActivity"

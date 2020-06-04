@@ -65,7 +65,7 @@ public class DeliverdTab extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         NewOrderBean bean=new NewOrderBean("#10989876","Hima Bindhu","567, 4th Cross, Banshankari,\n" +
-                "560091..","Rs.100","Cash on Delivery","","","");
+                "560091..","Rs.100","Cash on Delivery","","","","");
         newOrderBeansList.add(bean);
         newOrderBeansList.add(bean);
         newOrderBeansList.add(bean);

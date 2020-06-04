@@ -44,12 +44,17 @@
                 android:padding="10dp"
                 />
         </LinearLayout>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:id="@+id/swifeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:android="http://schemas.android.com/apk/res/android">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/new_order_recy"
             android:layout_width="match_parent"
             android:background="#fff"
             android:layout_height="wrap_content">
         </androidx.recyclerview.widget.RecyclerView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 
 </LinearLayout>

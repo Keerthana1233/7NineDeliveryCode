@@ -122,7 +122,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
             Log.d(TAG, "Connection off");
             showSettingsAlert();
             getLastLocation();
-            updateUI(loc);
+
         } else {
             Log.d(TAG, "Connection on");
             // check permissions
@@ -149,7 +149,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         dellat = sessionManager.getRegId("latitude");
         dellang = sessionManager.getRegId("longtitude");
         System.out.println("rtyr"+dellat);
-   mapview=view.findViewById(R.id.mapview);
+        mapview=view.findViewById(R.id.mapview);
         Window window = getActivity().getWindow();
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
         HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
