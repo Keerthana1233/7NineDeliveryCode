@@ -2,10 +2,10 @@ package com.example.sevennine_Delivery.Fragment;
 
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +17,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+
+import com.example.sevennine_Delivery.Activity.Verification_Activity;
 import com.example.sevennine_Delivery.R;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -171,7 +172,7 @@ public class Verification_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                AlertMessage();
+              AlertMessage();
 
             }
         });
@@ -206,11 +207,14 @@ public class Verification_Fragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    selectedFragment = Verification_Last_Fragment.newInstance();
+                    Intent i = new Intent(getActivity(), Verification_Activity.class);
+                    startActivity(i);
+
+                   /* selectedFragment = Verification_Last_Fragment.newInstance();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_layout1, selectedFragment);
+                    transaction.replace(R.id.frame_layout, selectedFragment);
                     transaction.commit();
-                    dialog.dismiss();
+                    dialog.dismiss();*/
 
                 }
             });

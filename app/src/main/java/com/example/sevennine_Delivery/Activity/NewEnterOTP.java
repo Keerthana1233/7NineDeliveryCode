@@ -32,6 +32,7 @@ import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.chaos.view.PinView;
+import com.example.sevennine_Delivery.Fragment.HomeMenuFragment;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 import com.example.sevennine_Delivery.Urls;
@@ -178,7 +179,7 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
         regiter_backgrd = findViewById(R.id.register_bgrd);
        sessionId= getIntent().getStringExtra("otpnumber");
 
-      //  sessionManager = new SessionManager(this);
+        sessionManager = new SessionManager(this);
 
       /*  if(getIntent().getStringExtra("FromLogin").equals("flogin")){
 
@@ -188,7 +189,7 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
 */
 
 
-        //    sessionManager.checkRegister();
+  // sessionManager.checkRegister();
 
 
 
@@ -216,8 +217,8 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
 
 
 
-       /* number= sessionManager.getRegId("phone");
-        phone_number.setText(number);*/
+        number= sessionManager.getRegId("phone");
+        phone_number.setText(number);
 
         setupUI(linearLayout);
 
@@ -468,10 +469,10 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
 
 
                     if(getIntent().getExtras().getString("register_status").equals("login_btn")){
-                        Intent intent = new Intent(NewEnterOTP.this,FirmShopDetailsActivity.class);
-                        startActivity(intent);
+                        /*Intent intent = new Intent(NewEnterOTP.this,FirmShopDetailsActivity.class);
+                        startActivity(intent);*/
 
-                    // Verification();
+                    Verification();
 
                     }else if(getIntent().getExtras().getString("register_status").equals("register_btn")){
 
@@ -487,11 +488,10 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
 
 
                 }else{
-                    Intent intent = new Intent(NewEnterOTP.this,FirmShopDetailsActivity.class);
-                    startActivity(intent);
-                    /*Toast toast = Toast.makeText(NewEnterOTP.this,invalid_otp_toast, Toast.LENGTH_LONG);
+
+                   Toast toast = Toast.makeText(NewEnterOTP.this,"Invalid OTP", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
-                    toast.show();*/
+                    toast.show();
 
                    /* Toast toast = Toast.makeText(NewEnterOTP.this, invalid_otp_toast, Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
@@ -528,13 +528,13 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
 
                         if(user_status.equals(true)){
 
-                            Toast toast = Toast.makeText(NewEnterOTP.this,"Connection to home page", Toast.LENGTH_LONG);
+                           /* Toast toast = Toast.makeText(NewEnterOTP.this,"Connection to home page", Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.TOP| Gravity.CENTER,0,0);
-                            toast.show();
+                            toast.show();*/
 
-                            /*sessionManager.createLoginSession(sessionManager.getRegId("phone"));
-                            Intent intent=new Intent(NewEnterOTP.this, HomeFragment.class);
-                            startActivity(intent);*/
+                           sessionManager.createLoginSession(sessionManager.getRegId("phone"));
+                            Intent intent=new Intent(NewEnterOTP.this, MainActivity.class);
+                            startActivity(intent);
 
 
                         }else{

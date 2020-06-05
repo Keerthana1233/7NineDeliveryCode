@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import com.example.sevennine_Delivery.Fragment.Verification_Last_Fragment;
 import com.example.sevennine_Delivery.R;
 
 import org.json.JSONException;
@@ -84,16 +85,18 @@ public class Verification_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.firm);
+       setContentView(R.layout.firm);
 
 
 
 
-       /* selectedFragment = Verification_Fragment.newInstance();
+        selectedFragment = Verification_Last_Fragment.newInstance();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout1, selectedFragment);
-        transaction.commit();*/
+        transaction.commit();
     }
 
 
 }
+
+

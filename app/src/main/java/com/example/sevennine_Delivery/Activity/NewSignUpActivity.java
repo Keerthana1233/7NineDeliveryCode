@@ -194,7 +194,7 @@ public class NewSignUpActivity extends AppCompatActivity implements Connectivity
         String[] localize = {"+91"};
 
         sessionManager = new SessionManager(this);
-            sessionManager.checkRegister();
+           // sessionManager.checkRegister();
 
       /*  try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));

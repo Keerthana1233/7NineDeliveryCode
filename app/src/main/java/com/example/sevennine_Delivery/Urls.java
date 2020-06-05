@@ -215,6 +215,7 @@ public class Urls {
  public static final String GetOrderslist = ROOT_URL+"MasterTable/GetOrdersFrom7NineStores";
  public static final String AddAccept = ROOT_URL+"MasterTable/AddAcceptedOrdersForDelhivery";
  public static final String GetAcceptorder = ROOT_URL+"MasterTable/GetAcceptedOrdersForDelhivery";
+ public static final String Get_Verification_Status = ROOT_URL+"MasterTable/GetUserVerificationStatus";
 
 }
 

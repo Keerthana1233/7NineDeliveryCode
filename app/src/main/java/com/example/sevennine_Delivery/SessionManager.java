@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 
 
 import com.example.sevennine_Delivery.Activity.FirmShopDetailsActivity;
+import com.example.sevennine_Delivery.Activity.MainActivity;
 import com.example.sevennine_Delivery.Activity.NewSignUpActivity;
 import com.example.sevennine_Delivery.Activity.Verification_Activity;
 
@@ -253,7 +254,7 @@ public class SessionManager {
         // Check login status
         if(this.Register()){
             // user is not logged in redirect him to Login Activity
-            Intent i = new Intent(_context, FirmShopDetailsActivity.class);
+            Intent i = new Intent(_context, MainActivity.class);
             // Closing all the Activities
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
