@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:background="#E7EFFA"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:gravity="center_vertical"
+        tools:ignore="MissingConstraints">
+
+       <!-- <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@android:color/white"
+            >
+-->
+
+            <LinearLayout
+                android:id="@+id/back_feed"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_effect"
+                android:gravity="center">
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_go_back_left_arrow_"
+
+                    />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Searches"
+                android:textSize="20dp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/toolbar_title" />
+
+
+    </LinearLayout>
+
+<!--
+    <LinearLayout
+        android:id="@+id/select_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
+        android:gravity="center_vertical"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui"
+            android:text="Sort by"
+            android:textSize="14dp"
+            />
+
+
+        <TextView
+            android:id="@+id/status_text"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui"
+            android:text="Crop Loan"
+            android:textSize="14dp"
+
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+
+            />
+        <LinearLayout
+            android:id="@+id/filter_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:layout_marginRight="5dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="Filter/Sort"
+                android:textSize="12dp"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/ic_filter"
+                android:layout_gravity="center_vertical"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+-->
+
+    <FrameLayout
+        android:id="@+id/no_item_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_searches"
+        android:layout_width="match_parent"
+        android:background="#E7EFFA"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    </FrameLayout>
+</LinearLayout>

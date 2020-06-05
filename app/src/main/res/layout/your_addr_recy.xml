@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:gravity="center_vertical"
+        tools:ignore="MissingConstraints">
+
+       <!-- <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@android:color/white"
+            >
+-->
+
+            <LinearLayout
+                android:id="@+id/back_feed"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_effect"
+                android:gravity="center">
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_go_back_left_arrow_"
+
+                    />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Addressess"
+                android:textSize="20dp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/toolbar_title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add New Address"
+                android:textSize="14dp"
+                android:textColor="#fff"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/add_addr" />
+
+        </LinearLayout>
+
+<!--
+        </android.support.v7.widget.Toolbar>
+-->
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/no_item_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/recycler_prefered"
+        android:layout_width="match_parent"
+        android:background="#F1F1F1"
+        android:layout_height="wrap_content">
+
+    </androidx.appcompat.widget.Toolbar>
+    </FrameLayout>
+
+</LinearLayout>

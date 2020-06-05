@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:orientation="vertical"
+    android:weightSum="100"
+    >
+<!--    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        tools:ignore="MissingConstraints">
+        <LinearLayout
+            android:id="@+id/back_feed"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_filter_state"
+            android:gravity="center">
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_go_back_left_arrow_"
+
+                />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter"
+            android:gravity="center_vertical"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/segoeui"
+            android:textColor="#fff"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/toolbar_title" />
+
+
+
+
+    </LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_weight="92"
+        android:background="#ffffff"
+        >
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:gravity="left"
+        android:textColor="#000"
+        android:fontFamily="@font/segoeui"
+        android:textSize="18dp"
+        android:text="Order type" />
+
+
+
+    <!--   Default RadioButtons  -->
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:id="@+id/radioGrougp">
+    <RadioButton
+        android:id="@+id/radioButton1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+
+        android:text=" Orders"
+        android:fontFamily="@font/segoeui"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginTop="20dp"
+        android:textSize="16dp" />
+    <RadioButton
+        android:id="@+id/radioButton2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text=" Open Orders"
+        android:checked="false"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/segoeui"
+        android:textSize="16dp" />
+    <RadioButton
+        android:id="@+id/radioButton3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text=" Cancelled Orders"
+        android:fontFamily="@font/segoeui"
+        android:checked="false"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="16dp" />
+    </RadioGroup>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="#B8B894" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:gravity="left"
+        android:textColor="#000"
+        android:fontFamily="@font/segoeui"
+        android:textSize="18dp"
+        android:text="Time Filter" />
+
+
+    <!--   Customized RadioButtons  -->
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:id="@+id/radioMale"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginTop="10dp"
+            android:checked="true"
+            android:fontFamily="@font/segoeui"
+            android:text="  Today"
+            android:textSize="16dp" />
+
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="   This Week"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:fontFamily="@font/segoeui"
+            android:textSize="16dp" />
+        <RadioButton
+            android:id="@+id/radioMaleaf"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:text="  Last 30 days"
+            android:layout_marginTop="10dp"
+            android:checked="false"
+            android:fontFamily="@font/segoeui"
+            android:textSize="16dp" />
+
+        <RadioButton
+            android:id="@+id/radioFemaleaf"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:text="  Last 6 Days"
+            android:fontFamily="@font/segoeui"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:textSize="16dp" />
+        <RadioButton
+            android:id="@+id/faf2020"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:text="  2020"
+            android:fontFamily="@font/segoeui"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            android:textSize="16dp" />
+    </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@drawable/border_filled_red_not_curved"
+        android:layout_weight="8"
+        >
+
+        <TextView
+            android:id="@+id/Apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui"
+            android:layout_gravity="center"
+            android:text="Apply"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:drawablePadding="10dp"
+            android:textColor="#fff"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+</LinearLayout>

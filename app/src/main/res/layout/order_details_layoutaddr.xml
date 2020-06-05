@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="100"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="vertical" >
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/activity_fragment_mapview"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="20"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        >
+        <TextView
+            android:id="@+id/pricetxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="20-Mar-2020 , 12:53"
+            android:layout_weight="15"
+            android:textSize="14dp"
+            android:gravity="left"
+            android:fontFamily="@font/segoeui"
+            android:textColor="#000"
+            />
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="5"
+            android:fontFamily="@font/segoeui"
+            android:gravity="right"
+            android:text="Rs.100"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="20"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/orderid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="#1002345673"
+            android:layout_weight="15"
+            android:textSize="14dp"
+            android:gravity="left"
+            android:fontFamily="@font/segoeui"
+            android:textColor="#000"
+            />
+
+        <RatingBar
+            android:id="@+id/rate_us"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:numStars="5"
+            android:rating="4.5"
+            android:scaleX="0.3"
+            android:scaleY="0.3"
+            android:transformPivotX="0dp"
+            android:gravity="right"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginLeft="@dimen/dimen_5dp"
+        android:orientation="vertical" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trip Details"
+            android:gravity="left"
+            android:layout_gravity="left"
+            android:fontFamily="@font/segoeui"
+            android:textSize="16dp"
+            android:textColor="#000"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\u2022  #103, Marvel Spring, Dr. Arunachalam Road, BEML
+5th stage, RR Nagar.."
+            android:gravity="left"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:fontFamily="@font/segoeui"
+            android:textSize="15dp"
+            android:textColor="#000"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\u2022  #125, S V Midows, Dr. Arunachalam Road, BEML
+5th stage, RR Nagar.."
+            android:gravity="left"
+            android:layout_gravity="left"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:fontFamily="@font/segoeui"
+            android:textSize="15dp"
+            android:textColor="#000"
+
+            />
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view_line1"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="#dcdcdc" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Receipt"
+        android:gravity="left"
+        android:layout_marginLeft="@dimen/dimen_5dp"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:layout_gravity="left"
+        android:fontFamily="@font/segoeui"
+        android:textSize="16dp"
+        android:textColor="#000"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="70"
+            android:fontFamily="@font/segoeui"
+            android:text="Items Cost:"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="Rs.417.80"
+                android:textColor="#000"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="70"
+            android:fontFamily="@font/segoeui"
+            android:text="@string/Postage"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="Rs.33.89"
+                android:textColor="#000"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="70"
+            android:fontFamily="@font/segoeui"
+            android:text="Total before Tax:"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="Rs.417.80"
+                android:textColor="#000"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="70"
+            android:fontFamily="@font/segoeui"
+            android:text="Items Cost:"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="Rs.417.80"
+                android:textColor="#000"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="70"
+            android:fontFamily="@font/segoeui"
+            android:text="Tax:"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="Rs.417.80"
+                android:textColor="#000"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="70"
+            android:fontFamily="@font/segoeui"
+            android:text="Total:"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="Rs.417.80"
+                android:textColor="#000"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="70"
+            android:fontFamily="@font/segoeui"
+            android:text="Discount Applied:"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="Rs.417.80"
+                android:textColor="#000"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="70"
+            android:fontFamily="@font/segoeui"
+            android:text="Order Total:"
+            android:textColor="#000"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="Rs.502.00"
+                android:textColor="@color/red"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:id="@+id/view_line"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="#dcdcdc" />
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

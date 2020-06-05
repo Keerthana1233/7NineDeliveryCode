@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="100"
+
+    android:layout_marginBottom="1dp"
+    >
+
+    <LinearLayout
+        android:id="@+id/noti_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="15dp"
+        android:background="#FBF7F4"
+
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            >
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="20">
+
+
+
+                <ImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/prod_img"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_notificationgreen"
+                     />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="80">
+
+
+                <TextView
+                    android:id="@+id/prod_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center_vertical"
+                    android:text="Kannada"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/view_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/segoeui"
+            android:text="View"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="5dp"
+            android:gravity="right"
+            android:textColor="#279E5E "
+            android:textSize="14dp" />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

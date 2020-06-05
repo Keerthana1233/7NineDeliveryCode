@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.sevennine_Delivery.Activity.FirmShopDetailsActivity;
+import com.example.sevennine_Delivery.Activity.MainActivity;
 import com.example.sevennine_Delivery.R;
 
 import org.json.JSONException;
@@ -70,8 +71,8 @@ public class Verification_Last_Fragment extends Fragment {
             public void onClick(View v) {
 
 
-                    Intent intent = new Intent(getActivity(), FirmShopDetailsActivity.class);
-                    startActivity(intent);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
 
 
 

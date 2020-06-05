@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">7Nine_Delivery</string>
 
-
+    <string name="Postage">Postage &amp; Packaging:</string>
     <string name="verification">Our agent will call you soon to verify your shop. Please be available over call.</string>
     <string name="verification_success">Your verification is successful.\n Click proceed to start exploring.</string>
 </resources>

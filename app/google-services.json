@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "275336011694",
+    "firebase_url": "https://ninedelhivery.firebaseio.com",
+    "project_id": "ninedelhivery",
+    "storage_bucket": "ninedelhivery.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275336011694:android:f44520159b59be2013323f",
+        "android_client_info": {
+          "package_name": "com.example.sevennine_Delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275336011694-550pg4ish19qr5eebssad9b468stm21p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sevennine_Delivery",
+            "certificate_hash": "35d1a745c45351c8c4893e9336f39dabbb74eba4"
+          }
+        },
+        {
+          "client_id": "275336011694-diaem6tkeru71f1vjlkfbbdgi9qcbc96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaRFXOMV9tAFjjA39_rMaaQ2pRaDcjknA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275336011694-diaem6tkeru71f1vjlkfbbdgi9qcbc96.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

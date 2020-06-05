@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:background="#ffffff">
+
+
+   <!-- <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:fitsSystemWindows="true"
+        android:background="@color/green"
+        >
+
+        &lt;!&ndash;<android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@android:color/white"
+            android:background="@color/green"
+            >
+&ndash;&gt;
+            <LinearLayout
+                android:id="@+id/back_feed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_go_back_left_arrow_"
+
+                android:background="?attr/selectableItemBackgroundBorderless"
+
+                />
+
+            </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Language"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="25dp"
+            android:fontFamily="@font/segoeui"
+            android:textColor="#fff"
+            android:id="@+id/lang_title" />
+
+&lt;!&ndash;
+          </android.support.v7.widget.Toolbar>
+&ndash;&gt;
+
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="92"
+        android:background="#fff"
+        >
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_lang"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
+            />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cccccc"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_weight="8"
+        android:background="@drawable/border_filled_red"
+
+        >
+
+        <TextView
+            android:id="@+id/continue_lang"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/segoeui"
+            android:layout_gravity="center"
+            android:text="CONTINUE"
+            android:gravity="center"
+            android:drawablePadding="20dp"
+            android:drawableRight="@drawable/ic_aroow_right"
+            android:textColor="#fff"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

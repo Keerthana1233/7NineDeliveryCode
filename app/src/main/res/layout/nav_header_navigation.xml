@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fafafa"
+    android:weightSum="100"
+
+    >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="10"
+    android:gravity="center_vertical"
+    android:background="#26A541"
+    android:orientation="vertical"
+    >
+
+   <LinearLayout
+       android:id="@+id/prof_tab"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="horizontal"
+       android:weightSum="100"
+       >
+      <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          android:layout_weight="20"
+
+          android:gravity="center"
+          android:layout_marginTop="10dp"
+          >
+
+         <ImageView
+             android:id="@+id/imageview"
+             android:layout_width="40dp"
+             android:layout_height="40dp"
+             android:src="@drawable/ic_users"
+             />
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          android:gravity="center"
+          android:layout_marginTop="10dp"
+
+          android:layout_weight="80"
+          >
+         <TextView
+             android:id="@+id/user_name_menu"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Hello, Hima"
+             android:padding="10dp"
+             android:textSize="16dp"
+             android:fontFamily="@font/segoeui"
+             android:textColor="#fff"
+             />
+      </LinearLayout>
+
+   </LinearLayout>
+
+
+</LinearLayout>
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="90"
+       android:orientation="vertical"
+       >
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:orientation="vertical"
+       android:paddingLeft="40dp"
+       >
+      <TextView
+          android:id="@+id/home"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Home"
+          android:layout_marginTop="15dp"
+          android:textSize="16dp"
+          android:fontFamily="@font/segoeui"
+          android:textColor="#000"
+          />
+
+      <TextView
+          android:id="@+id/shop_cat"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Your Orders"
+          android:layout_marginTop="25dp"
+          android:textSize="16dp"
+          android:fontFamily="@font/segoeui"
+          android:textColor="#000"
+          />
+
+      <TextView
+          android:id="@+id/todaydeal"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="My Payments"
+          android:layout_marginTop="25dp"
+          android:layout_marginBottom="15dp"
+          android:textSize="16dp"
+          android:fontFamily="@font/segoeui"
+          android:textColor="#000"
+          />
+      <TextView
+          android:id="@+id/my_orders"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Rewards"
+          android:layout_marginTop="15dp"
+          android:textSize="16dp"
+          android:fontFamily="@font/segoeui"
+          android:textColor="#000"
+          />
+
+      <TextView
+          android:id="@+id/wish_list"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Bank Accounts"
+          android:layout_marginTop="25dp"
+          android:textSize="16dp"
+          android:fontFamily="@font/segoeui"
+          android:textColor="#000"
+          />
+
+
+
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:layout_marginTop="20dp"
+          android:background="#dcdcdc"
+          />
+      <TextView
+          android:id="@+id/wallet"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Duty On/OFF"
+          android:textSize="16dp"
+          android:layout_marginTop="20dp"
+          android:fontFamily="@font/segoeui"
+          android:textColor="#000"
+          />
+
+      <TextView
+          android:id="@+id/sell_on_xohri"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Rate Card"
+          android:layout_marginTop="25dp"
+          android:textSize="16dp"
+          android:fontFamily="@font/segoeui"
+          android:textColor="#000"
+          />
+
+
+      <TextView
+          android:id="@+id/lang"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="My Account"
+          android:textSize="16dp"
+          android:layout_marginTop="25dp"
+          android:textColor="#000"
+          />
+    <!--  <TextView
+          android:id="@+id/notification"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Settings"
+          android:layout_marginTop="25dp"
+          android:textSize="16dp"
+          android:fontFamily="@font/segoeui"
+          android:textColor="#000"
+          />-->
+   </LinearLayout>
+
+   </ScrollView>
+    <!--<android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="80"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        />
+-->
+   <!-- <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Submit"
+        android:layout_weight="7"
+        android:gravity="center"
+        android:textSize="14dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/border_transperent"
+        />-->
+<!--
+   <android.support.v7.widget.RecyclerView
+       android:id="@+id/recycler_view"
+       android:scrollbars="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+-->
+   <!-- <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>-->
+
+   <!-- <android.support.v7.widget.RecyclerView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/rv">
+    </android.support.v7.widget.RecyclerView>-->
+
+</LinearLayout>
