@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.sevennine_Delivery.Activity.GPSTracker;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 import com.google.android.material.navigation.NavigationView;
@@ -35,7 +36,7 @@ Fragment selectedFragment;
     TextView home,yourorders,mypayments,rewards,bankaccounts,dutyonoff,myaccounts,ratecard,wallet,sell_on_xohri,help_center,settings,legal;
     public static TextView cart_count_text,user_name_menu;
 static boolean fragloaded;
-
+GPSTracker gpsTracker;
 
     public static HomeMenuFragment newInstance() {
         fragloaded =true;
@@ -67,7 +68,7 @@ static boolean fragloaded;
         myaccounts=view.findViewById(R.id.lang);
         ratecard=view.findViewById(R.id.sell_on_xohri);
      notification=view.findViewById(R.id.notification);
-
+        sessionManager = new SessionManager(getActivity());
         NavigationView navigationView = (NavigationView)view.findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         Window window = getActivity().getWindow();
@@ -77,7 +78,6 @@ static boolean fragloaded;
         FragmentTransaction transaction7 = getActivity().getSupportFragmentManager().beginTransaction();
         transaction7.replace(R.id.frame_layout, selectedFragment);
         transaction7.commit();
-
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

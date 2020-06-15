@@ -1,5 +1,4 @@
 package com.example.sevennine_Delivery.Orders;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -18,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.sevennine_Delivery.Activity.GPSTracker;
 import com.example.sevennine_Delivery.Adapter.OrderAdapter;
 import com.example.sevennine_Delivery.Bean.NewOrderBean;
 import com.example.sevennine_Delivery.Fragment.FilterFragment;
@@ -34,8 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-
 //Our class extending fragment
 public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     RecyclerView recyclerView;
@@ -49,18 +47,18 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
     SwipeRefreshLayout mSwipeRefreshLayout;
     JSONArray jsonArray;
     NewOrderBean bean;
+    GPSTracker gpsTracker;
     public static NewOrderTab newInstance() {
         NewOrderTab itemOnFragment = new NewOrderTab();
         return itemOnFragment;
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_order_tab, container, false);
         filter=view.findViewById(R.id.filter);
+       // setRepeatingAsyncTask();
+        sessionManager = new SessionManager(getActivity());
         recyclerView=view.findViewById(R.id.new_order_recy);
-        setRepeatingAsyncTask();
         sessionManager=new SessionManager(getActivity());
         mSwipeRefreshLayout = view.findViewById(R.id.swifeRefresh);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -91,23 +89,20 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-      madapter=new OrderAdapter(getActivity(),newOrderBeansList);
+        madapter=new OrderAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(madapter);
         Newdata();
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 selectedFragment = FilterFragment.newInstance();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.frame_layout, selectedFragment);
                 ft.commit();
-
-
             }
         });
-
         return view;
+        
     }
 public  void  Newdata(){
     mSwipeRefreshLayout.setRefreshing(true);
@@ -125,8 +120,10 @@ public  void  Newdata(){
                     jsonArray = result.getJSONArray("orderfromcart");
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),"Cash on Delivery",jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"));
+                        bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("CustAddress"),jsonObject1.getString("CustAddress"),jsonObject1.getString("Amount"),jsonObject1.getString("mode"),jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"),jsonObject1.getString("CustLongitude"),jsonObject1.getString("CustLatitude"));
                         newOrderBeansList.add(bean);
+
+
                     }
                     madapter=new OrderAdapter(getActivity(),newOrderBeansList);
                     recyclerView.setAdapter(madapter);
@@ -158,6 +155,10 @@ public  void  Newdata(){
                                 @Override
                                 public void run() {
                                     Newdata();
+
+                                       gpsTracker=new GPSTracker(getActivity());
+
+                                       System.out.println("rtyrdellat"+gpsTracker.getLatitude());
                                 }
                             });
                         } catch (Exception e) {
@@ -167,6 +168,6 @@ public  void  Newdata(){
                 });
             }
         };
-        timer.schedule(task, 0, 50*1000);  // interval of one minute
+        timer.schedule(task, 0, 2000);  // interval of one minute
     }
 }

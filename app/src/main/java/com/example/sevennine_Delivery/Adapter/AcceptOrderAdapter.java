@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.sevennine_Delivery.Bean.NewOrderBean;
 import com.example.sevennine_Delivery.Fragment.AcceptOrderDetailsFragment;
 import com.example.sevennine_Delivery.R;
+import com.example.sevennine_Delivery.SessionManager;
 
 import java.util.List;
 
@@ -27,7 +28,8 @@ public class AcceptOrderAdapter extends RecyclerView.Adapter<AcceptOrderAdapter.
     private List<NewOrderBean> productList;
     Activity activity;
     Fragment selectedFragment;
-String orderid,latid,langid;
+    SessionManager sessionManager;
+String orderid,latid,langid,custlatid,custlangid;
     public LinearLayout linearLayout;
 
     public static CardView cardView;
@@ -35,7 +37,7 @@ String orderid,latid,langid;
         this.productList = productList;
         this.activity=activity;
 
-
+        sessionManager = new SessionManager(activity);
     }
 
 
@@ -75,11 +77,14 @@ String orderid,latid,langid;
         holder.prod_name.setText(products.getProd_name());
         holder.prod_price.setText(products.getProd_price());
         holder.cod.setText(products.getCod());
-        holder.username.setText(products.getAddr());
+       // holder.username.setText(products.getAddr());
         holder.addr.setText(products.getAddr());
         orderid=products.getProd_name();
         latid=products.getLatitude();
         langid=products.getLongitude();
+        custlatid=products.getCustlat();
+        custlangid=products.getCustlong();
+
         Glide.with(activity).load(products.getImage()).placeholder(R.drawable.ic_gallery__default).dontAnimate().into(holder.image);
 
         holder.vieworder.setOnClickListener(new View.OnClickListener() {
@@ -89,14 +94,18 @@ String orderid,latid,langid;
                 bundle.putString("orderId", orderid);
                 bundle.putString("latidkey",latid);
                 bundle.putString("langidkey",langid);
+                bundle.putString("custlatidkey",custlatid);
+                bundle.putString("custlangidkey",custlangid);
                 bundle.putString("orderdate",products.getCreateddate());
                 bundle.putString("totalamount",products.getProd_price());
                 bundle.putString("addr",products.getAddr());
                 bundle.putString("mode",products.getCod());
+
                 selectedFragment = AcceptOrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
                 selectedFragment.setArguments(bundle);
+                System.out.println("rtyrdellat"+bundle);
                 transaction.commit();
             }
         });

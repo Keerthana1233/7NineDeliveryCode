@@ -56,13 +56,11 @@ public class CancelledTab extends Fragment {
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         NewOrderBean bean=new NewOrderBean("#10989876","Hima Bindhu","567, 4th Cross, Banshankari,\n" +
-                "560091..","Rs.100","Cash on Delivery","","","","");
+                "560091..","Rs.100","Cash on Delivery","","","","","","");
         newOrderBeansList.add(bean);
         newOrderBeansList.add(bean);
         newOrderBeansList.add(bean);
-
         madapter=new CancelOrderAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(madapter);
         filter.setOnClickListener(new View.OnClickListener() {

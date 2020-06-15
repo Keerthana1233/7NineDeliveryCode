@@ -312,10 +312,6 @@ public class VoterId_Front_Preview_Fragment extends Fragment {
             }
         }
     }
-
-
-
-
     public String getFacebookPageURL(Context context) {
         PackageManager packageManager = context.getPackageManager();
         try {

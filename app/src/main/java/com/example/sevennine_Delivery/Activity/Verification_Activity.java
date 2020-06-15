@@ -86,10 +86,6 @@ public class Verification_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        setContentView(R.layout.firm);
-
-
-
-
         selectedFragment = Verification_Last_Fragment.newInstance();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout1, selectedFragment);

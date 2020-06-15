@@ -203,7 +203,6 @@ public class SessionManager {
         // commit changes
         loginPrefsEditor.commit();
     }
-
     public void savelocation(String location) {
 
         loginPrefsEditor.putString(KEY_LOCATION, location);
@@ -247,9 +246,6 @@ public class SessionManager {
         }
 
     }
-
-
-
     public void checkRegister(){
         // Check login status
         if(this.Register()){
@@ -257,18 +253,12 @@ public class SessionManager {
             Intent i = new Intent(_context, Verification_Activity.class);
             // Closing all the Activities
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
             // Add new Flag to start new Activity
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             // Staring Login Activity
             _context.startActivity(i);
         }
-
     }
-
-
-
-
     /**
      * Clear session details
      * */
@@ -281,11 +271,8 @@ public class SessionManager {
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);// for clearing
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
         // Staring Login Activity
         _context.startActivity(i);
-
-
     }
 
     /**

@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sevennine_Delivery.Bean.StateBean;
 import com.example.sevennine_Delivery.Fragment.AddNewAddressFragment;
+import com.example.sevennine_Delivery.Fragment.AddNewAddressPreview;
+import com.example.sevennine_Delivery.Fragment.Add_NewBankDetails_Fragment;
 import com.example.sevennine_Delivery.R;
 
 import java.util.List;
@@ -57,15 +59,11 @@ public class DistrictAdapter extends RecyclerView.Adapter<DistrictAdapter.MyStat
                     InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(activity.INPUT_METHOD_SERVICE);
                     inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
-                AddNewAddressFragment.ed_dstrt.setText(holder.statename.getText().toString());
-                AddNewAddressFragment.drawer.closeDrawers();
-               /* if (Add_NewBankDetails_Fragment.page != null) {
+
+              if (Add_NewBankDetails_Fragment.page != null) {
                     Add_NewBankDetails_Fragment.district.setText(holder.statename.getText().toString());
                     Add_NewBankDetails_Fragment.drawer.closeDrawers();
 
-                }else if (LandDetails.land_deta!=null){
-                    LandDetails.ed_dstrt.setText(holder.statename.getText().toString());
-                    LandDetails.drawer.closeDrawers();
                 } else if (AddNewAddressPreview.page!=null){
                     AddNewAddressPreview.ed_dstrt.setText(holder.statename.getText().toString());
                     AddNewAddressPreview.drawer.closeDrawers();
@@ -74,7 +72,7 @@ public class DistrictAdapter extends RecyclerView.Adapter<DistrictAdapter.MyStat
 
                     // DealerAddressFragment.drawer.closeDrawers();
                     //  Add_New_Address_Fragment.grade_dialog.dismiss();
-                }*/
+                }
             }
         });
 

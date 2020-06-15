@@ -797,7 +797,7 @@ public class AddNewAddressFragment extends Fragment {
 
             System.out.println("disssisiisi  "+jsonObject);
 
-            Crop_Post.crop_posting(getActivity(), Urls.Taluks, jsonpost, new VoleyJsonObjectCallback() {
+            Crop_Post.crop_posting(getActivity(), Urls.Blocks, jsonpost, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
                     System.out.println("aaaaaaaaaaaaafffffffffffff"+result);
@@ -908,7 +908,7 @@ public class AddNewAddressFragment extends Fragment {
                         villageAdapter = new VillageAdapter(villageBeanList, getActivity());
                         recyclerView.setAdapter(villageAdapter);
                         villageAdapter.notifyDataSetChanged();
-                        //   grade_dialog.show();
+                         grade_dialog.show();
 
 
 

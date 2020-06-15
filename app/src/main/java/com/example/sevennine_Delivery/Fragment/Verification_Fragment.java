@@ -43,9 +43,7 @@ public class Verification_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.verification_layout, container, false);
-
         //  Status_bar_change_singleton.getInstance().color_change(getActivity());
-
         voter_id_back = view.findViewById(R.id.voter_id_back);
         voter_id_front = view.findViewById(R.id.voter_id_front);
         select_location = view.findViewById(R.id.select_loc);
@@ -57,8 +55,6 @@ public class Verification_Fragment extends Fragment {
         continue_btn = view.findViewById(R.id.continue_btn);
         back_feed = view.findViewById(R.id.back_feed);
         setting_tittle = view.findViewById(R.id.setting_tittle);
-
-
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,8 +63,6 @@ public class Verification_Fragment extends Fragment {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 fm.popBackStack("verify", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-
-//
 //                selectedFragment = Verification_Aadhar_Fragment.newInstance();
 //                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                transaction.replace(R.id.frame_layout1, selectedFragment);
@@ -92,9 +86,7 @@ public class Verification_Fragment extends Fragment {
 
 
 //                    HomeMenuFragment.onBack_status = "farms";
-
 //
-
 //                    selectedFragment = Verification_Aadhar_Fragment.newInstance();
 //                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                    transaction.replace(R.id.frame_layout1, selectedFragment);
@@ -105,19 +97,14 @@ public class Verification_Fragment extends Fragment {
                 return false;
             }
         });
-
-
         select_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 selectedFragment = Shop_Current_Location_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("shop_locatn");
                 transaction.commit();
-
             }
         });
 
@@ -125,31 +112,22 @@ public class Verification_Fragment extends Fragment {
         voter_id_front.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                /* selectedFragment = Voter_Id_Front_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("verify_voter");
                 transaction.commit();*/
-
-
             }
         });
-
-
         voter_id_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 selectedFragment = Voter_Id_Back_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("verify_voter");
                 transaction.commit();
-
-
             }
         });
 

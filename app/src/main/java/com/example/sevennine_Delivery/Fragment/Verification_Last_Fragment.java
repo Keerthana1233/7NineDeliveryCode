@@ -1,6 +1,5 @@
 package com.example.sevennine_Delivery.Fragment;
 
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -163,15 +162,15 @@ public class Verification_Last_Fragment extends Fragment {
                             in_progress_image.setVisibility(View.VISIBLE);
 
 
-                           // Toast.makeText(getActivity(), "we will get back to you once verification is  done", Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(getActivity(), "we will get back to you once verification is  done", Toast.LENGTH_SHORT).show();
 
                             //cont_btn.setVisibility(View.GONE);
                             cont_btn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
 
-                                   Intent i = new Intent(getActivity(), FirmShopDetailsActivity.class);
-                                   startActivity(i);
+                                    Intent i = new Intent(getActivity(), FirmShopDetailsActivity.class);
+                                    startActivity(i);
 
 
 
@@ -182,7 +181,7 @@ public class Verification_Last_Fragment extends Fragment {
                         }else{
 
                             user_status.setText("In Progress");
-                           // success_details.setVisibility(View.VISIBLE);
+                            // success_details.setVisibility(View.VISIBLE);
                             success_image.setVisibility(View.VISIBLE);
 
                             cont_btn.setOnClickListener(new View.OnClickListener() {

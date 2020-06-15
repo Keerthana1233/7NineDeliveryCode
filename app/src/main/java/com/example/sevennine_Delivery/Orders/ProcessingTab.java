@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.sevennine_Delivery.Activity.GPSTracker;
 import com.example.sevennine_Delivery.Adapter.AcceptOrderAdapter;
 import com.example.sevennine_Delivery.Bean.NewOrderBean;
 import com.example.sevennine_Delivery.Fragment.FilterFragment;
@@ -44,6 +45,7 @@ public class ProcessingTab extends Fragment implements SwipeRefreshLayout.OnRefr
     JSONArray jsonArray;
     int i1;
     TextView filter;
+    GPSTracker gpsTracker;
     SwipeRefreshLayout mSwipeRefreshLayout;
 SessionManager sessionManager;
     public static NewOrderTab newInstance() {
@@ -56,6 +58,7 @@ SessionManager sessionManager;
         View view = inflater.inflate(R.layout.accept_order_tab, container, false);
         filter=view.findViewById(R.id.filter);
         setRepeatingAsyncTask();
+        sessionManager = new SessionManager(getActivity());
         sessionManager=new SessionManager(getActivity());
         mSwipeRefreshLayout = view.findViewById(R.id.swifeRefresh);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -121,7 +124,7 @@ SessionManager sessionManager;
                         jsonArray = result.getJSONArray("acceptorderfordelhivery");
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                            bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),"Cash on Delivery",jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"));
+                            bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),"PayU",jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"),jsonObject1.getString("CustLongitude"),jsonObject1.getString("CustLatitude"));
                             newOrderBeansList.add(bean);
                         }
                         madapter=new AcceptOrderAdapter(getActivity(),newOrderBeansList);

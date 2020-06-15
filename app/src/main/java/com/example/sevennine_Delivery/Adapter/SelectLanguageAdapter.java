@@ -73,7 +73,6 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.select_lang_item, parent, false);
         return new MyViewHolder(itemView);
-
     }
 
     @Override

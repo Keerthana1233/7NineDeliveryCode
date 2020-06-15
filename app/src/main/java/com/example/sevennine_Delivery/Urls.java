@@ -76,7 +76,7 @@ public class Urls {
     public static final String Districts=ROOT_URL+"MasterTable/GetDistricts";
     public static final String Taluks=ROOT_URL+"MasterTable/GetTaluks";
     public static final String Hoblis=ROOT_URL+"MasterTable/GetHoblis";
-    public static final String Villages=ROOT_URL+"MasterTable/GetVillages";
+    public static final String Villages=ROOT_URL+"MasterTable/GetVillagebyBlock";
     public static final String State = ROOT_URL+"MasterTable/GetStatesList";
     public static final String Blocks = ROOT_URL+"MasterTable/GetBlocks";
     public static final String GetVillagebyGram = ROOT_URL+"MasterTable/GetVillagebyGram";

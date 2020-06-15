@@ -2,9 +2,25 @@ package com.example.sevennine_Delivery.Bean;
 public class NewOrderBean {
 
     String prod_price,prod_name,cod,addr,username;
-    String image,Latitude,Longitude,createddate;
+    String image,Latitude,Longitude,createddate,custlat,custlong;
 
-    public NewOrderBean( String prod_name,String username,String addr, String prod_price,String cod,String image,String Latitude,String Longitude,String createddate) {
+    public String getCustlat() {
+        return custlat;
+    }
+
+    public void setCustlat(String custlat) {
+        this.custlat = custlat;
+    }
+
+    public String getCustlong() {
+        return custlong;
+    }
+
+    public void setCustlong(String custlong) {
+        this.custlong = custlong;
+    }
+
+    public NewOrderBean(String prod_name, String username, String addr, String prod_price, String cod, String image, String Latitude, String Longitude, String createddate, String custlat, String custlong) {
 
         this.prod_price = prod_price;
         this.prod_name = prod_name;
@@ -15,6 +31,8 @@ public class NewOrderBean {
         this.Latitude = Latitude;
         this.Longitude = Longitude;
         this.createddate = createddate;
+        this.custlat = custlat;
+        this.custlong = custlong;
     }
 
     public String getProd_price() {

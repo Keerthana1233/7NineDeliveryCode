@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.sevennine_Delivery.Activity.GPSTracker;
 import com.example.sevennine_Delivery.Bean.NewOrderBean;
 import com.example.sevennine_Delivery.Fragment.OrderDetailsFragment;
 import com.example.sevennine_Delivery.R;
@@ -38,7 +39,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     Fragment selectedFragment;
     SessionManager sessionManager;
     public LinearLayout linearLayout;
-
+GPSTracker gpsTracker;
     public static CardView cardView;
     public OrderAdapter(Activity activity, List<NewOrderBean> productList) {
         this.productList = productList;
@@ -84,10 +85,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
       holder.prod_name.setText(products.getProd_name());
         holder.prod_price.setText(products.getProd_price());
         holder.cod.setText(products.getCod());
-        holder.username.setText(products.getAddr());
+      //  holder.username.setText(products.getAddr());
         holder.addr.setText(products.getAddr());
         Glide.with(activity).load(products.getImage()).placeholder(R.drawable.ic_gallery__default).dontAnimate().into(holder.image);
-
         holder.vieworder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,9 +103,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
                 selectedFragment.setArguments(bundle);
+                System.out.println("rtyrdellat"+bundle);
                 transaction.commit();
             }
         });
+
         holder.acceptorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,6 +126,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                     params.put("Latitude",products.getLatitude());  //tarnsaction id
                     params.put("Longitude",products.getLongitude());
                     params.put("CustomerName","test");
+                    params.put("CustLatitude",products.getCustlat());
+                    params.put("CustLongitude",products.getCustlong());
                     params.put("CreatedBy",sessionManager.getRegId("userId"));
                     System.out.println("RESPMsgdsfadf"+params);
                     Login_post.login_posting(activity, Urls.AddAccept, params, new VoleyJsonObjectCallback() {
@@ -134,6 +138,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                                 System.out.println("nnnnnmnm" + result.toString());
                                 String status=result.getString("Status");
                                 if(status.equals("1")){
+
                                     Toast toast = Toast.makeText(activity,"Order details Accepted for Delhivery Successfully", Toast.LENGTH_LONG);
                                     toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
                                     toast.show();

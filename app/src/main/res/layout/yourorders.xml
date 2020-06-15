@@ -128,7 +128,9 @@
             android:id="@+id/new_order_recy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"></androidx.recyclerview.widget.RecyclerView>
+            android:background="#fff">
+
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 
 </LinearLayout>

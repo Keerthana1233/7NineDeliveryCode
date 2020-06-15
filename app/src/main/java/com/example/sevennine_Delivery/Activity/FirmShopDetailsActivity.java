@@ -1,7 +1,4 @@
 package com.example.sevennine_Delivery.Activity;
-
-
-
 import android.os.Bundle;
 
 import android.widget.LinearLayout;

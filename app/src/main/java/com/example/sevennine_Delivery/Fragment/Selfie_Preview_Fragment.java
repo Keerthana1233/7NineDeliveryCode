@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -29,32 +28,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.sevennine_Delivery.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
-
-
-
-
 public class Selfie_Preview_Fragment extends Fragment {
-
-
-
     public static RecyclerView recyclerView;
     LinearLayout back_feed,main_layout,upload_img,whatsapp,twitter,facebook,instagram;
     Fragment selectedFragment;
@@ -73,23 +60,15 @@ public class Selfie_Preview_Fragment extends Fragment {
     LinearLayout tips_selfie_layout;
     BottomSheetDialog mBottomSheetDialog;
     View sheetView;
-
-
     public static Selfie_Preview_Fragment newInstance() {
         Selfie_Preview_Fragment fragment = new Selfie_Preview_Fragment();
-
         return fragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.shop_camera_preview, container, false);
-
-
-
         back_feed=view.findViewById(R.id.back_feed);
-
         // continue_4= view.findViewById(R.id.continue_4);
         // farm_name=view.findViewById(R.id.farm_name);
         // description=view.findViewById(R.id.desce);
@@ -97,35 +76,16 @@ public class Selfie_Preview_Fragment extends Fragment {
         upload_img=view.findViewById(R.id.upload_img);
         take_photo=view.findViewById(R.id.take_photo);
         tips_selfie_layout=view.findViewById(R.id.tips_selfie_layout);
-
         tips_selfie_layout.setVisibility(View.VISIBLE);
-
-
-
         upload_imge=view.findViewById(R.id.upload_imge);
-
         tips_selfie=view.findViewById(R.id.tips_selfie);
         toolbar_title = view.findViewById(R.id.toolbar_title);
         selfie_tips_1=view.findViewById(R.id.selfie_tips_1);
         selfie_tips_2=view.findViewById(R.id.selfie_tips_2);
         selfie_tips_3=view.findViewById(R.id.selfie_tips_3);
         selfie_tips_4=view.findViewById(R.id.selfie_tips_4);
-
-
-
-
-
-
-
-
-
-
-
         String id= (getArguments().getString("name"));
         imageUri = id;
-
-
-
         Glide.with(getActivity()).load("file://" + id)
                 .thumbnail(0.5f)
                 // .crossFade()

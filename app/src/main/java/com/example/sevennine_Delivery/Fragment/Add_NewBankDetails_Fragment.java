@@ -673,7 +673,7 @@ public class Add_NewBankDetails_Fragment extends Fragment {
 
                         recyclerView.setAdapter(stateApdater);
                         stateApdater.notifyDataSetChanged();
-                        grade_dialog.show();
+                        //grade_dialog.show();
 
 
 

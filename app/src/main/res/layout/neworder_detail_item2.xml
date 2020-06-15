@@ -99,7 +99,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoeui"
                 android:gravity="center_vertical"
-                android:text="Rs.100"
+                android:text=" 100"
+                android:drawableLeft="@drawable/ic_rupee_indian"
                 android:textColor="#000"
                 android:layout_marginLeft="5dp"
                 android:textSize="16dp" />
@@ -110,8 +111,7 @@
                 android:fontFamily="@font/segoeui"
                 android:gravity="center_vertical"
                 android:text="Cash On Delivery"
-                android:drawableLeft="@drawable/cashondel"
-                android:textSize="14dp" />
+               android:textSize="14dp" />
 
         </LinearLayout>
 

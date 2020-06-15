@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Fragment selectedFragment = null;
      static SessionManager session;
     public static String sSelected="Home";
-
+GPSTracker gpsTracker;
 
 public static String CurrentLocationFullAddress="";
     public  static Activity activity;
@@ -66,9 +66,6 @@ public static String CurrentLocationFullAddress="";
 
 
     }
-
-
-
     @Override
     public void onBackPressed() {
         selectedFragment = HomeMenuFragment.newInstance();
@@ -76,8 +73,6 @@ public static String CurrentLocationFullAddress="";
         transaction.replace(R.id.frame_layout1, selectedFragment);
         transaction.commit();
     }
-
-
 
         @Override
         public boolean onNavigationItemSelected (@NonNull MenuItem item){

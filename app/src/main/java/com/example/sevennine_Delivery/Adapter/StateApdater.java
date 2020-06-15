@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sevennine_Delivery.Bean.StateBean;
 import com.example.sevennine_Delivery.Fragment.AddNewAddressFragment;
+import com.example.sevennine_Delivery.Fragment.Add_NewBankDetails_Fragment;
 import com.example.sevennine_Delivery.R;
 
 import java.util.List;
@@ -56,18 +57,12 @@ public class StateApdater extends RecyclerView.Adapter<StateApdater.MyStateHolde
 
                 stateid=stateBean.getId();
                 System.out.println("stateiiiddd"+stateid);
-                AddNewAddressFragment.ed_state.setText(holder.statename.getText().toString());
-                AddNewAddressFragment.drawer.closeDrawers();
-              /*  if (Add_NewBankDetails_Fragment.page!=null){
+             if (Add_NewBankDetails_Fragment.page!=null){
                     Add_NewBankDetails_Fragment.state.setText(holder.statename.getText().toString());
                     Add_NewBankDetails_Fragment.drawer.closeDrawers();
-
-                }else if (AddNewAddressPreview.page!=null){
-                    AddNewAddressPreview.ed_state.setText(holder.statename.getText().toString());
-                    AddNewAddressPreview.drawer.closeDrawers();
                 }else {
 
-                }*/
+                }
             }
         });
 

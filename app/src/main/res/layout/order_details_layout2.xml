@@ -160,7 +160,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/orderid"
+                        android:id="@+id/orderdate"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
@@ -188,7 +188,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/orderdate"
+                        android:id="@+id/orderid"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="404-8614299-2321138"
@@ -229,7 +229,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs.417.80"
+                            android:text=" 417.80"
+                            android:drawableLeft="@drawable/ic_rupee_indian"
                             android:textSize="14dp"
                             android:fontFamily="@font/segoeui"
                             android:textColor="#000"
@@ -264,7 +265,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/segoeui"
-                            android:text="Rs.33.89"
+                            android:text="33.89"
+                            android:drawableLeft="@drawable/ic_rupee_indian"
                             android:textColor="#000"
                             android:textSize="14dp" />
                     </LinearLayout>
@@ -295,7 +297,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs.417.80"
+                            android:text=" 417.80"
+                            android:drawableLeft="@drawable/ic_rupee_indian"
                             android:textSize="14dp"
                             android:fontFamily="@font/segoeui"
                             android:textColor="#000"
@@ -327,7 +330,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs.417.80"
+                            android:text=" 417.80"
+                            android:drawableLeft="@drawable/ic_rupee_indian"
                             android:textSize="14dp"
                             android:textColor="#000"
                             android:fontFamily="@font/segoeui"
@@ -359,7 +363,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs.417.80"
+                            android:text=" 417.80"
+                            android:drawableLeft="@drawable/ic_rupee_indian"
+
                             android:textSize="14dp"
                             android:textColor="#000"
                             android:fontFamily="@font/segoeui"
@@ -401,7 +407,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs.417.80"
+                            android:text=" 417.80"
+                            android:drawableLeft="@drawable/ic_rupee_indian"
+
                             android:textSize="14dp"
                             android:textColor="#000"
                             android:fontFamily="@font/segoeui"
@@ -433,7 +441,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs.417.80"
+                            android:text="-35.00"
+                            android:drawableLeft="@drawable/ic_rupee_indian"
                             android:textSize="14dp"
                             android:fontFamily="@font/segoeui"
                             android:textColor="#000"
@@ -469,7 +478,8 @@
                             android:id="@+id/amount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs.502.00"
+                            android:text=" 502.00"
+                            android:drawableLeft="@drawable/ic_rupee_indianred"
                             android:textSize="14dp"
                             android:textStyle="bold"
                             android:fontFamily="@font/segoeui"
@@ -539,7 +549,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui"
-                    android:text="#103, Marvel Spring, Dr. Arunachalam Road"
                     android:textColor="#000"
                     android:textSize="14dp" />
 
@@ -559,7 +568,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui"
-                    android:text="Bengaluru"
+
                     android:textColor="#000"
                     android:textSize="14dp" />
 
@@ -568,7 +577,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui"
-                    android:text="Karnataka"
+
                     android:textColor="#000"
                     android:textSize="12dp" />
 
@@ -577,7 +586,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui"
-                    android:text="560098"
+
                     android:textColor="#000"
                     android:textSize="14dp" />
 
@@ -630,7 +639,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui"
-                    android:text="Visa ending in 5002"
+
                     android:textColor="#000"
                     android:textSize="14dp" />
 
@@ -640,7 +649,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui"
-                    android:text="Coupon"
+
                     android:layout_marginBottom="10dp"
                     android:textColor="#000"
                     android:textSize="14dp" />

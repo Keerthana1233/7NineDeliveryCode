@@ -231,9 +231,6 @@ public class NewEnterOTP extends AppCompatActivity implements ConnectivityReceiv
             }
         }, 7000);
 
-
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

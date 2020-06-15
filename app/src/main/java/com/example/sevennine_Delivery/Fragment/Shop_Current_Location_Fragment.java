@@ -1,5 +1,4 @@
 package com.example.sevennine_Delivery.Fragment;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,7 +10,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -21,8 +19,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -65,11 +61,9 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 public class Shop_Current_Location_Fragment extends Fragment implements
-
         OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener,View.OnClickListener {
-
     Fragment selectedFragment;
     private LocationRequest mLocationRequest;
     private GoogleMap.OnCameraIdleListener onCameraIdleListener;

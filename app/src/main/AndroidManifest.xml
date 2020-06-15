@@ -37,7 +37,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAXsifFPLFyNsK0YxpmcMld89LDRDC2SGI" />
+            android:value="AIzaSyBMScKP4py29BqVV_LwXmMf8qANqNxpF0Y" />
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait" />
