@@ -62,11 +62,9 @@ public class NewAddressDetails_Fragment extends Fragment {
         recyclerView=view.findViewById(R.id.recycler_what_looking);
       /*  toolbar_title=view.findViewById(R.id.toolbar_title);
         toolbar_title.setText("My Addresses");*/
-        //back_feed=view.findViewById(R.id.back_feed);
-        HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
-        HomeMenuFragment.toolbartxt.setText("My Addresses");
-        HomeMenuFragment.notificationimg.setVisibility(View.GONE);
-        HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
+      back_feed=view.findViewById(R.id.back_feed);
+
+        back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();

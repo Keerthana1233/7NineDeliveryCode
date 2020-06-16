@@ -64,12 +64,12 @@ public class OrderDetailsFragmentaddr extends Fragment implements OnMapReadyCall
         double lat1 = Double.parseDouble("12.9716");
         double lng1 = Double.parseDouble("77.5946");
         LatLng bord = new LatLng(lat1, lng1);
-        mMap.addMarker(new MarkerOptions().position(bord).title("7Nine"));
+        mMap.addMarker(new MarkerOptions().position(bord).title("7Nine Delhivery"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bord, 13.0f));
         Polyline polyline1 = mMap.addPolyline(new PolylineOptions()
                 .clickable(true)
                 .add(new LatLng(12.9716, 77.5946)));
-        polyline1.setTag("7Nine");
+        polyline1.setTag("7Nine Delhivery");
     }
     public void initializeMapView() {
         if (mMapView != null) {

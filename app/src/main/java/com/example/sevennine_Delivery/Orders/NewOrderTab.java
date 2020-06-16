@@ -1,4 +1,8 @@
 package com.example.sevennine_Delivery.Orders;
+import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -26,6 +30,7 @@ import com.example.sevennine_Delivery.SessionManager;
 import com.example.sevennine_Delivery.Urls;
 import com.example.sevennine_Delivery.Volly_class.Crop_Post;
 import com.example.sevennine_Delivery.Volly_class.VoleyJsonObjectCallback;
+import com.google.android.gms.location.LocationListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,7 +40,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 //Our class extending fragment
-public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefreshListener   {
     RecyclerView recyclerView;
     public static OrderAdapter madapter;
     public static List<NewOrderBean> newOrderBeansList = new ArrayList<>();
@@ -97,7 +102,7 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
             public void onClick(View view) {
                 selectedFragment = FilterFragment.newInstance();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.frame_layout, selectedFragment);
+                ft.replace(R.id.frame_layout1, selectedFragment);
                 ft.commit();
             }
         });
@@ -106,8 +111,8 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
     }
 public  void  Newdata(){
     mSwipeRefreshLayout.setRefreshing(true);
+    gpsTracker = new GPSTracker(getActivity());
     try{
-
         newOrderBeansList.clear();
         final JSONObject jsonObject = new JSONObject();
         jsonObject.put("UserId",sessionManager.getRegId("userId"));
@@ -142,32 +147,6 @@ public  void  Newdata(){
     public void onRefresh(){
         Newdata();
     }
-    private void setRepeatingAsyncTask() {
-        final Handler handler = new Handler();
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(new Runnable() {
-                    public void run() {
-                        try {
-                            mSwipeRefreshLayout.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Newdata();
 
-                                       gpsTracker=new GPSTracker(getActivity());
 
-                                       System.out.println("rtyrdellat"+gpsTracker.getLatitude());
-                                }
-                            });
-                        } catch (Exception e) {
-                            // error, do something
-                        }
-                    }
-                });
-            }
-        };
-        timer.schedule(task, 0, 2000);  // interval of one minute
-    }
 }

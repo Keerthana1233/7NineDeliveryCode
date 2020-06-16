@@ -10,7 +10,7 @@
     android:background="#ffffff">
 
 
-   <!-- <LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
@@ -18,7 +18,7 @@
         android:background="@color/green"
         >
 
-        &lt;!&ndash;<android.support.v7.widget.Toolbar
+        <!--<android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:minHeight="?attr/actionBarSize"
             android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             app:titleTextColor="@android:color/white"
             android:background="@color/green"
             >
-&ndash;&gt;
+-->
             <LinearLayout
                 android:id="@+id/back_feed"
                 android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Language"
+            android:text="Change Language"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_gravity="center_vertical"
@@ -59,17 +59,17 @@
             android:textColor="#fff"
             android:id="@+id/lang_title" />
 
-&lt;!&ndash;
+<!--
           </android.support.v7.widget.Toolbar>
-&ndash;&gt;
+-->
 
-    </LinearLayout>-->
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="92"
+        android:layout_weight="82"
         android:background="#fff"
         >
 
@@ -97,7 +97,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:layout_weight="8"
+        android:layout_weight="10"
         android:background="@drawable/border_filled_red"
 
         >

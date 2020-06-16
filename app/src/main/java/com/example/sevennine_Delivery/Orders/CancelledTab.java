@@ -69,13 +69,12 @@ public class CancelledTab extends Fragment {
 
                 selectedFragment = FilterFragment.newInstance();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.frame_layout, selectedFragment);
+                ft.replace(R.id.frame_layout1, selectedFragment);
                 ft.commit();
 
 
             }
         });
-
         return view;
     }
 

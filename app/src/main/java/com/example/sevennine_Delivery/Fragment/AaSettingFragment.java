@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
@@ -77,6 +79,7 @@ public class AaSettingFragment extends Fragment {
     public static Bitmap bitmap;
     ImageView cam_img,edit_pencil;
     String name_str,phone_str;
+    LinearLayout back_feed;
     public static AaSettingFragment newInstance() {
         AaSettingFragment fragment = new AaSettingFragment();
         return fragment;
@@ -86,20 +89,6 @@ public class AaSettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.a_s_setting_layout1, container, false);
-        HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
-        HomeMenuFragment.toolbartxt.setText("My Accounts");
-        HomeMenuFragment.notificationimg.setVisibility(View.GONE);
-        HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedFragment = HomeMenuFragment.newInstance();
-                FragmentTransaction transaction7 = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction7.replace(R.id.frame_layout1, selectedFragment);
-                transaction7.commit();
-
-            }
-        });
-       // backfeed=view.findViewById(R.id.back_feed);
         invi_lay=view.findViewById(R.id.invi_lay);
       //  change_pass_lay=view.findViewById(R.id.change_pass_lay);
         lang_lay=view.findViewById(R.id.lang_lay);
@@ -128,30 +117,35 @@ public class AaSettingFragment extends Fragment {
         logout1=view.findViewById(R.id.logout);
         loans_layout=view.findViewById(R.id.loans_layout);
         loans_lay=view.findViewById(R.id.loans_lay);
-
-        Window window = getActivity().getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(getActivity(),R.color.colorPrimary));
         sessionManager=new SessionManager(getActivity());
-       /* backfeed.setOnClickListener(new View.OnClickListener() {
+        Window window = getActivity().getWindow();
+       // back_feed=view.findViewById(R.id.back_feed);
+        window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
+       /* back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
-                fm.popBackStack();
-            }
-        });*/
-        // name.setText(sessionManager.getRegId("name"));
-        // phone_no.setText(sessionManager.getRegId("phone"));
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack("set", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-       /* change_pass_lay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedFragment = ChangePasswordFragment.newInstance();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("change_pass");
-                transaction.commit();
             }
         });*/
+        HomeMenuFragment.toolbartxt.setText("My Accounts");
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    selectedFragment = HomeMenuFragment.newInstance();
+                    FragmentTransaction transaction7 = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction7.replace(R.id.frame_layout, selectedFragment);
+                    transaction7.commit();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         try {
 
             lngObject = new JSONObject(sessionManager.getRegId("language"));

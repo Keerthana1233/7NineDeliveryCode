@@ -25,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -49,6 +52,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -72,7 +76,7 @@ import java.util.List;
 import static android.content.Context.LOCATION_SERVICE;
 import static com.android.volley.VolleyLog.TAG;
 
-public class AcceptOrderDetailsFragment extends Fragment implements LocationListener {
+public class AcceptOrderDetailsFragment extends Fragment implements LocationListener, OnMapReadyCallback {
 
     public static List<OrderDetailBean> newOrderBeansList = new ArrayList<>();
     public static RecyclerView recyclerView;
@@ -83,7 +87,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     SessionManager sessionManager;
     AcceptOrderDetailsAdapter madapter;
     JSONObject lngObject;
-    TextView toolbar_title,mapview;
+    TextView toolbar_title;
     Fragment selectedFragment;
     GoogleMap pubGoogleMap;
     PolylineOptions lineOptions = null;
@@ -104,7 +108,10 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     ArrayList<String> permissionsToRequest;
     ArrayList<String> permissionsRejected = new ArrayList<>();
     private LatLng latLng;
+    SupportMapFragment mapFrag;
     GPSTracker gpsTracker;
+    public static ImageView menuimg,notificationimg;
+    public static TextView toolbartxt;
     public static AcceptOrderDetailsFragment newInstance() {
         AcceptOrderDetailsFragment fragment = new AcceptOrderDetailsFragment();
         return fragment;
@@ -113,8 +120,9 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.order_details_layout2, container, false);
         recyclerView=view.findViewById(R.id.new_order_recy);
+        back_feed=view.findViewById(R.id.back_feed);
         sessionManager = new SessionManager(getActivity());
-gpsTracker=new GPSTracker(getActivity());
+        gpsTracker=new GPSTracker(getActivity());
         orderidtxt=view.findViewById(R.id.orderid);
         orderdatetxt=view.findViewById(R.id.orderdate);
         modetxt=view.findViewById(R.id.mode);
@@ -128,6 +136,7 @@ gpsTracker=new GPSTracker(getActivity());
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         permissionsToRequest =findUnAskedPermissions(permissions);
+        toolbartxt=view.findViewById(R.id.toolbartxt);
         if (!isGPS && !isNetwork) {
             Log.d(TAG, "Connection off");
             showSettingsAlert();
@@ -163,117 +172,37 @@ gpsTracker=new GPSTracker(getActivity());
             amounttxt.setText(amount);
             addrtxt.setText(addr);
             modetxt.setText(mode);
+            System.out.println("rtyrdellatlatid"+latid);
         }
-        HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
-        HomeMenuFragment.toolbartxt.setText("Order Details");
-        HomeMenuFragment.notificationimg.setVisibility(View.GONE);
         dellat = sessionManager.getRegId("latitude");
         dellang = sessionManager.getRegId("longtitude");
         sessionManager.saveLatLng(String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()));
         System.out.println("rtyrdellat"+gpsTracker.getLatitude());
-        mapview=view.findViewById(R.id.mapview);
+      //  mapview=view.findViewById(R.id.mapview);
         Window window = getActivity().getWindow();
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
-        HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public void onClick(View v) {
-                selectedFragment = HomeMenuFragment.newInstance();
-                FragmentTransaction transaction7 = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction7.replace(R.id.frame_layout1, selectedFragment);
-                transaction7.commit();
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    selectedFragment = HomeMenuFragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout1, selectedFragment);
+                    transaction.commit();
+                    return true;
+                }
+                return false;
+
             }
         });
-       mapview.setOnClickListener(new View.OnClickListener() {
+
+        back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent serviceIntent = new Intent(getActivity(), TrackerService.class);
-                serviceIntent.putExtra("orderId", orderid);
-                getActivity().startService(serviceIntent);
-                AlertDialog.Builder   alertDialog = new AlertDialog.Builder(getActivity());
-                LayoutInflater inflater = getActivity().getLayoutInflater();
-                final View convertView = (View) inflater.inflate(R.layout.confirm_order, null);
-                alertDialog.setView(convertView);
-                alertDialog.show();
-                //12.8441° N, 77.6794° E
-              //  "Latitude": "14.666164699999998",
-               //         "Longitude": "75.48577709999999",
-                final LatLng storelatlong = new LatLng(Double.parseDouble(latid),
-                        Double.parseDouble(langid));
-                //12.9698° N, 77.7500° E
-                final LatLng custlatlong = new LatLng(Double.parseDouble(custlat), Double.parseDouble(custlong));
-       final LatLng dellatlong = new LatLng((Double.parseDouble(sessionManager.getRegId("latitude"))),(Double.parseDouble(sessionManager.getRegId("longtitude"))));
-      /*  final LatLng dellatlong = new LatLng(Double.parseDouble("12.9242199")
-                        ,Double.parseDouble(" 77.51911949999999"));*/
-                final MapView mapView = convertView.findViewById(R.id.map);
-                // finally ..... thnx god
-                mapView.onCreate(new Bundle());
-                mapView.onResume();
-                mapView.getMapAsync(new OnMapReadyCallback() {
-                    @Override
-                    public void onMapReady(GoogleMap googleMap) {
-                        pubGoogleMap=googleMap;
-                        String url = getDirectionsUrl(dellatlong
-                                , custlatlong,storelatlong);
-                        FetchUrl FetchUrl = new FetchUrl();
-                        System.out.println("url ddd "+url);
-                        Log.d("url data ", url);
-                        // Start downloading json data from Google Directions API
-                        FetchUrl.execute(url);
-                        pubGoogleMap.addMarker(new MarkerOptions().position(storelatlong)
-                                .icon(bitmapDescriptorFromVector(getActivity(),R.drawable.ic_shop)));
-                        pubGoogleMap.addMarker(new MarkerOptions().position(custlatlong)
-                                .icon(bitmapDescriptorFromVector(getActivity(),R.drawable.ic_location_pin)));
-                        pubGoogleMap.addMarker(new MarkerOptions().position(dellatlong)
-                                .icon(bitmapDescriptorFromVector(getActivity(),R.drawable.ic_pin)));
-                        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-                        builder.include(storelatlong);
-                        builder.include(custlatlong);
-                        builder.include(dellatlong);
-                        pubGoogleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(),50));
-                        pubGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                            @Override
-                            public void onMapClick(LatLng latLng) {
-                                int permission = ContextCompat.checkSelfPermission(getActivity(),
-                                        Manifest.permission.ACCESS_FINE_LOCATION);
-                                if (permission == PackageManager.PERMISSION_GRANTED) {
-                                    LocationManager lm = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
-                                    if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                                        Toast.makeText(getActivity(), "Please enable location services", Toast.LENGTH_SHORT).show();
-                                    }
-                                    else {
-                                        Toast.makeText(getActivity(), "All done", Toast.LENGTH_SHORT).show();
-
-                                        String cust = custlatlong.latitude+","+custlatlong.longitude;
-                                        String store = storelatlong.latitude+","+storelatlong.longitude;
-
-
-
-                                        // activity.startService(new Intent(activity, TrackerService.class));
-                                        Uri gmmIntentUri = Uri.parse("https://www.google.com/maps/dir/?api=1&destination="+cust+"&waypoints="+store+"&mode=l");
-                                        // Uri gmmIntentUri = Uri.parse("google.navigation:q="+store.latitude+","+store.longitude+"&mode=l");
-                                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                                        mapIntent.setPackage("com.google.android.apps.maps");
-                                        if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                                            getActivity().startActivity(mapIntent);
-                                        }
-                                        else
-                                        {
-                                            Toast.makeText(getActivity(),"Google Maps are already in use",Toast.LENGTH_SHORT).show();
-                                            //map is used by other apps
-                                        }
-                                       /*             Intent intent = new Intent(activity, TrackerActivity.class);
-                                                    intent.putExtra("store",storelatlong);
-                                                    intent.putExtra("cust",custlatlong);
-                                                    activity.startActivity(intent);*/
-                                    }
-                                }
-                                else
-                                    Toast.makeText(getActivity(),"Please allow location permission",Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                });
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack("accept", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
         });
         view.setFocusableInTouchMode(true);
@@ -285,11 +214,8 @@ gpsTracker=new GPSTracker(getActivity());
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
-                    selectedFragment = HomeMenuFragment.newInstance();
-                    FragmentTransaction transaction7 = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction7.replace(R.id.frame_layout1, selectedFragment);
-                    transaction7.commit();
-
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("accept", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
                     return true;
                 }
@@ -297,7 +223,7 @@ gpsTracker=new GPSTracker(getActivity());
 
             }
         });
-
+        Trackingmap();
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
@@ -311,7 +237,18 @@ gpsTracker=new GPSTracker(getActivity());
         recyclerView.setAdapter(madapter);
         //    LoanInformation();
         return view;
+
     }
+    public void Trackingmap() {
+        Intent serviceIntent = new Intent(getActivity(), TrackerService.class);
+        serviceIntent.putExtra("orderId", orderid);
+        getActivity().startService(serviceIntent);
+        // finally ..... thnx god
+        mapFrag = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        mapFrag.getMapAsync(this);
+        View mapView = mapFrag.getView();
+    }
+
     private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
         Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
         vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
@@ -339,6 +276,71 @@ gpsTracker=new GPSTracker(getActivity());
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters+key;
         return url;
     }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        pubGoogleMap = googleMap;
+        final LatLng storelatlong = new LatLng(Double.parseDouble(latid),
+                Double.parseDouble(langid));
+        //12.9698° N, 77.7500° E
+        final LatLng custlatlong = new LatLng(Double.parseDouble(custlat), Double.parseDouble(custlong));
+        final LatLng dellatlong = new LatLng((Double.parseDouble(sessionManager.getRegId("latitude"))), (Double.parseDouble(sessionManager.getRegId("longtitude"))));
+        String url = getDirectionsUrl(dellatlong
+                , custlatlong, storelatlong);
+        FetchUrl FetchUrl = new FetchUrl();
+        System.out.println("url ddd " + url);
+        Log.d("url data ", url);
+        // Start downloading json data from Google Directions API
+        FetchUrl.execute(url);
+        pubGoogleMap.addMarker(new MarkerOptions().position(storelatlong)
+                .icon(bitmapDescriptorFromVector(getActivity(), R.drawable.ic_shop)));
+        pubGoogleMap.addMarker(new MarkerOptions().position(custlatlong)
+                .icon(bitmapDescriptorFromVector(getActivity(), R.drawable.ic_location_pin)));
+        pubGoogleMap.addMarker(new MarkerOptions().position(dellatlong)
+                .icon(bitmapDescriptorFromVector(getActivity(), R.drawable.ic_pin)));
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(storelatlong);
+        builder.include(custlatlong);
+        builder.include(dellatlong);
+        pubGoogleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 50));
+        pubGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                int permission = ContextCompat.checkSelfPermission(getActivity(),
+                        Manifest.permission.ACCESS_FINE_LOCATION);
+                if (permission == PackageManager.PERMISSION_GRANTED) {
+                    LocationManager lm = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
+                    if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                        Toast.makeText(getActivity(), "Please enable location services", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), "All done", Toast.LENGTH_SHORT).show();
+
+                        String cust = custlatlong.latitude + "," + custlatlong.longitude;
+                        String store = storelatlong.latitude + "," + storelatlong.longitude;
+
+
+                        // activity.startService(new Intent(activity, TrackerService.class));
+                        Uri gmmIntentUri = Uri.parse("https://www.google.com/maps/dir/?api=1&destination=" + cust + "&waypoints=" + store + "&mode=l");
+                        // Uri gmmIntentUri = Uri.parse("google.navigation:q="+store.latitude+","+store.longitude+"&mode=l");
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                            getActivity().startActivity(mapIntent);
+                        } else {
+                            Toast.makeText(getActivity(), "Google Maps are already in use", Toast.LENGTH_SHORT).show();
+                            //map is used by other apps
+                        }
+                                       /*             Intent intent = new Intent(activity, TrackerActivity.class);
+                                                    intent.putExtra("store",storelatlong);
+                                                    intent.putExtra("cust",custlatlong);
+                                                    activity.startActivity(intent);*/
+                    }
+                } else
+                    Toast.makeText(getActivity(), "Please allow location permission", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     // Fetches data from url passed
     private class FetchUrl extends AsyncTask<String, Void, String> {
         @Override

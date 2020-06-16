@@ -34,9 +34,6 @@ public class AaNotificationSetting extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.a_n_notisetting_layout, container, false);
-        HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
-        HomeMenuFragment.toolbartxt.setText("Notifications");
-        HomeMenuFragment.notificationimg.setVisibility(View.GONE);
         backfeed=view.findViewById(R.id.back_feed);
         acc_info_lay=view.findViewById(R.id.acc_info_lay);
         switch_noti=view.findViewById(R.id.switch_noti);
@@ -47,7 +44,7 @@ public class AaNotificationSetting extends Fragment {
         switch_noti.setChecked(true);
 
         sessionManager=new SessionManager(getActivity());
-        HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
+      backfeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();

@@ -10,32 +10,28 @@
     android:weightSum="100"
     android:background="#fff">
 
-
-<!--
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary"
+        android:background="@color/green"
+        android:gravity="center_vertical"
         tools:ignore="MissingConstraints">
+
         <LinearLayout
             android:id="@+id/back_feed"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/ic_filter_state"
+            android:layout_margin="10dp"
+            android:background="@drawable/ripple_effect"
             android:gravity="center">
 
 
             <ImageView
                 android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_go_back_left_arrow_"
-
-                />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_go_back_left_arrow_"
+                tools:ignore="VectorDrawableCompat" />
 
         </LinearLayout>
 
@@ -45,20 +41,14 @@
             android:layout_height="wrap_content"
             android:text="Order Details"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:fontFamily="@font/segoeui"
             android:textColor="#fff"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="10dp"
             android:id="@+id/toolbar_title" />
 
 
 
-
     </LinearLayout>
-
--->
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="fill_parent">
@@ -68,14 +58,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#fff"
+            android:weightSum="300"
             android:orientation="vertical">
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_height="0dp"
+                android:layout_weight="70"
                 >
-                <TextView
+               <!-- <TextView
                     android:id="@+id/view"
                     android:layout_width="0dp"
                     android:layout_height="39dp"
@@ -117,17 +107,61 @@
                     android:drawableLeft="@drawable/ic_marker2"
                     android:fontFamily="@font/segoeui"
                     android:text="Map View"
-                    />
-            </LinearLayout>
-            <View
-                android:id="@+id/view_line"
-                android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:layout_marginTop="@dimen/dimen_10dp"
-                android:background="#dcdcdc" />
+                    />-->
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="20"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:weightSum="100"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/view1"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimen_40dp"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:layout_weight="30"
+                    android:background="@drawable/border_black"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="99********" />
+                <TextView
+                    android:id="@+id/vieworder2"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:layout_weight="30"
+                    android:gravity="center"
+                    android:background="@drawable/border_black"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Cancel" />
+                <TextView
+                    android:id="@+id/cancef3"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:layout_weight="40"
+                    android:gravity="center"
+                    android:background="@drawable/border_black"
+                    android:fontFamily="@font/segoeui"
+                    android:text="Start Tracking"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="80"
                 android:background="#fff"
                 android:layout_marginHorizontal="16dp"
                 android:orientation="vertical">
@@ -240,7 +274,8 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="40"
                     android:orientation="horizontal"
                     android:weightSum="100"
                     >
@@ -520,8 +555,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_height="0dp"
+                android:layout_weight="10"
                 android:layout_marginLeft="26dp"
                 android:orientation="horizontal"
                 >
@@ -538,7 +573,8 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="30"
                 android:layout_marginLeft="26dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"
@@ -600,7 +636,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="10"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="26dp"
                 android:orientation="horizontal"
@@ -618,7 +655,8 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="10"
                 android:layout_marginLeft="26dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"
@@ -662,7 +700,8 @@
                 android:background="#dcdcdc" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="75"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
@@ -691,57 +730,7 @@
                     android:layout_marginTop="@dimen/dimen_10dp"
                     android:background="#dcdcdc" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="@dimen/dimen_10dp"
-                android:layout_marginTop="@dimen/dimen_10dp"
-                >
-                <TextView
-                    android:id="@+id/view1"
-                    android:layout_width="0dp"
-                    android:layout_height="39dp"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"
-                    android:layout_weight="30"
-                    android:padding="@dimen/dimen_10dp"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/border_black"
-                    android:drawablePadding="@dimen/dimen_10dp"
-                    android:drawableLeft="@drawable/ic_phone_call"
-                    android:fontFamily="@font/segoeui"
-                    android:text="99********" />
-                <TextView
-                    android:id="@+id/vieworder2"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"
-                    android:layout_weight="30"
-                    android:padding="@dimen/dimen_10dp"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/border_black"
-                    android:drawablePadding="@dimen/dimen_10dp"
-                    android:drawableLeft="@drawable/ic_close_cross"
-                    android:fontFamily="@font/segoeui"
-                    android:text="Cancel" />
-                <TextView
-                    android:id="@+id/cancef3"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"
-                    android:layout_weight="30"
-                    android:padding="@dimen/dimen_10dp"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/border_black"
-                    android:drawablePadding="@dimen/dimen_10dp"
-                    android:drawableLeft="@drawable/ic_marker2"
-                    android:fontFamily="@font/segoeui"
-                    android:text="Map View"
-                    />
-            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -57,12 +58,18 @@ public class NotificationFragment extends Fragment {
         no_notifitn_added=view.findViewById(R.id.no_notifitn_added);
         HomeMenuFragment.toolbartxt.setText("Notifications");
         sessionManager = new SessionManager(getActivity());
-     /*   HomePage_With_Bottom_Navigation.linear_bottonsheet.setVisibility(View.GONE);
-        HomePage_With_Bottom_Navigation.view.setVisibility(View.GONE);
-*/
 
         Window window = getActivity().getWindow();
+        back_feed=view.findViewById(R.id.back_feed);
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
+        back_feed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack("nothome", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+            }
+        });
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -71,17 +78,16 @@ public class NotificationFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                    selectedFragment = HomeMenuFragment.newInstance();
-                    FragmentTransaction transaction7 = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction7.replace(R.id.frame_layout1, selectedFragment);
-                    transaction7.commit();
+
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("nothome", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                     return true;
                 }
                 return false;
+
             }
         });
-
-
 
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);

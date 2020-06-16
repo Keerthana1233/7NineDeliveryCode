@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.sevennine_Delivery.Activity.GPSTracker;
 import com.example.sevennine_Delivery.Bean.NewOrderBean;
+import com.example.sevennine_Delivery.Fragment.AcceptOrderDetailsFragment;
+import com.example.sevennine_Delivery.Fragment.CancelOrderDetailsFragment;
 import com.example.sevennine_Delivery.Fragment.OrderDetailsFragment;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
@@ -101,9 +103,9 @@ GPSTracker gpsTracker;
                 bundle.putString("long",products.getLongitude());
                 selectedFragment = OrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
+                transaction.addToBackStack("new");
                 selectedFragment.setArguments(bundle);
-                System.out.println("rtyrdellat"+bundle);
                 transaction.commit();
             }
         });
@@ -166,5 +168,13 @@ GPSTracker gpsTracker;
         System.out.println("lengthhhhhhh"+productList.size());
         return productList.size();
     }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 }

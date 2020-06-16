@@ -7,11 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,43 +19,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.location.Criteria;
-import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.sevennine_Delivery.Activity.GPSTracker;
-import com.example.sevennine_Delivery.Activity.MainActivity;
-import com.example.sevennine_Delivery.DataParser;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.tabs.TabLayout;
 
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import static com.android.volley.VolleyLog.TAG;
 
@@ -89,10 +63,21 @@ GPSTracker gpsTracker;
         OrdersFragments fragment = new OrdersFragments();
         return fragment;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (gpsTracker.isFromSetting==true){
+            getActivity().finish();
+            gpsTracker.isFromSetting=false;
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.order_fragment, container, false);
         tabLayout = view. findViewById(R.id.simpleTabLayout1);
+        HomeMenuFragment.toolbartxt.setText("7Nine Delhivery");
         sessionManager = new SessionManager(getActivity());
         locationManager = (LocationManager) getActivity().getSystemService(Service.LOCATION_SERVICE);
         isGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -100,11 +85,22 @@ GPSTracker gpsTracker;
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         permissionsToRequest =findUnAskedPermissions(permissions);
-        gpsTracker=new GPSTracker(getActivity());
-        sessionManager.saveLatLng(String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()));
-        System.out.println("rtyrdellat"+gpsTracker.getLatitude());
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 5000ms
+                gpsTracker = new GPSTracker(getActivity());
+                if(gpsTracker.canGetLocation()){
 
-
+                    double latitude = gpsTracker.getLatitude();
+                    double longitude = gpsTracker.getLongitude();
+                    System.out.println("rtyrdellat"+latitude);
+                    sessionManager.saveLatLng(String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()));
+                    System.out.println("rtyrdellat"+gpsTracker.getLatitude());
+                }
+            }
+        }, 1000);
         if (!isGPS && !isNetwork) {
             Log.d(TAG, "Connection off");
             showSettingsAlert();
@@ -157,7 +153,6 @@ GPSTracker gpsTracker;
 
         return view;
     }
-
     @Override
     public void onTabSelected(TabLayout.Tab tab)  {
         viewPager.setCurrentItem(tab.getPosition());
@@ -345,28 +340,5 @@ GPSTracker gpsTracker;
             locationManager.removeUpdates(this);
         }
     }
-    private void setRepeatingAsyncTask() {
-        final Handler handler = new Handler();
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(new Runnable() {
-                    public void run() {
-                        try {
 
-
-                                    gpsTracker=new GPSTracker(getActivity());
-                                    sessionManager.saveLatLng(String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()));
-                                    System.out.println("rtyrdellat"+gpsTracker.getLatitude());
-
-                        } catch (Exception e) {
-                            // error, do something
-                        }
-                    }
-                });
-            }
-        };
-        timer.schedule(task, 0, 10*1000);  // interval of one minute
-    }
 }

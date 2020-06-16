@@ -41,12 +41,12 @@ SessionManager sessionManager;
 
       //   HomePage_With_Bottom_Navigation.linear_bottom.setVisibility(View.GONE);
        //  Status_bar_change_singleton.getInstance().color_change(getActivity());
-      /*  back_feed=view.findViewById(R.id.back_feed);
+      back_feed=view.findViewById(R.id.back_feed);
         privacypolicytxt=view.findViewById(R.id.setting_tittle);
-        privacypolicytxt.setText("Privacy Policy");*/
-         HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
+        privacypolicytxt.setText("Privacy Policy");
+        /* HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
          HomeMenuFragment.toolbartxt.setText("Privacy Policy");
-         HomeMenuFragment.notificationimg.setVisibility(View.GONE);
+         HomeMenuFragment.notificationimg.setVisibility(View.GONE);*/
         terms=view.findViewById(R.id.web_terms);
        // terms.loadUrl("http://farmpe.in/privacy.html");
         terms.loadUrl("http://farmpe.in");
@@ -73,7 +73,7 @@ SessionManager sessionManager;
         });
 
 
-         HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
+         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

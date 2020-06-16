@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.sevennine_Delivery.Activity.Status_bar_change_singleton;
 import com.example.sevennine_Delivery.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -33,9 +34,9 @@ public class PaymentsTabLayout extends Fragment implements TabLayout.OnTabSelect
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.payment_tab_layout, container, false);
+        HomeMenuFragment.toolbartxt.setText("My Payments");
         Window window = getActivity().getWindow();
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
-        HomeMenuFragment.toolbartxt.setText("Payments");
         tabLayout = view.findViewById(R.id.simpleTabLayout_land);
         tabLayout.addTab(tabLayout.newTab().setText("Dashboard"));
         tabLayout.addTab(tabLayout.newTab().setText("Today"));

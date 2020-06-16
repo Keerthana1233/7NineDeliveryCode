@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -47,9 +49,6 @@ SessionManager sessionManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.select_language_layout, container, false);
-        HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
-        HomeMenuFragment.toolbartxt.setText("Change Language");
-        HomeMenuFragment.notificationimg.setVisibility(View.GONE);
         recyclerView =view.findViewById(R.id.recycler_view_lang);
         continue_lang =view.findViewById(R.id.continue_lang);
         //lang_title =view.findViewById(R.id.lang_title);
@@ -71,7 +70,9 @@ SessionManager sessionManager;
         newOrderBeansList.add(bean);
         newOrderBeansList.add(bean);
         newOrderBeansList.add(bean);*/
-
+        Window window = getActivity().getWindow();
+        back_feed=view.findViewById(R.id.back_feed);
+        window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
         Langauges();
         continue_lang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +82,7 @@ SessionManager sessionManager;
             }
         });
 
-        HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
+        back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();

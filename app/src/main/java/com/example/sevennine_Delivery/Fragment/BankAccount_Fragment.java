@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sevennine_Delivery.Activity.Status_bar_change_singleton;
 import com.example.sevennine_Delivery.Adapter.BankAccount_Adapter;
 import com.example.sevennine_Delivery.Bean.BankBean;
 import com.example.sevennine_Delivery.R;
@@ -58,25 +59,13 @@ public class BankAccount_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.soil_details_recy_layout, container, false);
-       // Status_bar_change_singleton.getInstance().color_change(getActivity());
+      Status_bar_change_singleton.getInstance().color_change(getActivity());
 
         //HomePage_With_Bottom_Navigation.linear_bottonsheet.setVisibility(View.GONE);
         recyclerView=view.findViewById(R.id.recycler_what_looking);
-     /*   toolbar_title=view.findViewById(R.id.toolbar_title);
-        toolbar_title.setText("Bank Accounts");*/
-        HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
-        HomeMenuFragment.toolbartxt.setText("Bank Accounts");
-        HomeMenuFragment.notificationimg.setVisibility(View.GONE);
-        HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedFragment = HomeMenuFragment.newInstance();
-                FragmentTransaction transaction7 = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction7.replace(R.id.frame_layout1, selectedFragment);
-                transaction7.commit();
-
-            }
-        });
+      toolbar_title=view.findViewById(R.id.toolbar_title);
+        toolbar_title.setText("Bank Accounts");
+        back_feed=view.findViewById(R.id.back_feed);
         linearLayout = view.findViewById(R.id.linearLayout);
         Continue = view.findViewById(R.id.continuebtn);
         main_layout = view.findViewById(R.id.main_layout);
@@ -96,7 +85,7 @@ public class BankAccount_Fragment extends Fragment {
 
             }
         });
-        HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
+     back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();

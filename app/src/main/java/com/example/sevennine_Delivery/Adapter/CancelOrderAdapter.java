@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sevennine_Delivery.Bean.NewOrderBean;
 import com.example.sevennine_Delivery.Fragment.CancelOrderDetailsFragment;
+import com.example.sevennine_Delivery.Fragment.DeliveryOrderDetailsFragment;
 import com.example.sevennine_Delivery.R;
 
 import java.util.List;
@@ -75,7 +76,8 @@ public class CancelOrderAdapter extends RecyclerView.Adapter<CancelOrderAdapter.
             public void onClick(View v) {
                 selectedFragment = CancelOrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
+                transaction.addToBackStack("can");
                 transaction.commit();
             }
         });

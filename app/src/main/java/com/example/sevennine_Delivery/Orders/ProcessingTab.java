@@ -57,7 +57,7 @@ SessionManager sessionManager;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.accept_order_tab, container, false);
         filter=view.findViewById(R.id.filter);
-        setRepeatingAsyncTask();
+        //setRepeatingAsyncTask();
         sessionManager = new SessionManager(getActivity());
         sessionManager=new SessionManager(getActivity());
         mSwipeRefreshLayout = view.findViewById(R.id.swifeRefresh);
@@ -100,7 +100,7 @@ SessionManager sessionManager;
 
                 selectedFragment = FilterFragment.newInstance();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.frame_layout, selectedFragment);
+                ft.replace(R.id.frame_layout1, selectedFragment);
                 ft.commit();
 
 
@@ -168,4 +168,5 @@ SessionManager sessionManager;
         };
         timer.schedule(task, 0, 50*1000);  // interval of one minute
     }
+
 }

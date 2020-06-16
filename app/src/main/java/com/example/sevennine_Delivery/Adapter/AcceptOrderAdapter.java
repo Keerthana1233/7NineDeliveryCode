@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.sevennine_Delivery.Bean.NewOrderBean;
 import com.example.sevennine_Delivery.Fragment.AcceptOrderDetailsFragment;
+import com.example.sevennine_Delivery.Fragment.CancelOrderDetailsFragment;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 
@@ -100,12 +101,11 @@ String orderid,latid,langid,custlatid,custlangid;
                 bundle.putString("totalamount",products.getProd_price());
                 bundle.putString("addr",products.getAddr());
                 bundle.putString("mode",products.getCod());
-
                 selectedFragment = AcceptOrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
+                transaction.addToBackStack("accept");
                 selectedFragment.setArguments(bundle);
-                System.out.println("rtyrdellat"+bundle);
                 transaction.commit();
             }
         });
@@ -117,5 +117,13 @@ String orderid,latid,langid,custlatid,custlangid;
         System.out.println("lengthhhhhhh"+productList.size());
         return productList.size();
     }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
 }

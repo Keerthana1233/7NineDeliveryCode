@@ -75,7 +75,8 @@ public class DeliveryOrderAdapter extends RecyclerView.Adapter<DeliveryOrderAdap
             public void onClick(View v) {
                 selectedFragment = DeliveryOrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
+                transaction.addToBackStack("del");
                 transaction.commit();
             }
         });

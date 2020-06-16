@@ -58,7 +58,7 @@ public class YourOrderAdapter extends RecyclerView.Adapter<YourOrderAdapter.MyVi
      Polyline polyline1 = mMap.addPolyline(new PolylineOptions()
              .clickable(true)
              .add(new LatLng(12.9716, 77.5946)));
-     polyline1.setTag("7Nine");
+     polyline1.setTag("7Nine Delhivery");
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

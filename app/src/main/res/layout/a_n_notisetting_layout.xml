@@ -20,7 +20,6 @@
             android:orientation="vertical"
             android:id="@+id/lay_account">
 
-<!--
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,7 +27,7 @@
                 android:background="@color/green"
                 >
 
-                &lt;!&ndash;<android.support.v7.widget.Toolbar
+                <!--<android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:minHeight="?attr/actionBarSize"
                     android:layout_width="match_parent"
@@ -36,7 +35,7 @@
                     app:titleTextColor="@android:color/white"
                     android:background="@color/green"
                     >
-        &ndash;&gt;
+        -->
                 <LinearLayout
                     android:id="@+id/back_feed"
                     android:layout_width="wrap_content"
@@ -71,55 +70,12 @@
                     android:layout_marginBottom="15dp"
                     android:id="@+id/lang_title" />
 
-                &lt;!&ndash;
+                <!--
                           </android.support.v7.widget.Toolbar>
-                &ndash;&gt;
+                -->
 
-            </LinearLayout>-->
+            </LinearLayout>
 
-
-            <!--
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:orientation="horizontal"
-                    android:background="@color/green"
-                    tools:ignore="MissingConstraints">
-
-
-
-                        <LinearLayout
-                            android:id="@+id/back_feed"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:gravity="center">
-
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_go_back_left_arrow_"
-
-                                />
-
-                        </LinearLayout>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Notifications"
-                            android:textSize="20dp"
-                            android:textColor="#fff"
-                            android:layout_marginLeft="20dp"
-                            android:layout_gravity="center"
-                            android:id="@+id/setting_tittle" />
-
-
-                </LinearLayout>
-            -->
 
     <LinearLayout
         android:layout_width="match_parent"

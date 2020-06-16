@@ -74,7 +74,8 @@ public class ProcessingAdapter extends RecyclerView.Adapter<ProcessingAdapter.My
             public void onClick(View v) {
                 selectedFragment = AcceptOrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
+                transaction.addToBackStack("abcd");
                 transaction.commit();
             }
         });

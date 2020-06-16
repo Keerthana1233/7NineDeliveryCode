@@ -96,10 +96,6 @@ public class Add_NewBankDetails_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.select_your_region_layout1, container, false);
         getActivity().getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
-        HomeMenuFragment.toolbartxt.setText("Bank Details");
-        HomeMenuFragment.notificationimg.setVisibility(View.GONE);
-
         Window window = getActivity().getWindow();
          window.setStatusBarColor(ContextCompat.getColor(getActivity(),R.color.colorPrimary));
         holder_name=view.findViewById(R.id.holder_name);
@@ -114,7 +110,8 @@ public class Add_NewBankDetails_Fragment extends Fragment {
           main_layout=view.findViewById(R.id.main_layout);
          search = view.findViewById(R.id.search);
         enterifsc = view.findViewById(R.id.enterifsc);
-     //   verify_ifsc = view.findViewById(R.id.verify_ifsc);
+        back_feed=view.findViewById(R.id.back_feed);
+
         toolbar_title = view.findViewById(R.id.toolbar_title);
         apply_loan = view.findViewById(R.id.apply_loan);
 
@@ -123,7 +120,7 @@ public class Add_NewBankDetails_Fragment extends Fragment {
         account_validate="[0-9]{9,18}";
         sessionManager=new SessionManager(getActivity());
         System.out.println("userrrridd"+sessionManager.getRegId("userId"));
-        HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
+      back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (view != null) {

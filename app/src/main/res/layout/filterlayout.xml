@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:weightSum="100"
     >
-<!--    <LinearLayout
+   <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
@@ -52,13 +52,12 @@
 
 
 
-    </LinearLayout>-->
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_weight="92"
+        android:layout_weight="82"
         android:background="#ffffff"
         >
     <TextView
@@ -202,7 +201,7 @@
         android:orientation="vertical"
         android:gravity="center_vertical"
         android:background="@drawable/border_filled_red_not_curved"
-        android:layout_weight="8"
+        android:layout_weight="10"
         >
 
         <TextView

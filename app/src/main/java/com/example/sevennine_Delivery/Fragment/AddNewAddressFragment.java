@@ -111,15 +111,13 @@ public class AddNewAddressFragment extends Fragment {
         View view = inflater.inflate(R.layout.select_your_region_layout, container, false);
 
        getActivity().getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
-        HomeMenuFragment.toolbartxt.setText("My Addresses");
-        HomeMenuFragment.notificationimg.setVisibility(View.GONE);
+
 
         // select_address = view.findViewById(R.id.add_type);
         name = view.findViewById(R.id.full_name);
         landmrk = view.findViewById(R.id.landmark);
         mobile = view.findViewById(R.id.mob_no);
-       // back_feed = view.findViewById(R.id.back_feed);
+ back_feed = view.findViewById(R.id.back_feed);
         pincode_no = view.findViewById(R.id.pincode);
         house_numb = view.findViewById(R.id.house_no);
        // street_name = view.findViewById(R.id.colny_street);
@@ -214,7 +212,7 @@ public class AddNewAddressFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         bundle=getArguments();
-        HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
+      back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                    /* FragmentManager fm = getActivity().getSupportFragmentManager();

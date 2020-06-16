@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -44,25 +45,19 @@ public class DeliveryOrderDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.order_details_layout3, container, false);
         recyclerView=view.findViewById(R.id.new_order_recy);
-        HomeMenuFragment.menuimg.setImageResource(R.drawable.ic_go_back_left_arrow_);
-        HomeMenuFragment.toolbartxt.setText("Order Details");
-        HomeMenuFragment.notificationimg.setVisibility(View.GONE);
-/*
 
         back_feed=view.findViewById(R.id.back_feed);
-        HomeMenuFragment.tl.setVisibility(View.GONE);
-*/
+       // HomeMenuFragment.tl.setVisibility(View.GONE);
+
 
         Window window = getActivity().getWindow();
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
-        HomeMenuFragment.menuimg.setOnClickListener(new View.OnClickListener() {
+        back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedFragment = HomeMenuFragment.newInstance();
-                FragmentTransaction transaction7 = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction7.replace(R.id.frame_layout1, selectedFragment);
-                transaction7.commit();
 
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack("del", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
         });
         view.setFocusableInTouchMode(true);
@@ -74,11 +69,8 @@ public class DeliveryOrderDetailsFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
-                    selectedFragment = HomeMenuFragment.newInstance();
-                    FragmentTransaction transaction7 = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction7.replace(R.id.frame_layout1, selectedFragment);
-                    transaction7.commit();
-
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("del", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
                     return true;
                 }

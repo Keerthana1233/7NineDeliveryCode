@@ -12,9 +12,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-
-   <!-- <LinearLayout
+ <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -47,7 +45,7 @@
             android:textStyle="bold"
             android:textColor="#fff"
             android:textSize="20dp" />
-    </LinearLayout>-->
+    </LinearLayout>
 
 
     <!--<LinearLayout-->
