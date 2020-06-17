@@ -89,7 +89,7 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
                 return false;
             }
         });
-
+        gpsTracker = new GPSTracker(getActivity());
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
@@ -111,7 +111,8 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
     }
 public  void  Newdata(){
     mSwipeRefreshLayout.setRefreshing(true);
-    gpsTracker = new GPSTracker(getActivity());
+
+
     try{
         newOrderBeansList.clear();
         final JSONObject jsonObject = new JSONObject();
@@ -146,6 +147,8 @@ public  void  Newdata(){
     @Override
     public void onRefresh(){
         Newdata();
+        sessionManager.saveLatLng(String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()));
+
     }
 
 

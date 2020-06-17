@@ -157,6 +157,7 @@ public class Slider_Activity extends AppCompatActivity implements ConnectivityRe
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent=new Intent(Slider_Activity.this,NewSignUpActivity.class);
                 startActivity(intent);
             }

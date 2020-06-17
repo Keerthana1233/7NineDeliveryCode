@@ -69,7 +69,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -112,6 +115,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     GPSTracker gpsTracker;
     public static ImageView menuimg,notificationimg;
     public static TextView toolbartxt;
+    Date date;
     public static AcceptOrderDetailsFragment newInstance() {
         AcceptOrderDetailsFragment fragment = new AcceptOrderDetailsFragment();
         return fragment;
@@ -121,7 +125,6 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         View view = inflater.inflate(R.layout.order_details_layout2, container, false);
         recyclerView=view.findViewById(R.id.new_order_recy);
         back_feed=view.findViewById(R.id.back_feed);
-        sessionManager = new SessionManager(getActivity());
         gpsTracker=new GPSTracker(getActivity());
         orderidtxt=view.findViewById(R.id.orderid);
         orderdatetxt=view.findViewById(R.id.orderdate);
@@ -136,6 +139,8 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         permissionsToRequest =findUnAskedPermissions(permissions);
+        gpsTracker = new GPSTracker(getActivity());
+
         toolbartxt=view.findViewById(R.id.toolbartxt);
         if (!isGPS && !isNetwork) {
             Log.d(TAG, "Connection off");
@@ -167,18 +172,24 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
             createddate = bundle.getString("orderdate");
             addr = bundle.getString("addr");
             mode = bundle.getString("mode");
-            orderdatetxt.setText(createddate);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            String dtStart = createddate;
+            System.out.println("getCreateddate"+dtStart);
+
+            try {
+                date = format.parse(dtStart);
+                orderdatetxt.setText(date.getDate()+"/"+(1+date.getMonth())+"/"+(1900+date.getYear()+" "+date.getHours()+":"+date.getMinutes()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             orderidtxt.setText(orderid);
             amounttxt.setText(amount);
             addrtxt.setText(addr);
             modetxt.setText(mode);
-            System.out.println("rtyrdellatlatid"+latid);
         }
+        sessionManager = new SessionManager(getActivity());
         dellat = sessionManager.getRegId("latitude");
         dellang = sessionManager.getRegId("longtitude");
-        sessionManager.saveLatLng(String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()));
-        System.out.println("rtyrdellat"+gpsTracker.getLatitude());
-      //  mapview=view.findViewById(R.id.mapview);
         Window window = getActivity().getWindow();
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
         view.setFocusableInTouchMode(true);
@@ -284,7 +295,9 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
                 Double.parseDouble(langid));
         //12.9698° N, 77.7500° E
         final LatLng custlatlong = new LatLng(Double.parseDouble(custlat), Double.parseDouble(custlong));
-        final LatLng dellatlong = new LatLng((Double.parseDouble(sessionManager.getRegId("latitude"))), (Double.parseDouble(sessionManager.getRegId("longtitude"))));
+        final LatLng dellatlong = new LatLng(Double.parseDouble(dellat),Double.parseDouble(dellang));
+        System.out.println("dellatlong"+dellatlong);
+
         String url = getDirectionsUrl(dellatlong
                 , custlatlong, storelatlong);
         FetchUrl FetchUrl = new FetchUrl();

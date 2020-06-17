@@ -32,6 +32,9 @@ import com.example.sevennine_Delivery.Volly_class.VoleyJsonObjectCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -43,6 +46,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     public LinearLayout linearLayout;
 GPSTracker gpsTracker;
     public static CardView cardView;
+    Date date;
     public OrderAdapter(Activity activity, List<NewOrderBean> productList) {
         this.productList = productList;
         this.activity=activity;
@@ -89,6 +93,8 @@ GPSTracker gpsTracker;
         holder.cod.setText(products.getCod());
       //  holder.username.setText(products.getAddr());
         holder.addr.setText(products.getAddr());
+
+
         Glide.with(activity).load(products.getImage()).placeholder(R.drawable.ic_gallery__default).dontAnimate().into(holder.image);
         holder.vieworder.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -31,7 +31,10 @@ import com.example.sevennine_Delivery.Volly_class.VoleyJsonObjectCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -46,6 +49,7 @@ public class OrderDetailsFragment extends Fragment {
     TextView acceptbtn;
     TextView toolbar_title,orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt;
     Fragment selectedFragment;
+    Date date;
     String orderid,addr,mode,amount,createddate,lat,longi;
     public static OrderDetailsFragment newInstance() {
         OrderDetailsFragment fragment = new OrderDetailsFragment();
@@ -98,11 +102,22 @@ public class OrderDetailsFragment extends Fragment {
             orderid = bundle.getString("orderId");
             amount = bundle.getString("totalamount");
             createddate = bundle.getString("orderdate");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+
+            String dtStart = createddate;
+            System.out.println("getCreateddate"+dtStart);
+
+            try {
+                date = format.parse(dtStart);
+                orderdatetxt.setText(date.getDate()+"/"+(1+date.getMonth())+"/"+(1900+date.getYear()+" "+date.getHours()+":"+date.getMinutes()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             addr = bundle.getString("addr");
             mode = bundle.getString("mode");
             lat = bundle.getString("lat");
             longi = bundle.getString("long");
-            orderdatetxt.setText(createddate);
+            //orderdatetxt.setText(createddate);
             orderidtxt.setText(orderid);
             amounttxt.setText(amount);
             addrtxt.setText(addr);

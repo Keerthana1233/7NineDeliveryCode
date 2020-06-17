@@ -1,28 +1,46 @@
 package com.example.sevennine_Delivery.Activity;
 
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.view.Gravity;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.sevennine_Delivery.Fragment.Verification_Last_Fragment;
 import com.example.sevennine_Delivery.R;
+import com.example.sevennine_Delivery.SessionManager;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 
-public class Verification_Activity extends AppCompatActivity {
+
+public class Verification_Activity extends AppCompatActivity  {
 
 
     Fragment selectedFragment = null;
@@ -31,8 +49,7 @@ public class Verification_Activity extends AppCompatActivity {
     String toast_internet,toast_nointernet;
     public static JSONObject lngObject;
 
-
-
+SessionManager session;
 
 
 
@@ -86,6 +103,8 @@ public class Verification_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        setContentView(R.layout.firm);
+        session = new SessionManager(getApplicationContext());
+
         selectedFragment = Verification_Last_Fragment.newInstance();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout1, selectedFragment);
