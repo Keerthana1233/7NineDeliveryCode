@@ -63,7 +63,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="70"
+                android:layout_weight="75"
                 >
                <!-- <TextView
                     android:id="@+id/view"
@@ -130,6 +130,7 @@
                     android:layout_marginLeft="@dimen/dimen_10dp"
                     android:layout_marginRight="@dimen/dimen_10dp"
                     android:layout_weight="30"
+                    android:textStyle="bold"
                     android:background="@drawable/border_black"
                     android:fontFamily="@font/segoeui"
                     android:gravity="center"
@@ -142,6 +143,7 @@
                     android:layout_marginRight="@dimen/dimen_10dp"
                     android:layout_weight="30"
                     android:gravity="center"
+                    android:textStyle="bold"
                     android:background="@drawable/border_black"
                     android:fontFamily="@font/segoeui"
                     android:text="Cancel" />
@@ -153,6 +155,7 @@
                     android:layout_marginRight="@dimen/dimen_10dp"
                     android:layout_weight="40"
                     android:gravity="center"
+                    android:textStyle="bold"
                     android:background="@drawable/border_black"
                     android:fontFamily="@font/segoeui"
                     android:text="Start Tracking"
@@ -161,7 +164,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="80"
+                android:layout_weight="78"
                 android:background="#fff"
                 android:layout_marginHorizontal="16dp"
                 android:orientation="vertical">
@@ -556,7 +559,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="10"
+                android:layout_weight="8"
                 android:layout_marginLeft="26dp"
                 android:orientation="horizontal"
                 >

@@ -315,7 +315,12 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         builder.include(storelatlong);
         builder.include(custlatlong);
         builder.include(dellatlong);
-        pubGoogleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 50));
+        //Setting the width and height of your screen
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        int padding = (int) (width * 0.12); // offset from edges of the map 12% of screen
+
+        pubGoogleMap.moveCamera((CameraUpdateFactory.newLatLngBounds(builder.build(), width, height, padding)));
         pubGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {

@@ -147,7 +147,7 @@ public  void  Newdata(){
     @Override
     public void onRefresh(){
         Newdata();
-        sessionManager.saveLatLng(String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()));
+       // sessionManager.saveLatLng(String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()));
 
     }
 
