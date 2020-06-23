@@ -5,88 +5,69 @@
     android:id="@+id/linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerInParent="true"
     android:orientation="vertical"
-    android:weightSum="100"
     >
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="100"
-        android:fillViewport="true">
+
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="#fff"
             android:orientation="vertical"
             android:weightSum="100">
 
- <LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:background="@color/green"
+                android:gravity="center_vertical">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:background="@color/green"
-                    android:contentInsetStart="0dp"
-                    android:contentInsetLeft="0dp"
-                    android:contentInsetEnd="0dp"
-                    android:contentInsetRight="0dp"
-                    android:gravity="left"
-                    android:minHeight="?attr/actionBarSize"
-                    app:contentInsetEnd="0dp"
-                    app:contentInsetLeft="0dp"
-                    app:contentInsetRight="0dp"
-                    app:contentInsetStart="10dp"
-                    app:titleTextColor="@android:color/white">
+                <LinearLayout
+                    android:id="@+id/back_feed"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ripple_effect"
+                    android:gravity="center">
 
 
-                    <LinearLayout
-                        android:id="@+id/back_feed"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/ripple_effect"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:id="@+id/b_arrow"
-                            android:layout_width="wrap_content"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="15dp"
-                            android:src="@drawable/ic_go_back_left_arrow_" />
-                    </LinearLayout>
-
-
-                    <TextView
-                        android:id="@+id/toolbar_title"
-                        android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_width="20dp"
                         android:layout_height="wrap_content"
-                        android:text="Add Address"
-                        android:textColor="#fff"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_go_back_left_arrow_"
 
-                </androidx.appcompat.widget.Toolbar>
+                        />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add New Address"
+                    android:textSize="20dp"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="10dp"
+                    android:id="@+id/toolbar_title" />
+
 
             </LinearLayout>
 
-
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="82">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="100"
+                android:layout_weight="82"
                 android:background="#ffff"
                 android:orientation="vertical">
 
@@ -344,14 +325,15 @@
                     android:textSize="13dp" />
 
             </LinearLayout>
+            </ScrollView>
 
-        </LinearLayout>
-    </ScrollView>
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
         android:background="@drawable/border_filled_red"
         android:orientation="vertical"
         >
@@ -370,6 +352,6 @@
             android:textSize="16dp" />
 
     </LinearLayout>
-
+        </LinearLayout>
 
 </LinearLayout>

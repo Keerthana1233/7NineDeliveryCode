@@ -79,7 +79,7 @@ public class BankAccount_Fragment extends Fragment {
             public void onClick(View view) {
            selectedFragment = Add_NewBankDetails_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("bankaccount");
                 transaction.commit();
 
@@ -184,11 +184,11 @@ public class BankAccount_Fragment extends Fragment {
 
                             if (newOrderBeansList.size()==0){
                                 bank_details="No_bank_details";
-                                selectedFragment = EmptyFragment.newInstance();
+                               /* selectedFragment = EmptyFragment.newInstance();
                                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                                 transaction.replace(R.id.no_item_frame1, selectedFragment);
                                 transaction.addToBackStack("emmpty");
-                                transaction.commit();
+                                transaction.commit();*/
                             }else {
                                 livestock_types_adapter = new BankAccount_Adapter(getActivity(), newOrderBeansList);
                                 recyclerView.setAdapter(livestock_types_adapter);

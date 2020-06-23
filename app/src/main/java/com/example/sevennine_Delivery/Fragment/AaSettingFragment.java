@@ -186,7 +186,7 @@ public class AaSettingFragment extends Fragment {
             public void onClick(View v) {
                 selectedFragment = ChangeLanguageFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("change_lang");
                 transaction.commit();
             }
@@ -196,7 +196,7 @@ public class AaSettingFragment extends Fragment {
             public void onClick(View v) {
                 selectedFragment = AaNotificationSetting.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("notifi");
                 transaction.commit();
             }
@@ -217,7 +217,7 @@ public class AaSettingFragment extends Fragment {
             public void onClick(View v) {
                 selectedFragment = NewAddressDetails_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("sett");
                 transaction.commit();
             }
@@ -227,7 +227,7 @@ public class AaSettingFragment extends Fragment {
             public void onClick(View v) {
                 selectedFragment = BankAccount_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("bbbbb");
                 transaction.commit();
             }
@@ -237,7 +237,7 @@ public class AaSettingFragment extends Fragment {
             public void onClick(View v) {
                 selectedFragment = PrivacyPolicyFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("Policy");
                 transaction.commit();
             }
@@ -862,3 +862,4 @@ System.out.println("ennnnnnnterrrrr");
     }
 
 }
+// Unexpected response code 500 for http://52.66.200.98:8282/api/Auth/UpdateRegProfile

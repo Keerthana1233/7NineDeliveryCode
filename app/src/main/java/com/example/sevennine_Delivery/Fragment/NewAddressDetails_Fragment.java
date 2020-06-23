@@ -9,11 +9,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -72,7 +74,6 @@ public class NewAddressDetails_Fragment extends Fragment {
 
             }
         });
-        linearLayout = view.findViewById(R.id.linearLayout);
         Continue = view.findViewById(R.id.continuebtn);
         Continue_txt = view.findViewById(R.id.apply_loan);
         main_layout = view.findViewById(R.id.main_layout);
@@ -80,7 +81,8 @@ public class NewAddressDetails_Fragment extends Fragment {
         sessionManager=new SessionManager(getActivity());
        // NewAddressDetails_Fragment.address_nav_stat=null;
         setupUI(main_layout);
-
+        Window window = getActivity().getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
         Continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,7 +93,7 @@ public class NewAddressDetails_Fragment extends Fragment {
 
                 selectedFragment = AddNewAddressFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("newaddressfragment");
                // setArguments(bundle);
                 transaction.commit();
@@ -113,8 +115,8 @@ public class NewAddressDetails_Fragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                    FragmentManager fm = getFragmentManager();
-                    fm.popBackStack();
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack ("sett", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     return true;
                 }
                 return false;

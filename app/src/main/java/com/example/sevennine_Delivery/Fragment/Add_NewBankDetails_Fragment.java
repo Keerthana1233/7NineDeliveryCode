@@ -97,7 +97,7 @@ public class Add_NewBankDetails_Fragment extends Fragment {
         final View view = inflater.inflate(R.layout.select_your_region_layout1, container, false);
         getActivity().getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         Window window = getActivity().getWindow();
-         window.setStatusBarColor(ContextCompat.getColor(getActivity(),R.color.colorPrimary));
+         window.setStatusBarColor(ContextCompat.getColor(getActivity(),R.color.colorPrimaryDark));
         holder_name=view.findViewById(R.id.holder_name);
           state=view.findViewById(R.id.state_bank);
           district=view.findViewById(R.id.relativename);
@@ -185,7 +185,6 @@ public class Add_NewBankDetails_Fragment extends Fragment {
                 district.setVisibility(View.VISIBLE);
                 bankname.setVisibility(View.VISIBLE);
                 bank_branchname.setVisibility(View.VISIBLE);
-
             }else{
                 enterifsc.setVisibility(View.VISIBLE);
                 verify_ifsc.setVisibility(View.VISIBLE);
