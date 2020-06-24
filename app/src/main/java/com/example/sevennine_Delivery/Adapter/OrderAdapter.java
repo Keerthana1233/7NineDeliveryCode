@@ -91,11 +91,11 @@ GPSTracker gpsTracker;
       holder.prod_name.setText(products.getProd_name());
         holder.prod_price.setText(products.getProd_price());
         holder.cod.setText(products.getCod());
-      //  holder.username.setText(products.getAddr());
+      holder.username.setText(products.getUsername());
         holder.addr.setText(products.getAddr());
 
 
-        Glide.with(activity).load(products.getImage()).placeholder(R.drawable.ic_gallery__default).dontAnimate().into(holder.image);
+        Glide.with(activity).load(products.getProducticon()).placeholder(R.drawable.ic_gallery__default).dontAnimate().into(holder.image);
         holder.vieworder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +107,7 @@ GPSTracker gpsTracker;
                 bundle.putString("mode",products.getCod());
                 bundle.putString("lat", products.getLatitude());
                 bundle.putString("long",products.getLongitude());
+                bundle.putString("mobile", products.getPhone());
                 selectedFragment = OrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
@@ -124,7 +125,7 @@ GPSTracker gpsTracker;
                     params.put("UserId",sessionManager.getRegId("userId"));
                     params.put("AcceptOrdersId",products.getProd_name());  // amount
                     params.put("Amount",products.getProd_price());  // amount
-                    params.put("PayUTransactionId","1");  //transaction fees
+                    params.put("PayUTransactionId",products.getPayuid());  //transaction fees
                     params.put("ProductInfo",products.getAddr());
                     params.put("SellingListName","flower");
                     params.put("CategoryName","testingfruit");

@@ -124,7 +124,7 @@
                 >
 
                 <TextView
-                    android:id="@+id/view1"
+                    android:id="@+id/phoneno"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dimen_40dp"
                     android:layout_marginLeft="@dimen/dimen_10dp"

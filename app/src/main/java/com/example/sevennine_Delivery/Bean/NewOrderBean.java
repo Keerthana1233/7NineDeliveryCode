@@ -2,7 +2,7 @@ package com.example.sevennine_Delivery.Bean;
 public class NewOrderBean {
 
     String prod_price,prod_name,cod,addr,username;
-    String image,Latitude,Longitude,createddate,custlat,custlong;
+    String image,Latitude,Longitude,createddate,custlat,custlong,phone,productname,producticon,payuid;
 
     public String getCustlat() {
         return custlat;
@@ -20,7 +20,7 @@ public class NewOrderBean {
         this.custlong = custlong;
     }
 
-    public NewOrderBean(String prod_name, String username, String addr, String prod_price, String cod, String image, String Latitude, String Longitude, String createddate, String custlat, String custlong) {
+    public NewOrderBean(String prod_name, String username, String addr, String prod_price, String cod, String image, String Latitude, String Longitude, String createddate, String custlat, String custlong,String phone,String productname,String producticon,String payuid) {
 
         this.prod_price = prod_price;
         this.prod_name = prod_name;
@@ -33,6 +33,42 @@ public class NewOrderBean {
         this.createddate = createddate;
         this.custlat = custlat;
         this.custlong = custlong;
+        this.phone = phone;
+        this.productname = productname;
+        this.producticon = producticon;
+        this.payuid = payuid;
+    }
+
+    public String getPayuid() {
+        return payuid;
+    }
+
+    public void setPayuid(String payuid) {
+        this.payuid = payuid;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getProductname() {
+        return productname;
+    }
+
+    public void setProductname(String productname) {
+        this.productname = productname;
+    }
+
+    public String getProducticon() {
+        return producticon;
+    }
+
+    public void setProducticon(String producticon) {
+        this.producticon = producticon;
     }
 
     public String getProd_price() {

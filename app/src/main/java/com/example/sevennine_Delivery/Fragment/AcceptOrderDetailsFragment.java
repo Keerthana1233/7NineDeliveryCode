@@ -84,9 +84,9 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     public static List<OrderDetailBean> newOrderBeansList = new ArrayList<>();
     public static RecyclerView recyclerView;
     LinearLayout back_feed;
-    String orderid,addr,mode,amount,createddate;
+    String orderid,addr,mode,amount,createddate,mobilestr;
     String latid,langid,custlat,custlong;
-    String dellat,dellang;
+    String dellat,dellang,mask;
     SessionManager sessionManager;
     AcceptOrderDetailsAdapter madapter;
     JSONObject lngObject;
@@ -106,7 +106,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
     Location loc;
-    TextView orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt;
+    TextView orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno;
     ArrayList<String> permissions = new ArrayList<>();
     ArrayList<String> permissionsToRequest;
     ArrayList<String> permissionsRejected = new ArrayList<>();
@@ -133,6 +133,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         nametxt=view.findViewById(R.id.name);
         addrtxt=view.findViewById(R.id.addr);
         orderdatetxt=view.findViewById(R.id.orderdate);
+        phoneno=view.findViewById(R.id.phoneno);
         locationManager = (LocationManager) getActivity().getSystemService(Service.LOCATION_SERVICE);
         isGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         isNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -186,6 +187,15 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
             amounttxt.setText(amount);
             addrtxt.setText(addr);
             modetxt.setText(mode);
+            mobilestr = bundle.getString("mobile");
+            try {
+                mask = maskString(mobilestr, 4, 10, '*');
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // String result = number.substring(number.length() - 4).replace(String.valueOf(number.length()), "*");
+            phoneno.setText(mask);
+           // phoneno.setText(mobilestr);
         }
         sessionManager = new SessionManager(getActivity());
         dellat = sessionManager.getRegId("latitude");
@@ -291,13 +301,27 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     @Override
     public void onMapReady(GoogleMap googleMap) {
         pubGoogleMap = googleMap;
+       /* String[] latValues = latid.split(" ");
+        float sum = 0;
+        for (int i = 0; i < latValues.length; i++) {
+            if (!latValues[i].equals("null"))
+                sum = sum + Float.valueOf(latValues[i].trim()).floatValue();
+        }
+        latid = Float.toString(sum / (float) latValues.length);
+        String[] longValues = langid.split(" ");
+        float sum2 = 0;
+        for (int i = 0; i < longValues.length; i++) {
+            if (!longValues[i].equals("null"))
+                sum2 = sum2 + Float.valueOf(longValues[i].trim()).floatValue();
+        }
+        langid = Float.toString(sum / (float) latValues.length);*/
         final LatLng storelatlong = new LatLng(Double.parseDouble(latid),
                 Double.parseDouble(langid));
         //12.9698° N, 77.7500° E
         final LatLng custlatlong = new LatLng(Double.parseDouble(custlat), Double.parseDouble(custlong));
         final LatLng dellatlong = new LatLng(Double.parseDouble(dellat),Double.parseDouble(dellang));
         System.out.println("dellatlong"+dellatlong);
-
+        System.out.println("slatlong"+storelatlong);
         String url = getDirectionsUrl(dellatlong
                 , custlatlong, storelatlong);
         FetchUrl FetchUrl = new FetchUrl();
@@ -645,5 +669,35 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         if (locationManager != null) {
             locationManager.removeUpdates(this);
         }
+    }
+    private static String maskString(String strText, int start, int end, char maskChar)
+            throws Exception{
+
+        if(strText == null || strText.equals(""))
+            return "";
+
+        if(start < 0)
+            start = 0;
+
+        if( end > strText.length() )
+            end = strText.length();
+
+        if(start > end)
+            throw new Exception("End index cannot be greater than start index");
+
+        int maskLength = end - start;
+
+        if(maskLength == 0)
+            return strText;
+
+        StringBuilder sbMaskString = new StringBuilder(maskLength);
+
+        for(int i = 0; i < maskLength; i++){
+            sbMaskString.append(maskChar);
+        }
+
+        return strText.substring(0, start)
+                + sbMaskString.toString()
+                + strText.substring(start + maskLength);
     }
 }

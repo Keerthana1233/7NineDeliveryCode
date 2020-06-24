@@ -97,10 +97,8 @@ public class YourOrderAdapter extends RecyclerView.Adapter<YourOrderAdapter.MyVi
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.commit();
-
             }
         });
-
     }
 
     @Override

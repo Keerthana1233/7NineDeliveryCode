@@ -47,10 +47,11 @@ public class OrderDetailsFragment extends Fragment {
     OrderDetailsAdapter madapter;
     JSONObject lngObject;
     TextView acceptbtn;
-    TextView toolbar_title,orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt;
+    TextView toolbar_title,orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno;
     Fragment selectedFragment;
     Date date;
-    String orderid,addr,mode,amount,createddate,lat,longi;
+    String mask;
+    String orderid,addr,mode,amount,createddate,lat,longi,mobilestr;
     public static OrderDetailsFragment newInstance() {
         OrderDetailsFragment fragment = new OrderDetailsFragment();
         return fragment;
@@ -68,6 +69,7 @@ public class OrderDetailsFragment extends Fragment {
         nametxt=view.findViewById(R.id.name);
         addrtxt=view.findViewById(R.id.addr);
         orderdatetxt=view.findViewById(R.id.orderdate);
+        phoneno=view.findViewById(R.id.phoneno);
         sessionManager = new SessionManager(getActivity());
         Window window = getActivity().getWindow();
         back_feed=view.findViewById(R.id.back_feed);
@@ -101,6 +103,17 @@ public class OrderDetailsFragment extends Fragment {
         if (bundle != null) {
             orderid = bundle.getString("orderId");
             amount = bundle.getString("totalamount");
+            mobilestr = bundle.getString("mobile");
+            String number = mobilestr;
+
+            try {
+                mask = maskString(number, 4, 10, '*');
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // String result = number.substring(number.length() - 4).replace(String.valueOf(number.length()), "*");
+            phoneno.setText(mask);
+           // phoneno.setText(mobilestr);
             createddate = bundle.getString("orderdate");
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
@@ -117,7 +130,7 @@ public class OrderDetailsFragment extends Fragment {
             mode = bundle.getString("mode");
             lat = bundle.getString("lat");
             longi = bundle.getString("long");
-            //orderdatetxt.setText(createddate);
+
             orderidtxt.setText(orderid);
             amounttxt.setText(amount);
             addrtxt.setText(addr);
@@ -187,5 +200,36 @@ public class OrderDetailsFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private static String maskString(String strText, int start, int end, char maskChar)
+            throws Exception{
+
+        if(strText == null || strText.equals(""))
+            return "";
+
+        if(start < 0)
+            start = 0;
+
+        if( end > strText.length() )
+            end = strText.length();
+
+        if(start > end)
+            throw new Exception("End index cannot be greater than start index");
+
+        int maskLength = end - start;
+
+        if(maskLength == 0)
+            return strText;
+
+        StringBuilder sbMaskString = new StringBuilder(maskLength);
+
+        for(int i = 0; i < maskLength; i++){
+            sbMaskString.append(maskChar);
+        }
+
+        return strText.substring(0, start)
+                + sbMaskString.toString()
+                + strText.substring(start + maskLength);
     }
 }
