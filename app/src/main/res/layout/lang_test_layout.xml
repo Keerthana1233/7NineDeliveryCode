@@ -35,7 +35,7 @@
 
                 android:layout_weight="12">
 
-                <TextView
+              <!--  <TextView
                     android:id="@+id/lang_letter"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -49,13 +49,13 @@
                     android:paddingVertical="3dp"
                     android:gravity="center"
                     android:background="@drawable/border_round_a"
-                    />
-                <!--<ImageView
+                    />-->
+               <ImageView
                 android:id="@+id/lang_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_alphabet_a" />
-            -->
+
             </LinearLayout>
 
 

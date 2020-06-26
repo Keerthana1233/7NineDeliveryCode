@@ -84,7 +84,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     public static List<OrderDetailBean> newOrderBeansList = new ArrayList<>();
     public static RecyclerView recyclerView;
     LinearLayout back_feed;
-    String orderid,addr,mode,amount,createddate,mobilestr;
+    String orderid,addr,mode,amount,createddate,mobilestr,pronamestr,proimgstr;
     String latid,langid,custlat,custlong;
     String dellat,dellang,mask;
     SessionManager sessionManager;
@@ -106,7 +106,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
     Location loc;
-    TextView orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno;
+    TextView orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno,itemscosttxt,tamounttxt;
     ArrayList<String> permissions = new ArrayList<>();
     ArrayList<String> permissionsToRequest;
     ArrayList<String> permissionsRejected = new ArrayList<>();
@@ -130,6 +130,8 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         orderdatetxt=view.findViewById(R.id.orderdate);
         modetxt=view.findViewById(R.id.mode);
         amounttxt=view.findViewById(R.id.amount);
+        itemscosttxt=view.findViewById(R.id.itemscost);
+        tamounttxt=view.findViewById(R.id.tamount);
         nametxt=view.findViewById(R.id.name);
         addrtxt=view.findViewById(R.id.addr);
         orderdatetxt=view.findViewById(R.id.orderdate);
@@ -185,6 +187,8 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
             }
             orderidtxt.setText(orderid);
             amounttxt.setText(amount);
+            tamounttxt.setText(amount);
+            itemscosttxt.setText(amount);
             addrtxt.setText(addr);
             modetxt.setText(mode);
             mobilestr = bundle.getString("mobile");
@@ -249,8 +253,9 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        OrderDetailBean bean=new OrderDetailBean("Parle-G Gold Milk Glucose..","1","Rs.100","Rs.2","Rs.2","");
+        pronamestr = bundle.getString("proname");
+        proimgstr = bundle.getString("proimg");
+        OrderDetailBean bean=new OrderDetailBean(pronamestr,"1",amount,"Rs.2","Rs.2",proimgstr);
         newOrderBeansList.add(bean);
         newOrderBeansList.add(bean);
         //   newOrderBeansList.add(bean);

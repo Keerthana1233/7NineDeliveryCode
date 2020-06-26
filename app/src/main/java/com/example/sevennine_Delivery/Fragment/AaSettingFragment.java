@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +40,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 import com.example.sevennine_Delivery.Urls;
@@ -45,6 +48,7 @@ import com.example.sevennine_Delivery.Volly_class.Crop_Post;
 import com.example.sevennine_Delivery.Volly_class.VoleyJsonObjectCallback;
 import com.example.sevennine_Delivery.volleypost.VolleyMultipartRequest;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +56,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -80,6 +85,8 @@ public class AaSettingFragment extends Fragment {
     ImageView cam_img,edit_pencil;
     String name_str,phone_str;
     LinearLayout back_feed;
+    JSONArray get_location_array, imagelist_array;
+    String selfie_image_id;
     public static AaSettingFragment newInstance() {
         AaSettingFragment fragment = new AaSettingFragment();
         return fragment;
@@ -88,7 +95,7 @@ public class AaSettingFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.a_s_setting_layout1, container, false);
+        final View view = inflater.inflate(R.layout.a_s_setting_layout1, container, false);
         invi_lay=view.findViewById(R.id.invi_lay);
       //  change_pass_lay=view.findViewById(R.id.change_pass_lay);
         lang_lay=view.findViewById(R.id.lang_lay);
@@ -106,7 +113,7 @@ public class AaSettingFragment extends Fragment {
         log_lay=view.findViewById(R.id.log_lay);
         change_pro=view.findViewById(R.id.change_pro);
         help_lay=view.findViewById(R.id.help_lay);
-        setting_tittle=view.findViewById(R.id.setting_tittle);
+     //   setting_tittle=view.findViewById(R.id.setting_tittle);
         acc_info1=view.findViewById(R.id.acc_info1);
         addre=view.findViewById(R.id.addre);
         //reque=view.findViewById(R.id.reque);
@@ -153,7 +160,7 @@ public class AaSettingFragment extends Fragment {
             System.out.println("llllllllllllkkkkkkkkkkkkkkk" + lngObject.getString("EnterPhoneNo"));
 
 
-            setting_tittle.setText(lngObject.getString("Profile").replace("\n",""));
+          //  setting_tittle.setText(lngObject.getString("Profile").replace("\n",""));
             change_pro.setText(lngObject.getString("Change").replace("\n",""));
             acc_info1.setText(lngObject.getString("BankAccounts").replace("\n",""));
             addre.setText(lngObject.getString("MyAddresses").replace("\n",""));
@@ -505,7 +512,106 @@ public class AaSettingFragment extends Fragment {
                 transaction.commit();*//*
             }
         });*/
+///phonenumber
 
+        try{
+            JSONObject jsonObject = new JSONObject();
+            JSONObject post_object = new JSONObject();
+
+            jsonObject.put("Id",sessionManager.getRegId("userId"));
+            post_object.put("objUser",jsonObject);
+
+
+            Crop_Post.crop_posting(getActivity(), Urls.Get_Profile_Details1, post_object, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.println("ggpgpgpg" + result);
+
+                            try {
+
+                                JSONObject jsonObject1 = result.getJSONObject("user");
+                                String ProfileName1 = jsonObject1.getString("UserName");
+                                System.out.println("11111" + jsonObject1.getString("FullName"));
+                                String ProfilePhone = jsonObject1.getString("PhoneNo");
+                                String ProfileEmail = jsonObject1.getString("EmailId");
+                                String ProfileImage = jsonObject1.getString("ProfilePic");
+                                System.out.println("11111" + ProfileName1);
+
+
+                                //  name.setText(ProfileName1);
+                                phone_no.setText(ProfilePhone);
+                                name.setText(ProfileName1);
+
+                                name.setFilters(new InputFilter[]{EMOJI_FILTER});
+                                phone_no.setFilters(new InputFilter[]{EMOJI_FILTER});
+                                //profile_mail.setFilters(new InputFilter[]{EMOJI_FILTER});
+                                Glide.with(getActivity()).load(ProfileImage)
+                                        .thumbnail(0.5f)
+                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                        .error(R.drawable.ic_gallery__default)
+                                        .into(image_acc);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                        }
+            });
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+  //get Image
+
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("UserId", sessionManager.getRegId("userId"));
+
+
+            Crop_Post.crop_posting(getActivity(), Urls.GetCImagelist, jsonObject, new VoleyJsonObjectCallback() {
+                @Override
+                public void onSuccessResponse(JSONObject result) {
+                    System.out.println("dhfjfjd" + result);
+
+
+                    try {
+
+                        imagelist_array = result.getJSONArray("captureImagelist");
+
+                        for (int i = 0; i < imagelist_array.length(); i++) {
+
+
+                            JSONObject jsonObject1 = imagelist_array.getJSONObject(i);
+                            selfie_image_id = jsonObject1.getString("CImageId");
+                            String image_view = jsonObject1.getString("Image1");
+
+
+                            Glide.with(getActivity()).load(image_view)
+                                    .thumbnail(0.5f)
+                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                    .error(R.drawable.ic_gallery__default)
+                                    .into(image_acc);
+
+                        }
+
+
+
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+                            return view;
+
+                        }
+/*
 
         try{
             JSONObject jsonObject = new JSONObject();
@@ -543,11 +649,11 @@ public class AaSettingFragment extends Fragment {
 
                         if (!(ProfileImage.equals(""))){
                             Glide.with(getActivity()).load(ProfileImage)
-
                                     .thumbnail(0.5f)
-                                    //  .crossFade()
-                                    .error(R.drawable.avatarmale)
-                                    .into(image_acc);
+                                    // .crossFade()
+                                    .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)
+                                            .error(R.drawable.ic_gallery__default))
+                                    .into(cam_img);
                         }else{
                             try {
 
@@ -595,12 +701,12 @@ public class AaSettingFragment extends Fragment {
                                 e.printStackTrace();
                             }
                         }
-                       /* Glide.with(getActivity()).load(ProfileImage)
+                       *//* Glide.with(getActivity()).load(ProfileImage)
 
                                 .thumbnail(0.5f)
                                 //  .crossFade()
                                 .error(R.drawable.avatarmale)
-                                .into(prod_img);*/
+                                .into(prod_img);*//*
 
 
                     }catch (Exception e){
@@ -612,10 +718,9 @@ public class AaSettingFragment extends Fragment {
 
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
 
-        return view;
-    }
+
    /* @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -653,31 +758,47 @@ public class AaSettingFragment extends Fragment {
         }
     }*/
 
-
     @Override
-    public void onActivityResult(int reqCode, int resultCode, Intent data) {
-        super.onActivityResult(reqCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
+            //getting the image Uri
             Uri imageUri = data.getData();
-            final InputStream imageStream;
             try {
+                //   g_vision_controller = G_Vision_Controller.getInstance( );
+//getting the image Uri
+
+                final InputStream imageStream;
+
                 imageStream = getActivity().getContentResolver().openInputStream(imageUri);
-
                 bitmap = BitmapFactory.decodeStream(imageStream);
-                System.out.println("bittttttttt"+bitmap);
+                //   g_vision_controller.callCloudVision(bitmap,getActivity(),"profile");
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
                 image_acc.setImageBitmap(bitmap);
-                uploadImage(bitmap);
-                //uploadImage(getResizedBitmap(bitmap,100,100));
+                uploadImage(getResizedBitmap(bitmap,100,100));
+             /*   int duration = 1000;
+                Snackbar snackbar = Snackbar
+                        .make(main_layout, "You Changed Your Profile Photo", duration);
+                View snackbarView = snackbar.getView();
+                TextView tv = (TextView) snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+                tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                tv.setTextColor(Color.WHITE);
 
-            } catch (FileNotFoundException e) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                } else {
+                    tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                }
+                snackbar.show();*/
+                //  Toast.makeText(getActivity(),"Your Changed Your Profile Photo", Toast.LENGTH_SHORT).show();
+
+
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
-        }else {
-            //Toast.makeText(getActivity(),"Something went wrong",Toast.LENGTH_LONG).show();
         }
     }
+
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -855,7 +976,7 @@ System.out.println("ennnnnnnterrrrr");
             // "RECREATE" THE NEW BITMAP
             Bitmap resizedBitmap = Bitmap.createBitmap(
                     bm, 0, 0, width, height, matrix, false);
-            bm.recycle();
+          //  bm.recycle();
             return resizedBitmap;
         }
 

@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui"
                     android:gravity="center_vertical"
-                    android:text="Shipping iscount : Rs.2"
+                    android:text="Shipping discount : Rs.2"
                     android:layout_marginLeft="5dp"
                     android:textSize="14dp" />
             </LinearLayout>

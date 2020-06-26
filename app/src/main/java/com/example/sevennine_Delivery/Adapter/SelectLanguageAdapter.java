@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.sevennine_Delivery.Bean.SelectLanguageBean;
 import com.example.sevennine_Delivery.Fragment.ChangeLanguageFragment;
 import com.example.sevennine_Delivery.R;
@@ -158,11 +160,12 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
         });
 
         Glide.with(activity).load(products.getImageicon())
-
                 .thumbnail(0.5f)
-                //  .crossFade()
-               // .error(R.drawable.avatarmale)
+                // .crossFade()
+                .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)
+                        .error(R.drawable.ic_gallery__default))
                 .into(holder.image_view);
+
 
        /* holder.right_img.setOnClickListener(new View.OnClickListener() {
             @Override

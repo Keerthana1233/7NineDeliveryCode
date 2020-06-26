@@ -74,7 +74,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 if (position==(productList.size()-1)){
     holder.view_line.setVisibility(View.GONE);
 }
-        Glide.with(activity).load(R.drawable.biscuit_milk_glucose)
+        Glide.with(activity).load(products1.getProd_img())
                 .thumbnail(0.5f)
                 // .crossFade()
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)

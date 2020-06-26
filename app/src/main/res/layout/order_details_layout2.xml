@@ -164,7 +164,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="78"
+                android:layout_weight="83"
                 android:background="#fff"
                 android:layout_marginHorizontal="16dp"
                 android:orientation="vertical">
@@ -264,21 +264,20 @@
                         >
 
                         <TextView
+                            android:id="@+id/itemscost"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=" 417.80"
                             android:drawableLeft="@drawable/ic_rupee_indian"
-                            android:textSize="14dp"
                             android:fontFamily="@font/segoeui"
+                            android:text=" 417.80"
                             android:textColor="#000"
-                            />
+                            android:textSize="14dp" />
 
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="40"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="100"
                     >
@@ -303,7 +302,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/segoeui"
-                            android:text="33.89"
+                            android:text="00.00"
                             android:drawableLeft="@drawable/ic_rupee_indian"
                             android:textColor="#000"
                             android:textSize="14dp" />
@@ -335,7 +334,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=" 417.80"
+                            android:text=" 00.00"
                             android:drawableLeft="@drawable/ic_rupee_indian"
                             android:textSize="14dp"
                             android:fontFamily="@font/segoeui"
@@ -365,15 +364,15 @@
                         android:gravity="right"
                         android:orientation="horizontal"
                         >
+
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" 417.80"
+                            android:layout_height="34dp"
                             android:drawableLeft="@drawable/ic_rupee_indian"
-                            android:textSize="14dp"
-                            android:textColor="#000"
                             android:fontFamily="@font/segoeui"
-                            />
+                            android:text=" 00.00"
+                            android:textColor="#000"
+                            android:textSize="14dp" />
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -401,7 +400,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=" 417.80"
+                            android:text=" 00.00"
                             android:drawableLeft="@drawable/ic_rupee_indian"
 
                             android:textSize="14dp"
@@ -443,11 +442,11 @@
                         android:orientation="horizontal"
                         >
                         <TextView
+                            android:id="@+id/tamount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=" 417.80"
                             android:drawableLeft="@drawable/ic_rupee_indian"
-
                             android:textSize="14dp"
                             android:textColor="#000"
                             android:fontFamily="@font/segoeui"
@@ -479,7 +478,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="-35.00"
+                            android:text="00.00"
                             android:drawableLeft="@drawable/ic_rupee_indian"
                             android:textSize="14dp"
                             android:fontFamily="@font/segoeui"
@@ -577,7 +576,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="30"
+                android:layout_weight="25"
                 android:layout_marginLeft="26dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"
@@ -711,7 +710,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Items - 3 Items"
+                    android:text="Items - 1 Item"
                     android:textSize="16dp"
                     android:textStyle="bold"
                     android:fontFamily="@font/segoeui"

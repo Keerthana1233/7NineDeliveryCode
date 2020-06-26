@@ -228,6 +228,7 @@
                     >
 
                     <TextView
+                        android:id="@+id/itemscost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" 417.80"
@@ -266,7 +267,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/segoeui"
-                        android:text=" 33.89"
+                        android:text=" 00.00"
                         android:drawableLeft="@drawable/ic_rupee_indian"
                         android:textColor="#000"
                         android:textSize="14dp" />
@@ -301,7 +302,7 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_rupee_indian"
                         android:fontFamily="@font/segoeui"
-                        android:text=" 417.80"
+                        android:text=" 00.00"
                         android:textColor="#000"
                         android:textSize="14dp" />
                 </LinearLayout>
@@ -334,7 +335,7 @@
                         android:layout_height="match_parent"
                         android:drawableLeft="@drawable/ic_rupee_indian"
                         android:fontFamily="@font/segoeui"
-                        android:text=" 417.80"
+                        android:text=" 00.00"
 
                         android:textColor="#000"
                         android:textSize="14dp" />
@@ -365,7 +366,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" 417.80"
+                        android:text=" 00.00"
                         android:drawableLeft="@drawable/ic_rupee_indian"
 
                         android:textSize="14dp"
@@ -407,6 +408,7 @@
                     android:orientation="horizontal"
                     >
                     <TextView
+                        android:id="@+id/tamount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" 417.80"
@@ -442,7 +444,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" -35.00"
+                        android:text=" 00.00"
                         android:drawableLeft="@drawable/ic_rupee_indian"
                         android:textSize="14dp"
                         android:fontFamily="@font/segoeui"
@@ -669,7 +671,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Items - 3 Items"
+                android:text="Items - 1 Item"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:fontFamily="@font/segoeui"
@@ -699,7 +701,7 @@
 
             >
             <TextView
-                android:id="@+id/view1"
+                android:id="@+id/phoneno1"
                 android:layout_width="0dp"
                 android:layout_height="39dp"
                 android:layout_marginLeft="@dimen/dimen_10dp"
@@ -709,17 +711,17 @@
                 android:gravity="center_vertical"
                 android:background="@drawable/border_black"
                 android:drawablePadding="@dimen/dimen_10dp"
-                android:drawableLeft="@drawable/ic_phone_call"
                 android:fontFamily="@font/segoeui"
                 android:text="99********" />
             <TextView
-                android:id="@+id/vieworder2"
+                android:id="@+id/vieworder1"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="@dimen/dimen_10dp"
                 android:layout_marginRight="@dimen/dimen_10dp"
                 android:layout_weight="30"
                 android:padding="@dimen/dimen_10dp"
+                android:textStyle="bold"
                 android:gravity="center_vertical"
                 android:background="@drawable/border_black"
                 android:drawablePadding="@dimen/dimen_10dp"
@@ -727,13 +729,14 @@
                 android:fontFamily="@font/segoeui"
                 android:text="Cancel" />
             <TextView
-                android:id="@+id/cancef3"
+                android:id="@+id/acceptbtn1"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="@dimen/dimen_10dp"
                 android:layout_marginRight="@dimen/dimen_10dp"
                 android:layout_weight="30"
                 android:padding="@dimen/dimen_10dp"
+                android:textStyle="bold"
                 android:gravity="center_vertical"
                 android:background="@drawable/border_black"
                 android:drawablePadding="@dimen/dimen_10dp"

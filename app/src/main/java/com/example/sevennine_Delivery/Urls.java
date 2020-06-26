@@ -2,8 +2,10 @@ package com.example.sevennine_Delivery;
 
 public class Urls {
 
-    private static final String ROOT_URL = "http://52.66.200.98:8282/api/";///DEV
-    //private static final String ROOT_URL = "http://13.233.184.72:9090/api/";///pro
+   // private static final String ROOT_URL = "http://52.66.200.98:8282/api/";///DEV
+
+   private static final String ROOT_URL = "http://13.232.185.209:7272/api/";///pro
+
     // private static final String ROOT_URL = "http://3.17.6.57:9393/api/";///DEV
     // private static final String ROOT_URL = "http://3.17.6.57:8888//api/";//PRO
 
@@ -63,6 +65,7 @@ public class Urls {
     //profile details
     public static final String Get_Profile_Details= ROOT_URL + "Auth/GetRegUserDetails";
     public static final String Update_Profile_Details= ROOT_URL + "Auth/UpdateRegProfile";
+   public static final String Add_ImageCapture_Details=ROOT_URL +"MasterTable/AddUpdateCImageDetails";
 
 
     //Notification

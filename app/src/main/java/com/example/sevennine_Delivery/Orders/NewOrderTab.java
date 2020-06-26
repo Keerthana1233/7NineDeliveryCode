@@ -150,6 +150,4 @@ public  void  Newdata(){
        // sessionManager.saveLatLng(String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()));
 
     }
-
-
 }

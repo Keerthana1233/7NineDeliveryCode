@@ -25,6 +25,9 @@ import com.example.sevennine_Delivery.Adapter.AdapterSelectLanguage;
 import com.example.sevennine_Delivery.Bean.SelectLanguageBean;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
+import com.example.sevennine_Delivery.Urls;
+import com.example.sevennine_Delivery.Volly_class.Login_post;
+import com.example.sevennine_Delivery.Volly_class.VoleyJsonObjectCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -131,13 +134,13 @@ public class ActivitySelectLang extends AppCompatActivity implements Connectivit
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(ActivitySelectLang.this, 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        SelectLanguageBean stateBean=new SelectLanguageBean("English",1,"E");
+       /* SelectLanguageBean stateBean=new SelectLanguageBean("English",1,"E");
         newOrderBeansList.add(stateBean);
         SelectLanguageBean stateBean1=new SelectLanguageBean("Kannada",2,"K");
         newOrderBeansList.add(stateBean1);
         SelectLanguageBean stateBean2=new SelectLanguageBean("Hindi",3,"H");
-        newOrderBeansList.add(stateBean2);
-        //  Langauges();
+        newOrderBeansList.add(stateBean2);*/
+       Langauges();
         mAdapter = new AdapterSelectLanguage(ActivitySelectLang.this, newOrderBeansList);
         recyclerView.setAdapter(mAdapter);
 
@@ -217,7 +220,7 @@ public class ActivitySelectLang extends AppCompatActivity implements Connectivit
 
             JSONObject postjsonObject = new JSONObject();
 
-            /*Login_post.login_posting(ActivitySelectLang.this, Urls.Languages,postjsonObject,new VoleyJsonObjectCallback() {
+           Login_post.login_posting(ActivitySelectLang.this, Urls.Languages,postjsonObject,new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
                     System.out.println("statussssss"+result);
@@ -225,24 +228,21 @@ public class ActivitySelectLang extends AppCompatActivity implements Connectivit
                     try {
                         JSONArray jsonArray=result.getJSONArray("LanguagesList");
                         newOrderBeansList.clear();
-
                         for (int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject1=jsonArray.getJSONObject(i);
                             String language=jsonObject1.getString("Language");
                             int langCode=jsonObject1.getInt("Id");
                             String langimg=jsonObject1.getString("ImageIcon");
-                            SelectLanguageBean stateBean=new SelectLanguageBean(language,langCode,langimg);
+                            SelectLanguageBean stateBean=new SelectLanguageBean(jsonObject1.getString("Language"),jsonObject1.getInt("Id"),jsonObject1.getString("ImageIcon"));
                             newOrderBeansList.add(stateBean);
-
                         }
-
                         mAdapter = new AdapterSelectLanguage(ActivitySelectLang.this, newOrderBeansList);
                         recyclerView.setAdapter(mAdapter);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-            });*/
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }

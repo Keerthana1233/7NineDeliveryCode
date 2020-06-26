@@ -92,6 +92,8 @@ String orderid,latid,langid,custlatid,custlangid;
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
+                bundle.putString("proimg", products.getProducticon());
+                bundle.putString("proname",products.getProductname());
                 bundle.putString("orderId", orderid);
                 bundle.putString("latidkey",latid);
                 bundle.putString("langidkey",langid);

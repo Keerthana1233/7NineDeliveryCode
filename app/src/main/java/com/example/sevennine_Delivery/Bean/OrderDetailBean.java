@@ -9,6 +9,7 @@ public class OrderDetailBean {
         this.prod_name = prod_name;
         this.quantity = quantity;
         this.prod_img = prod_img;
+        this.shipping_fee = shipping_fee;
         this.shippng_iscount = shippng_iscount;
         this.amount = amount;
         this.prod_img = prod_img;

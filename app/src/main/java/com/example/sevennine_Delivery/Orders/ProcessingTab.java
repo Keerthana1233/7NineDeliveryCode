@@ -124,7 +124,7 @@ SessionManager sessionManager;
                         jsonArray = result.getJSONArray("acceptorderfordelhivery");
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                            bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("FirstName"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),"PayU",jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"),jsonObject1.getString("CustLongitude"),jsonObject1.getString("CustLatitude"),jsonObject1.getString("Phone"),jsonObject1.getString("ProductName"),jsonObject1.getString("ProductIcon"),jsonObject1.getString("PayUTransactionId"));
+                            bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("FirstName"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),jsonObject1.getString("mode"),jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"),jsonObject1.getString("CustLongitude"),jsonObject1.getString("CustLatitude"),jsonObject1.getString("Phone"),jsonObject1.getString("ProductName"),jsonObject1.getString("ProductIcon"),jsonObject1.getString("PayUTransactionId"));
                             newOrderBeansList.add(bean);
                         }
                         madapter=new AcceptOrderAdapter(getActivity(),newOrderBeansList);

@@ -100,6 +100,8 @@ GPSTracker gpsTracker;
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
+                bundle.putString("proimg", products.getProducticon());
+                bundle.putString("proname",products.getProductname());
                 bundle.putString("orderId", products.getProd_name());
                 bundle.putString("orderdate",products.getCreateddate());
                 bundle.putString("totalamount",products.getProd_price());

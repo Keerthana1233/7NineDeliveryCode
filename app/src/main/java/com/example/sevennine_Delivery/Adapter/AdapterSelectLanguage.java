@@ -64,8 +64,8 @@ public class AdapterSelectLanguage extends RecyclerView.Adapter<AdapterSelectLan
             lang_text=view.findViewById(R.id.lang_text);
             language=view.findViewById(R.id.main_layout);
             tick_image=view.findViewById(R.id.tick_image);
-            //  lang_icon = view.findViewById(R.id.lang_icon);
-            lang_letter = view.findViewById(R.id.lang_letter);
+           lang_icon = view.findViewById(R.id.lang_icon);
+           // lang_letter = view.findViewById(R.id.lang_letter);
 
         }
 
@@ -86,7 +86,7 @@ public class AdapterSelectLanguage extends RecyclerView.Adapter<AdapterSelectLan
 
 
         holder.lang_text.setText(products1.getVendor());
-        holder.lang_letter.setText(products1.getLang_letter());
+       // holder.lang_letter.setText(products1.getLang_letter());
         lng_list = products1.getVendor();
 
         if (lng_list.equals(sessionManager.getRegId("language_name"))) {
@@ -133,12 +133,12 @@ public class AdapterSelectLanguage extends RecyclerView.Adapter<AdapterSelectLan
 //
 //
 
-       /* Glide.with(activity).load(products1.getImageicon())
+      Glide.with(activity).load(products1.getImageicon())
                 .thumbnail(0.5f)
                 // .crossFade()
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)
                         .error(R.drawable.ic_alphabet_a))
-                .into(holder.lang_icon);*/
+                .into(holder.lang_icon);
 
 
 

@@ -47,11 +47,11 @@ public class OrderDetailsFragment extends Fragment {
     OrderDetailsAdapter madapter;
     JSONObject lngObject;
     TextView acceptbtn;
-    TextView toolbar_title,orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno;
+    TextView toolbar_title,orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno,acceptbtn1,phoneno1,itemscosttxt,tamounttxt;
     Fragment selectedFragment;
     Date date;
     String mask;
-    String orderid,addr,mode,amount,createddate,lat,longi,mobilestr;
+    String orderid,addr,mode,amount,createddate,lat,longi,mobilestr,pronamestr,proimgstr;
     public static OrderDetailsFragment newInstance() {
         OrderDetailsFragment fragment = new OrderDetailsFragment();
         return fragment;
@@ -61,15 +61,19 @@ public class OrderDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.order_details_layout, container, false);
         recyclerView=view.findViewById(R.id.new_order_recy);
-        acceptbtn=view.findViewById(R.id.acceptbtn);
         orderidtxt=view.findViewById(R.id.orderid);
         orderdatetxt=view.findViewById(R.id.orderdate);
         modetxt=view.findViewById(R.id.mode);
         amounttxt=view.findViewById(R.id.amount);
+        itemscosttxt=view.findViewById(R.id.itemscost);
+        tamounttxt=view.findViewById(R.id.tamount);
         nametxt=view.findViewById(R.id.name);
         addrtxt=view.findViewById(R.id.addr);
         orderdatetxt=view.findViewById(R.id.orderdate);
+        acceptbtn=view.findViewById(R.id.acceptbtn);
         phoneno=view.findViewById(R.id.phoneno);
+        acceptbtn1=view.findViewById(R.id.acceptbtn1);
+        phoneno1=view.findViewById(R.id.phoneno1);
         sessionManager = new SessionManager(getActivity());
         Window window = getActivity().getWindow();
         back_feed=view.findViewById(R.id.back_feed);
@@ -113,6 +117,7 @@ public class OrderDetailsFragment extends Fragment {
             }
             // String result = number.substring(number.length() - 4).replace(String.valueOf(number.length()), "*");
             phoneno.setText(mask);
+            phoneno1.setText(mask);
            // phoneno.setText(mobilestr);
             createddate = bundle.getString("orderdate");
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -133,6 +138,8 @@ public class OrderDetailsFragment extends Fragment {
 
             orderidtxt.setText(orderid);
             amounttxt.setText(amount);
+            tamounttxt.setText(amount);
+            itemscosttxt.setText(amount);
             addrtxt.setText(addr);
             modetxt.setText(mode);
         }
@@ -140,16 +147,64 @@ public class OrderDetailsFragment extends Fragment {
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        OrderDetailBean bean=new OrderDetailBean("Parle-G Gold Milk Glucose..","1","Rs.100","Rs.2","Rs.2","");
+        pronamestr = bundle.getString("proname");
+        proimgstr = bundle.getString("proimg");
+        OrderDetailBean bean=new OrderDetailBean(pronamestr,"1",amount,"Rs.2","Rs.2",proimgstr);
         newOrderBeansList.add(bean);
-        newOrderBeansList.add(bean);
+        //newOrderBeansList.add(bean);
      //   newOrderBeansList.add(bean);
 
         madapter=new OrderDetailsAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(madapter);
 
-
+        acceptbtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JSONObject params = new JSONObject();
+                try {
+                    params.put("UserId",sessionManager.getRegId("userId"));
+                    params.put("AcceptOrdersId",orderid);  // amount
+                    params.put("Amount",amount);  // amount
+                    params.put("PayUTransactionId","1");  //transaction fees
+                    params.put("ProductInfo",addr);
+                    params.put("SellingListName","flower");
+                    params.put("CategoryName","testingfruit");
+                    params.put("SelectedQuantity","1"); //using status
+                    params.put("UnitOfPrice","ampers");
+                    params.put("SellingListIcon", "");
+                    params.put("Latitude",lat);  //tarnsaction id
+                    params.put("Longitude",longi);
+                    params.put("CustomerName","test");
+                    params.put("CreatedBy",sessionManager.getRegId("userId"));
+                    System.out.println("RESPMsgdsfadf"+params);
+                    Login_post.login_posting(getActivity(), Urls.AddAccept, params, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.println("llllllllllllllllllllllllllll"+result);
+                            try {
+                                System.out.println("nnnnnmnm" + result.toString());
+                                String status=result.getString("Status");
+                                if(status.equals("1")){
+                                    Toast toast = Toast.makeText(getActivity(),"Order details Accepted for Delhivery Successfully", Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
+                                    toast.show();
+                                }
+                                else {
+                                    Toast toast = Toast.makeText(getActivity(),"Order details  Not Accepted", Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
+                                    toast.show();
+                                    //  Toast.makeText(getActivity(),"Transaction Incomplete",Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     //    LoanInformation();
         acceptbtn.setOnClickListener(new View.OnClickListener() {
             @Override

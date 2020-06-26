@@ -6,14 +6,15 @@ public class SelectLanguageBean {
 
     int languageid;
 
-
+    public SelectLanguageBean(String vendor, int languageid, String imageicon) {
+        this.languageid=languageid;
+        this.vendor = vendor;
+        this.imageicon=imageicon;
+    }
     public String getVendor() {
         return vendor;
     }
 
-    public String getImageicon() {
-        return imageicon;
-    }
 
     public int getLanguageid() {
         return languageid;
@@ -23,11 +24,15 @@ public class SelectLanguageBean {
         return lang_letter;
     }
 
-    public SelectLanguageBean(String vendor, int languageid, String lang_letter) {
-        this.languageid=languageid;
-        this.vendor = vendor;
-        this.lang_letter=lang_letter;
+    public String getImageicon() {
+        return imageicon;
     }
+
+    public void setImageicon(String imageicon) {
+        this.imageicon = imageicon;
+    }
+
+
 }
 
 

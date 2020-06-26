@@ -35,7 +35,8 @@ public class Pager extends FragmentStatePagerAdapter {
         switch (position) {
 
             case 0:
-                System.out.println("llllllllllllllllllll1");
+                System.out.println("pager"+position);
+
                 NewOrderTab tab1 = new NewOrderTab();
                 return tab1;
             case 1:
