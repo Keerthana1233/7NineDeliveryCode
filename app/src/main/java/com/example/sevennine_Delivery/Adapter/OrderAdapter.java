@@ -45,6 +45,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     SessionManager sessionManager;
     public LinearLayout linearLayout;
 GPSTracker gpsTracker;
+    String phonestr,modestr;
     public static CardView cardView;
     Date date;
     public OrderAdapter(Activity activity, List<NewOrderBean> productList) {
@@ -90,11 +91,22 @@ GPSTracker gpsTracker;
     final NewOrderBean products = productList.get(position);
       holder.prod_name.setText(products.getProd_name());
         holder.prod_price.setText(products.getProd_price());
-        holder.cod.setText(products.getCod());
+
       holder.username.setText(products.getUsername());
         holder.addr.setText(products.getAddr());
-
-
+        if(products.getCod().equalsIgnoreCase("")){
+            modestr = "COD";
+            //+ "," + "76.48490166";
+        }else{
+            modestr=products.getCod();
+        }
+        holder.cod.setText(modestr);
+        if(products.getPhone().equalsIgnoreCase("")){
+            phonestr = "7899454922";
+            //+ "," + "76.48490166";
+        }else{
+            phonestr=products.getPhone();
+        }
         Glide.with(activity).load(products.getProducticon()).placeholder(R.drawable.ic_gallery__default).dontAnimate().into(holder.image);
         holder.vieworder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,10 +118,13 @@ GPSTracker gpsTracker;
                 bundle.putString("orderdate",products.getCreateddate());
                 bundle.putString("totalamount",products.getProd_price());
                 bundle.putString("addr",products.getAddr());
-                bundle.putString("mode",products.getCod());
+                bundle.putString("mode",modestr);
                 bundle.putString("lat", products.getLatitude());
                 bundle.putString("long",products.getLongitude());
-                bundle.putString("mobile", products.getPhone());
+                bundle.putString("cuslat", products.getCustlat());
+                bundle.putString("cuslong",products.getCustlong());
+                bundle.putString("mobile", phonestr);
+                bundle.putString("payuid", products.getPayuid());
                 selectedFragment = OrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);

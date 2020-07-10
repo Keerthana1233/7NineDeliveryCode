@@ -70,7 +70,7 @@ public class DeliveryOrderDetailsAdapter extends RecyclerView.Adapter<DeliveryOr
         holder.quantity.setText("Quantity : "+products1.getQuantity());
         holder.amount.setText(products1.getAmount());
         holder.shipping_fee.setText("Shipping Fee: "+products1.getShipping_fee());
-        holder.shipping_iscount.setText("Shipping iscount: "+products1.getShippng_iscount());
+        holder.shipping_iscount.setText("Shipping iscount: "+products1.getShippng_discount());
         if (position==(productList.size()-1)){
             holder.view_line.setVisibility(View.GONE);
         }
@@ -80,8 +80,6 @@ public class DeliveryOrderDetailsAdapter extends RecyclerView.Adapter<DeliveryOr
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)
                         .error(R.drawable.ic_gallery__default))
                 .into(holder.image);
-
-
        /*holder.in_process.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

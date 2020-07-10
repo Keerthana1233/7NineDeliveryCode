@@ -3,11 +3,9 @@ package com.example.sevennine_Delivery.Fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.SpannableString;
@@ -26,34 +24,35 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.sevennine_Delivery.Activity.NewSignUpActivity;
+
 import com.example.sevennine_Delivery.Activity.Status_bar_change_singleton;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 import com.example.sevennine_Delivery.Urls;
 import com.example.sevennine_Delivery.Volly_class.Crop_Post;
 import com.example.sevennine_Delivery.Volly_class.VoleyJsonObjectCallback;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class FirmShopDetailsFragment extends Fragment {
+
     Fragment selectedFragment;
     LinearLayout Continue,linearLayout;
     EditText shopname,gst,addressline1,addressline2,mobile_no,email;
     SessionManager sessionManager;
-    String status,message,shop_name_toast,shop_ads_toast;
+    public static String status;
+    String message,shop_name_toast,shop_ads_toast;
     boolean doubleBackToExitPressedOnce = false;
     JSONArray get_cimage_array,get_loctn_array;
     JSONObject lngObject;
+    JSONArray get_location_array,vote_list_array,vote_bk_list_array,imagelist_array;
     TextView continue_text,toolbar_title,shopname_txt,shop_ads_txt,line1_txt,line2_txt,gst_txt;
+
 
     public static FirmShopDetailsFragment newInstance() {
         FirmShopDetailsFragment fragment = new FirmShopDetailsFragment();
@@ -65,7 +64,7 @@ public class FirmShopDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_firm_details_layout, container, false);
 
-       Status_bar_change_singleton.getInstance().color_change(getActivity());
+        Status_bar_change_singleton.getInstance().color_change(getActivity());
 
         Continue = view.findViewById(R.id.continuebtn);
         shopname = view.findViewById(R.id.shopname);
@@ -112,14 +111,9 @@ public class FirmShopDetailsFragment extends Fragment {
             e.printStackTrace();
         }*/
 
-
-
-
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
-
-
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
@@ -172,6 +166,9 @@ public class FirmShopDetailsFragment extends Fragment {
         Continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 if(shopname.getText().toString().equals("")){
 
                     Toast toast = Toast.makeText(getActivity(),"Enter your name", Toast.LENGTH_LONG);
@@ -222,7 +219,7 @@ public class FirmShopDetailsFragment extends Fragment {
                   //  shoplocation();
                     try{
                         JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("PId","1");
+                        jsonObject.put("PId","0");
                         jsonObject.put("Name",shopname.getText().toString());
                         jsonObject.put("Mnumber",mobile_no.getText().toString());
                         jsonObject.put("Address",addressline1.getText().toString());
@@ -243,11 +240,13 @@ public class FirmShopDetailsFragment extends Fragment {
 
                                        // shoplocation();
 
-                                        selectedFragment = Verification_Fragment.newInstance();
-                                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                                        transaction.replace(R.id.frame_layout1, selectedFragment);
-                                        transaction.addToBackStack("verify");
-                                        transaction.commit();
+                                        verification_details();
+
+//                                        selectedFragment = Verification_Fragment.newInstance();
+//                                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                                        transaction.replace(R.id.frame_layout1, selectedFragment);
+//                                        transaction.addToBackStack("verify");
+//                                        transaction.commit();
                                         }else {
 
                                         Toast toast = Toast.makeText(getActivity(),"Personal Details not added", Toast.LENGTH_LONG);
@@ -355,12 +354,167 @@ public class FirmShopDetailsFragment extends Fragment {
 ////////////// get Location details
 
 
+        try {
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("UserId", sessionManager.getRegId("userId"));
+
+
+            Crop_Post.crop_posting(getActivity(), Urls.Get_Shop_Location, jsonObject, new VoleyJsonObjectCallback() {
+                @Override
+                public void onSuccessResponse(JSONObject result) {
+
+                    System.out.println("dhfjfjd" + result);
+
+
+                    try {
+
+                        get_location_array = result.getJSONArray("clocationList");
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        //Get voter front details
+
+        try{
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("UserId",sessionManager.getRegId("userId"));
+
+
+            Crop_Post.crop_posting(getActivity(), Urls.Get_Front_Voter_ID_Details, jsonObject, new VoleyJsonObjectCallback() {
+                @Override
+                public void onSuccessResponse(JSONObject result) {
+                    System.out.println("dhfjfjd" + result);
+
+
+                    try{
+                        vote_list_array = result.getJSONArray("dlicensefrontLists");
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+
+        //Get voterback id details
+
+        try{
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("UserId",sessionManager.getRegId("userId"));
+
+
+
+            Crop_Post.crop_posting(getActivity(), Urls.Get_Back_Voter_ID_Details, jsonObject, new VoleyJsonObjectCallback() {
+                @Override
+                public void onSuccessResponse(JSONObject result) {
+                    System.out.println("dhfjfjd" + result);
+
+
+                    try{
+
+                        vote_bk_list_array = result.getJSONArray("dlicensebackLists");
+
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+//Get Selfie Details
+
+        try{
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("UserId",sessionManager.getRegId("userId"));
+
+
+
+            Crop_Post.crop_posting(getActivity(), Urls.Get_Image_Details, jsonObject, new VoleyJsonObjectCallback() {
+                @Override
+                public void onSuccessResponse(JSONObject result) {
+                    System.out.println("dhfjfjd" + result);
+
+                    try{
+
+                        imagelist_array = result.getJSONArray("captureImagelist");
+
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
 
 
 
 
 
         return view;
+    }
+
+    private void verification_details() {
+
+        if (get_location_array.length() == 0 && vote_list_array.length() == 0 && vote_bk_list_array.length()== 0 && imagelist_array.length() == 0) {
+
+            Bundle bundle = new Bundle();
+            bundle.putString("verification_status","Verify_Page");
+            status="Verify_Page";
+            selectedFragment = Verification_Fragment.newInstance();
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame_layout1, selectedFragment);
+            transaction.addToBackStack("verify");
+            selectedFragment.setArguments(bundle);
+            transaction.commit();
+
+
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putString("verification_status","Edit_Page");
+            status="Edit_Page";
+            selectedFragment = Edit_Verification_Fragment.newInstance();
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame_layout1, selectedFragment);
+            transaction.addToBackStack("verify");
+            transaction.commit();
+
+        }
     }
 
     private void shoplocation() {

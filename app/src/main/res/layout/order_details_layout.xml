@@ -495,7 +495,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:background="#dcdcdc" />
 <!--<LinearLayout
     android:layout_width="match_parent"
@@ -524,7 +524,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:layout_marginLeft="26dp"
             android:orientation="horizontal"
             >
@@ -543,57 +543,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="26dp"
-            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:weightSum="100">
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/segoeui"
-
-                android:textColor="#000"
-                android:textSize="14dp" />
-
-
             <TextView
                 android:id="@+id/addr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
                 android:fontFamily="@font/segoeui"
-                android:text="BEML 5th stage, RR Nagar"
+                android:text=" BEML 5th stage, RR Nagar"
                 android:textColor="#000"
                 android:textSize="14dp" />
-
-
-            <TextView
-                android:id="@+id/landmark_vw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/segoeui"
-
-                android:textColor="#000"
-                android:textSize="14dp" />
-
-            <TextView
-                android:id="@+id/city_vww"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/segoeui"
-
-                android:textColor="#000"
-                android:textSize="12dp" />
-
-            <TextView
-                android:id="@+id/state_vw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/segoeui"
-
-                android:textColor="#000"
-                android:textSize="14dp" />
-
         </LinearLayout>
 
         <View

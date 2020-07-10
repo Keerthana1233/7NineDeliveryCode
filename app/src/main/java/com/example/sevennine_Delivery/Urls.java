@@ -33,7 +33,7 @@ public class Urls {
     public static final String ValidateReferalCode=ROOT_URL+"ValidateRefferalCode";
    public static final String CHANGE_LANGUAGE= ROOT_URL+"Lang/ChangeCurrentCulture";
    // public static final String CHANGE_LANGUAGE= "http://13.232.185.209:909/api/Lang/ChangeCurrentCulture";
-
+   public static final String Add_Front_Voter_ID_Details = ROOT_URL + "MasterTable/AddUpdateDrivingLicenseFrontDetails";
    public static final String BankList=ROOT_URL+"Loan/GetBankList";
    public static final String Delete_Bank_Details = ROOT_URL + "MasterTable/DeleteBankDetails";
 
@@ -190,8 +190,9 @@ public class Urls {
 
 
   //  http://13.232.185.209:9898/api/MasterTable/GetFarmNameDetails
+  public static final String Get_Shop_Location = ROOT_URL + "MasterTable/GetCLocationList";
 
-
+    public static final String Get_Back_Voter_ID_Details = ROOT_URL + "MasterTable/GetDrivingLicenseBackDetails";
     public static final String Order_processed=ROOT_URL+"OrderDetails/OrderProcessed";
     public static final String PayuMoneyAdd= ROOT_URL+"PayUMoney/PayUMonetDeatils";
     public static final String GetGIContactDetails= ROOT_URL+"SellingType/GetFContactDetails";
@@ -215,11 +216,14 @@ public class Urls {
     public static final String AddUpdateUserDetails= ROOT_URL+"MasterTable/AddUpdateUserDetails";
     public static final String EditSellDetails= ROOT_URL+"SellingType/UpdateSellDetails";
     //orders
- public static final String GetOrderslist = ROOT_URL+"MasterTable/GetOrdersFrom7NineStores";
+    public static final String Get_Image_Details = ROOT_URL+"MasterTable/GetCImagelist";
+
+
+    public static final String Get_Front_Voter_ID_Details = ROOT_URL + "MasterTable/GetDrivingLicenseFrontDetails";
+    public static final String Add_CurrentLocation = ROOT_URL+"MasterTable/AddUpdateLocationDetails";
+    public static final String GetOrderslist = ROOT_URL+"MasterTable/GetOrdersFrom7NineStores";
  public static final String AddAccept = ROOT_URL+"MasterTable/AddAcceptedOrdersForDelhivery";
  public static final String GetAcceptorder = ROOT_URL+"MasterTable/GetAcceptedOrdersForDelhivery";
  public static final String Get_Verification_Status = ROOT_URL+"MasterTable/GetUserVerificationStatus";
 
 }
-
-//http://13.232.185.209:9898/api/MasterTable/AddUserAddressDetails

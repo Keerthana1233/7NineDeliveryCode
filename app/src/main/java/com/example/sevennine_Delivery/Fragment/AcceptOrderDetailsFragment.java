@@ -45,6 +45,7 @@ import com.example.sevennine_Delivery.Activity.GPSTracker;
 import com.example.sevennine_Delivery.Adapter.AcceptOrderDetailsAdapter;
 import com.example.sevennine_Delivery.Bean.OrderDetailBean;
 import com.example.sevennine_Delivery.DataParser;
+import com.example.sevennine_Delivery.Orders.ProcessingTab;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 import com.example.sevennine_Delivery.TrackerService;
@@ -189,7 +190,10 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
             amounttxt.setText(amount);
             tamounttxt.setText(amount);
             itemscosttxt.setText(amount);
-            addrtxt.setText(addr);
+          String s = addr;
+            s = s.replace(",",",\n");
+            addrtxt.setText(" "+s);
+            //addrtxt.setText(addr);
             modetxt.setText(mode);
             mobilestr = bundle.getString("mobile");
             try {
@@ -206,7 +210,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         dellang = sessionManager.getRegId("longtitude");
         Window window = getActivity().getWindow();
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
-        view.setFocusableInTouchMode(true);
+        /*view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -222,32 +226,27 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
 
             }
         });
-
+*/
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.popBackStack("accept", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                getActivity().onBackPressed();
             }
         });
-        view.setFocusableInTouchMode(true);
+      view.setFocusableInTouchMode(true);
         view.requestFocus();
-        view.setOnKeyListener(new View.OnKeyListener() {
-
-
+        view.setOnKeyListener( new View.OnKeyListener()
+        {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-
-                    FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("accept", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
                     return true;
                 }
                 return false;
-
             }
-        });
+        } );
         Trackingmap();
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
@@ -257,7 +256,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         proimgstr = bundle.getString("proimg");
         OrderDetailBean bean=new OrderDetailBean(pronamestr,"1",amount,"Rs.2","Rs.2",proimgstr);
         newOrderBeansList.add(bean);
-        newOrderBeansList.add(bean);
+       newOrderBeansList.add(bean);
         //   newOrderBeansList.add(bean);
         madapter=new AcceptOrderDetailsAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(madapter);
@@ -365,7 +364,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
                         String cust = custlatlong.latitude + "," + custlatlong.longitude;
                         String store = storelatlong.latitude + "," + storelatlong.longitude;
 
-
+//14.666047971720456,75.48605538904667
                         // activity.startService(new Intent(activity, TrackerService.class));
                         Uri gmmIntentUri = Uri.parse("https://www.google.com/maps/dir/?api=1&destination=" + cust + "&waypoints=" + store + "&mode=l");
                         // Uri gmmIntentUri = Uri.parse("google.navigation:q="+store.latitude+","+store.longitude+"&mode=l");
@@ -467,6 +466,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         @Override
         protected void onPostExecute(List<List<HashMap<String, String>>> result) {
             ArrayList<LatLng> points;
+            try{
             lineOptions = new PolylineOptions();
             System.out.println("sss  = "+result.size()+" no "+result);
             // Traversing through all the routes
@@ -487,7 +487,10 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
                 lineOptions.addAll(points);
                 lineOptions.width(10);
                 lineOptions.color(R.color.colorPrimary);
-                Log.d("onPostExecute","onPostExecute lineoptions decoded");
+                Log.d("onPostExecute", "onPostExecute lineoptions decoded");
+            }
+            }catch (Exception e){
+
             }
             // Drawing polyline in the Google Map for the i-th route
             if(lineOptions != null) {
@@ -499,13 +502,17 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         }
     }
     private void updateUI(Location loc) {
-        Log.d(TAG, "updateUI");
-        Log.e(TAG,Double.toString(loc.getLatitude()));
-        Log.e(TAG,Double.toString(loc.getLongitude()));
-        Log.e(TAG, DateFormat.getTimeInstance().format(loc.getTime()));
-        sessionManager.saveLatLng(String.valueOf(loc.getLatitude()), String.valueOf(loc.getLongitude()));
-        dellat = sessionManager.getRegId("latitude");
-        dellang = sessionManager.getRegId("longtitude");
+        try {
+            Log.d(TAG, "updateUI");
+            Log.e(TAG, Double.toString(loc.getLatitude()));
+            Log.e(TAG, Double.toString(loc.getLongitude()));
+            Log.e(TAG, DateFormat.getTimeInstance().format(loc.getTime()));
+            sessionManager.saveLatLng(String.valueOf(loc.getLatitude()), String.valueOf(loc.getLongitude()));
+            dellat = sessionManager.getRegId("latitude");
+            dellang = sessionManager.getRegId("longtitude");
+        }catch (Exception e){
+
+        }
     }
     @Override
     public void onLocationChanged(Location location) {

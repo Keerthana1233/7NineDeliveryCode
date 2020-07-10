@@ -28,6 +28,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.android.volley.VolleyLog;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
+import com.example.sevennine_Delivery.Urls;
+import com.example.sevennine_Delivery.Volly_class.Crop_Post;
+import com.example.sevennine_Delivery.Volly_class.VoleyJsonObjectCallback;
 import com.google.android.gms.common.ConnectionResult;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -128,38 +131,6 @@ public class Shop_Current_Location_Fragment extends Fragment implements
 
 
 
-     back_feed.setOnClickListener(new View.OnClickListener() {
-        @Override
-         public void onClick(View v) {
-
-        selectedFragment = Verification_Fragment.newInstance();
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout1, selectedFragment);
-        transaction.commit();
-
-
-    }
-    });
-
-
-
-
-        capture_loc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                selectedFragment = Verification_Fragment.newInstance();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout1, selectedFragment);
-                transaction.commit();
-
-
-            }
-        });
-
-
-
-
 
 
         view.setFocusableInTouchMode(true);
@@ -171,10 +142,24 @@ public class Shop_Current_Location_Fragment extends Fragment implements
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
 
+
+
+                    if(getArguments().getString("Edit_Fragment").equals("shop_location")){
+
                         selectedFragment = Verification_Fragment.newInstance();
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.frame_layout1, selectedFragment);
                         transaction.commit();
+
+
+
+                    }else if (getArguments().getString("Edit_Fragment").equals("curr_loc_edit")){
+
+                        selectedFragment = Edit_Verification_Fragment.newInstance();
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout1, selectedFragment);
+                        transaction.commit();
+                    }
 
 
 
@@ -184,6 +169,9 @@ public class Shop_Current_Location_Fragment extends Fragment implements
         });
 
 
+
+        back_feed.setOnClickListener(this);
+        capture_loc.setOnClickListener(this);
 
       //  back_feed.setOnClickListener(this);
         //capture_loc.setOnClickListener(this);
@@ -255,7 +243,70 @@ public class Shop_Current_Location_Fragment extends Fragment implements
 
     }
 
+    public void  shop_current_location(){
+        System.out.println("hrrrjjkjlklohnklholk"+getArguments().getString("Edit_Fragment"));
 
+        try{
+//add
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("Latitude",curr_latitude);
+            jsonObject.put("Longitude",curr_longitude);
+            jsonObject.put("CapturedLocation",state);
+            jsonObject.put("CImageId","1");
+            jsonObject.put("UserId",sessionManager.getRegId("userId"));
+
+//edit
+            if(getArguments().getString("Edit_Fragment").equals("curr_loc_edit")) {
+
+
+                jsonObject.put("Latitude", curr_latitude);
+                jsonObject.put("Longitude", curr_longitude);
+                jsonObject.put("CapturedLocation", statelatlongi);
+                jsonObject.put("CLocationId", location_id);
+                jsonObject.put("CImageId", "1");
+                jsonObject.put("UserId", sessionManager.getRegId("userId"));
+                System.out.println("hfdsfhhhhhhhhh" + jsonObject);
+
+
+            }
+
+            Crop_Post.crop_posting(getActivity(), Urls.Add_CurrentLocation, jsonObject, new VoleyJsonObjectCallback() {
+                @Override
+                public void onSuccessResponse(JSONObject result) {
+
+                    System.out.println("hfdsf" + result);
+
+                    try{
+
+                        String status = result.getString("Status");
+                        String message = result.getString("Message");
+
+
+                        if(status.equals("1")){
+
+                            //    Toast.makeText(getActivity(), "welcome", Toast.LENGTH_SHORT).show();
+
+                            selectedFragment = Edit_Verification_Fragment.newInstance();
+                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            transaction.replace(R.id.frame_layout1, selectedFragment);
+                            transaction.addToBackStack("map_loctn");
+                            transaction.commit();
+
+                        }
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     private void displayLocationSettingsRequest(Context context) {
 
@@ -371,13 +422,15 @@ public class Shop_Current_Location_Fragment extends Fragment implements
 
         System.out.println("djhgfhfdhfddjksdh" + curr_latitude);
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+try {
+    mGoogleMap.addCircle(new CircleOptions()
+            .center(latLng)
+            .radius(100)
+            .fillColor(getResources().getColor(R.color.lite_blue))
+            .strokeWidth(0));
+}catch (Exception e){
 
-        mGoogleMap.addCircle(new CircleOptions()
-                .center(latLng)
-                .radius(100)
-                .fillColor(getResources().getColor(R.color.lite_blue))
-                .strokeWidth(0));
-
+}
         //   mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 18));
 
     }
@@ -486,22 +539,32 @@ public class Shop_Current_Location_Fragment extends Fragment implements
         }
     }
 
+
     @Override
     public void onClick(View view) {
         switch(view.getId()){
 
             case R.id.back_feed: /** Start a new Activity MyCards.java */
-                if(getArguments().getString("Edit_Fragment").equals("shop_location")) {
+                if(getArguments().getString("Edit_Fragment").equals("shop_location")){
 
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack("shop_locatn", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                }
 
+
+                }else if (getArguments().getString("Edit_Fragment").equals("curr_loc_edit")){
+
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("map_locatn", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }
                 break;
 
-
+            case R.id.capture_loc:
+                shop_current_location();
+                break;
         }
     }
+
+
 
 
 

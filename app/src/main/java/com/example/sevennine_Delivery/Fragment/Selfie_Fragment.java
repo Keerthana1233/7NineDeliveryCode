@@ -98,23 +98,6 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
 
         constraintLayout=view.findViewById(R.id.const_lyt);
 
-        backfeed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-
-
-                    selectedFragment = Verification_Fragment.newInstance();
-                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_layout1, selectedFragment);
-                    transaction.commit();
-
-
-
-            }
-        });
-
 
 
         view.setFocusableInTouchMode(true);
@@ -126,10 +109,27 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
-                    selectedFragment = Verification_Fragment.newInstance();
-                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_layout1, selectedFragment);
-                    transaction.commit();
+
+                    if (FirmShopDetailsFragment.status.equals("Verify_Page")) {
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("verification_status","Verify_Page");
+                        selectedFragment = Verification_Fragment.newInstance();
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout1, selectedFragment);
+                        selectedFragment.setArguments(bundle);
+                        transaction.commit();
+
+
+                    } else {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("verification_status","Edit_Page");
+                        selectedFragment = Edit_Verification_Fragment.newInstance();
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout1, selectedFragment);
+                        transaction.commit();
+
+                    }
 
 
                     return true;
@@ -138,8 +138,6 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
                 return false;
             }
         });
-
-
 
 
 

@@ -51,7 +51,7 @@ public class OrderDetailsFragment extends Fragment {
     Fragment selectedFragment;
     Date date;
     String mask;
-    String orderid,addr,mode,amount,createddate,lat,longi,mobilestr,pronamestr,proimgstr;
+    String orderid,addr,mode,amount,createddate,lat,longi,mobilestr,pronamestr,proimgstr,payuidstr,cuslat,cuslongi;
     public static OrderDetailsFragment newInstance() {
         OrderDetailsFragment fragment = new OrderDetailsFragment();
         return fragment;
@@ -135,12 +135,16 @@ public class OrderDetailsFragment extends Fragment {
             mode = bundle.getString("mode");
             lat = bundle.getString("lat");
             longi = bundle.getString("long");
+            cuslat = bundle.getString("cuslat");
+            cuslongi = bundle.getString("cuslong");
 
             orderidtxt.setText(orderid);
             amounttxt.setText(amount);
             tamounttxt.setText(amount);
             itemscosttxt.setText(amount);
-            addrtxt.setText(addr);
+            String s = addr;
+            s = s.replace(",",",\n");
+            addrtxt.setText(" "+s);
             modetxt.setText(mode);
         }
         newOrderBeansList.clear();
@@ -149,6 +153,7 @@ public class OrderDetailsFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         pronamestr = bundle.getString("proname");
         proimgstr = bundle.getString("proimg");
+        payuidstr = bundle.getString("payuid");
         OrderDetailBean bean=new OrderDetailBean(pronamestr,"1",amount,"Rs.2","Rs.2",proimgstr);
         newOrderBeansList.add(bean);
         //newOrderBeansList.add(bean);
@@ -165,16 +170,18 @@ public class OrderDetailsFragment extends Fragment {
                     params.put("UserId",sessionManager.getRegId("userId"));
                     params.put("AcceptOrdersId",orderid);  // amount
                     params.put("Amount",amount);  // amount
-                    params.put("PayUTransactionId","1");  //transaction fees
+                    params.put("PayUTransactionId",payuidstr);  //transaction fees
                     params.put("ProductInfo",addr);
                     params.put("SellingListName","flower");
                     params.put("CategoryName","testingfruit");
                     params.put("SelectedQuantity","1"); //using status
                     params.put("UnitOfPrice","ampers");
-                    params.put("SellingListIcon", "");
+                    params.put("SellingListIcon","");
                     params.put("Latitude",lat);  //tarnsaction id
                     params.put("Longitude",longi);
                     params.put("CustomerName","test");
+                    params.put("CustLatitude",cuslat);
+                    params.put("CustLongitude",cuslongi);
                     params.put("CreatedBy",sessionManager.getRegId("userId"));
                     System.out.println("RESPMsgdsfadf"+params);
                     Login_post.login_posting(getActivity(), Urls.AddAccept, params, new VoleyJsonObjectCallback() {
@@ -214,16 +221,18 @@ public class OrderDetailsFragment extends Fragment {
                     params.put("UserId",sessionManager.getRegId("userId"));
                     params.put("AcceptOrdersId",orderid);  // amount
                     params.put("Amount",amount);  // amount
-                    params.put("PayUTransactionId","1");  //transaction fees
+                    params.put("PayUTransactionId",payuidstr);  //transaction fees
                     params.put("ProductInfo",addr);
                     params.put("SellingListName","flower");
                     params.put("CategoryName","testingfruit");
                     params.put("SelectedQuantity","1"); //using status
                     params.put("UnitOfPrice","ampers");
-                    params.put("SellingListIcon", "");
+                    params.put("SellingListIcon","");
                     params.put("Latitude",lat);  //tarnsaction id
                     params.put("Longitude",longi);
                     params.put("CustomerName","test");
+                    params.put("CustLatitude",cuslat);
+                    params.put("CustLongitude",cuslongi);
                     params.put("CreatedBy",sessionManager.getRegId("userId"));
                     System.out.println("RESPMsgdsfadf"+params);
                     Login_post.login_posting(getActivity(), Urls.AddAccept, params, new VoleyJsonObjectCallback() {

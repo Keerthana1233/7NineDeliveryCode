@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.sevennine_Delivery.Activity.FirmShopDetailsActivity;
+import com.example.sevennine_Delivery.Activity.MainActivity;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 import com.example.sevennine_Delivery.Urls;
@@ -93,9 +95,8 @@ public class Verification_Last_Fragment extends Fragment {
                             getActivity().finish();
                             System.exit(0);
                         }
-
                         doubleBackToExitPressedOnce = true;
-                        // Toast.makeText(getActivity().getApplicationContext(), "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(getActivity().getApplicationContext(), "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
 //                       int duration = 1000;
 //
 //                       Snackbar snackbar = Snackbar
@@ -187,10 +188,8 @@ public class Verification_Last_Fragment extends Fragment {
                                 @Override
                                 public void onClick(View v) {
 
-                                    selectedFragment = HomeMenuFragment.newInstance();
-                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                                    transaction.replace(R.id.frame_layout1, selectedFragment);
-                                    transaction.commit();
+                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                                    startActivity(intent);
 
 
 

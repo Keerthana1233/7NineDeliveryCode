@@ -30,7 +30,7 @@ public class AcceptOrderAdapter extends RecyclerView.Adapter<AcceptOrderAdapter.
     Activity activity;
     Fragment selectedFragment;
     SessionManager sessionManager;
-String orderid,latid,langid,custlatid,custlangid;
+String orderid,latid,langid,custlatid,custlangid,modestr,phone;
     public LinearLayout linearLayout;
 
     public static CardView cardView;
@@ -71,20 +71,53 @@ String orderid,latid,langid,custlatid,custlangid;
         return new MyViewHolder(itemView);
 
     }
-
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final NewOrderBean products = productList.get(position);
         holder.prod_name.setText(products.getProd_name());
         holder.prod_price.setText(products.getProd_price());
-        holder.cod.setText(products.getCod());
+
       holder.username.setText(products.getUsername());
         holder.addr.setText(products.getAddr());
         orderid=products.getProd_name();
-        latid=products.getLatitude();
-        langid=products.getLongitude();
-        custlatid=products.getCustlat();
-        custlangid=products.getCustlong();
+
+        if(products.getCod().equalsIgnoreCase("")){
+            modestr = "COD";
+            //+ "," + "76.48490166";
+        }else{
+            modestr=products.getCod();
+        }
+        holder.cod.setText(modestr);
+        if(products.getPhone().equalsIgnoreCase("")){
+            phone = "7899454922";
+            //+ "," + "76.48490166";
+        }else{
+            phone=products.getPhone();
+        }
+        if(products.getLatitude().equalsIgnoreCase("null")){
+            latid = "14.5555555";
+            //+ "," + "76.48490166";
+        }else{
+            latid=products.getLatitude();
+        }
+        if(products.getLongitude().equalsIgnoreCase("null")){
+            langid = "76.48490166";
+            //+ "," + "76.48490166";
+        }else{
+            langid=products.getLongitude();
+        }
+        if(products.getCustlat().equalsIgnoreCase("")){
+            custlatid = "14.665805680534437";
+            //+ "," + "76.48490166";
+        }else{
+            custlatid=products.getCustlat();
+        }
+        if(products.getCustlong().equalsIgnoreCase("")){
+            custlangid = "75.48590049147606";
+            //+ "," + "76.48490166";
+        }else{
+            custlangid=products.getCustlong();
+        }
 
         Glide.with(activity).load(products.getProducticon()).placeholder(R.drawable.ic_gallery__default).dontAnimate().into(holder.image);
 
@@ -102,8 +135,8 @@ String orderid,latid,langid,custlatid,custlangid;
                 bundle.putString("orderdate",products.getCreateddate());
                 bundle.putString("totalamount",products.getProd_price());
                 bundle.putString("addr",products.getAddr());
-                bundle.putString("mode",products.getCod());
-                bundle.putString("mobile",products.getPhone());
+                bundle.putString("mode",modestr);
+                bundle.putString("mobile",phone);
                 selectedFragment = AcceptOrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);

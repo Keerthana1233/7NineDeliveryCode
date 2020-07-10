@@ -48,7 +48,6 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             shipping_fee=view.findViewById(R.id.shipping);
             shipping_iscount=view.findViewById(R.id.shipping_iscount);
             view_line=view.findViewById(R.id.view_line);
-
         }
 
     }
@@ -70,7 +69,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
       holder.quantity.setText("Quantity : "+products1.getQuantity());
       holder.amount.setText(products1.getAmount());
       holder.shipping_fee.setText("Shipping Fee: "+products1.getShipping_fee());
-      holder.shipping_iscount.setText("Shipping iscount: "+products1.getShippng_iscount());
+      holder.shipping_iscount.setText("Shipping iscount: "+products1.getShippng_discount());
 if (position==(productList.size()-1)){
     holder.view_line.setVisibility(View.GONE);
 }

@@ -13,7 +13,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -26,16 +25,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.sevennine_Delivery.Activity.Status_bar_change_singleton;
 import com.example.sevennine_Delivery.R;
+import com.example.sevennine_Delivery.SessionManager;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.json.JSONException;
@@ -51,9 +50,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
 
-
-
-public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Callback {
+public class Voter_Id_Front_Fragment extends Fragment implements SurfaceHolder.Callback {
 
     public static Camera camera;
     int camBackId = Camera.CameraInfo.CAMERA_FACING_BACK;
@@ -70,13 +67,13 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
     public  static Bitmap selectedImage;
     BottomSheetDialog mBottomSheetDialog;
     View sheetView;
+     SessionManager sessionManager;
     Fragment selectedFragment;
 
 
 
-
-    public static Voter_Id_Back_Fragment newInstance() {
-        Voter_Id_Back_Fragment fragment = new Voter_Id_Back_Fragment();
+    public static Voter_Id_Front_Fragment newInstance() {
+        Voter_Id_Front_Fragment fragment = new Voter_Id_Front_Fragment();
         return fragment;
     }
 
@@ -86,15 +83,30 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
 
         View view = inflater.inflate(R.layout.activity_camera, container, false);
         //  getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        imageView=view.findViewById(R.id.image);
-        backfeed=view.findViewById(R.id.backfeed);
+        Status_bar_change_singleton.getInstance().color_change(getActivity());
+        //  HomePage_With_Bottom_Navigation.linear_bottonsheet.setVisibility(View.GONE);
+
+        //  System.out.println("sdfjhsdfgjsgfjsd"+ HomePage_With_Bottom_Navigation.farm_latitude);
+
+
+        imageView =view.findViewById(R.id.image);
+        backfeed =view.findViewById(R.id.backfeed);
+
 //        selfie=view.findViewById(R.id.selfie);
+//
 //        selfie.setVisibility(View.GONE);
+        sessionManager = new SessionManager(getActivity());
+
+
         constraintLayout=view.findViewById(R.id.const_lyt);
+
+
         backfeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (FirmShopDetailsFragment.status.equals("Verify_Page")) {
+
                     Bundle bundle = new Bundle();
                     bundle.putString("verification_status","Verify_Page");
                     selectedFragment = Verification_Fragment.newInstance();
@@ -102,6 +114,8 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
                     transaction.replace(R.id.frame_layout1, selectedFragment);
                     selectedFragment.setArguments(bundle);
                     transaction.commit();
+
+
                 } else {
                     Bundle bundle = new Bundle();
                     bundle.putString("verification_status","Edit_Page");
@@ -109,8 +123,12 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout1, selectedFragment);
                     transaction.commit();
+
                 }
-            }
+
+
+
+        }
         });
 
 
@@ -123,6 +141,7 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+
 
                     if (FirmShopDetailsFragment.status.equals("Verify_Page")) {
 
@@ -144,6 +163,10 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
                         transaction.commit();
 
                     }
+
+
+
+
                     return true;
 
                 }
@@ -152,12 +175,12 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
         });
 
 
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 camera.takePicture(null, null, jpegCallback);
-
 
             }
 
@@ -171,7 +194,6 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
         final TextView tips = sheetView.findViewById(R.id.tips);
         final LinearLayout tips_layout = sheetView.findViewById(R.id.tips_layout);
         final TextView title = sheetView.findViewById(R.id.title);
-
         final TextView title_details_front = sheetView.findViewById(R.id.title_details_front);
 
         final TextView front_tips1 = sheetView.findViewById(R.id.front_tips1);
@@ -180,10 +202,34 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
         final TextView front_tips4 = sheetView.findViewById(R.id.front_tips4);
 
 
-        title.setText("Driving License: Back");
+
+
+        try {
+
+
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+            System.out.println("llllllllllllkkkkkkkkkkkkkkk" + lngObject.getString("EnterPhoneNo"));
+
+
+            tips.setText(lngObject.getString("Tips"));
+            title.setText(lngObject.getString("VoterIDFront").replace("\n",""));
+            title_details_front.setText(lngObject.getString("Placeyourvoteridonatableandholdyourphoneaboveittotakeaclearphoto"));
+
+            front_tips1.setText(lngObject.getString("Youshouldhaveavalidvoterid"));
+            front_tips2.setText(lngObject.getString("Placethevoteridwithintheframe"));
+            front_tips3.setText(lngObject.getString("Ensurethattheroomhasgoodlighting"));
+            front_tips4.setText(lngObject.getString("Textonyourvoteridshouldbeclearandsharpinthephoto").replace("\n",""));
+
+
+            //  pass.setHint(lngObject.getString("Password"));
+            //  remember_me.setText(lngObject.getString("RememberMe"));
 
 
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
         tips.setOnClickListener(new View.OnClickListener() {
@@ -193,7 +239,6 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
                 tips.setTextColor(Color.parseColor("#000000"));
             }
         });
-
 
 
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -207,11 +252,27 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
             }
         });
 
-
+//        title.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+////                Intent intent=new Intent(VerificationSelfie.this, ReviewPhoto.class);
+////                intent.putExtra("EXTRA_SELFIE", "SELFIE");
+////                startActivity(intent);
+//            }
+//        });
 
         mBottomSheetDialog.setContentView(sheetView);
         mBottomSheetDialog.show();
 
+
+//        gallery.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // to go to gallery
+//                startActivityForResult(i, 100);
+//            }
+//        });
 
 
 
@@ -370,8 +431,8 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
                 //refreshCamera();
 
                 Bundle bundle = new Bundle();
-                bundle.putString("name1", destination.getPath() );
-                selectedFragment = VoterId_Back_Preview_Details_Fragment.newInstance();
+                bundle.putString("name", destination.getPath() );
+                selectedFragment = VoterId_Front_Preview_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -555,6 +616,7 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
                 final Uri imageUri = data.getData();
                 final InputStream imageStream =getActivity().getContentResolver().openInputStream(imageUri);
                 selectedImage = BitmapFactory.decodeStream(imageStream);
+
                 if (!(selectedImage==null)){
 
                     /*Intent intent = new Intent(getActivity().getApplicationContext(), UploadCamera_Activity.class);
@@ -564,12 +626,14 @@ public class Voter_Id_Back_Fragment extends Fragment implements SurfaceHolder.Ca
 
 
                     Bundle bundle = new Bundle();
-                    bundle.putString("name1",getPath(imageUri) );
+                    bundle.putString("name",getPath(imageUri) );
+                    bundle.putString("VoterFront_Fragment",getArguments().getString("VoterFront_Fragment"));
 
-                    selectedFragment = VoterId_Back_Preview_Details_Fragment.newInstance();
+                    selectedFragment = VoterId_Front_Preview_Fragment.newInstance();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout1, selectedFragment);
                     transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    transaction.addToBackStack("front_preview");
                     selectedFragment.setArguments(bundle);
                     transaction.commit();
 

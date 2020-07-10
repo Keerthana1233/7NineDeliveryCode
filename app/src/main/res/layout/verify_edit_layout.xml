@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="91"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:background="@color/menu_green"
+                >
+
+
+                <LinearLayout
+                    android:id="@+id/back_feed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="10dp"
+                    android:background="@drawable/ripple_effect"
+                    android:layout_marginLeft="10dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_go_back_left_arrow_"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+
+                        />
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Verification"
+                    android:textSize="20dp"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/segoeui"
+                    android:textColor="#fff"
+                    android:layout_marginBottom="15dp"
+                    android:textStyle="bold"
+                    android:id="@+id/setting_tittle" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/sele_loc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/border_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:weightSum="100"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="80"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:paddingVertical="30dp"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="40"
+                        android:layout_gravity="center"
+                        >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_map"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:id="@+id/sel_loc_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select Location"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:fontFamily="@font/segoeui"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/select"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:drawableLeft="@drawable/ic_marker_pin"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/segoeui"
+                            android:text="Select"
+                            android:textColor="#090BCD"
+                            android:textSize="14dp" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/select_loc_edit"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingRight="30dp"
+                    android:paddingLeft="15dp"
+                    android:background="#005474"
+                    >
+
+                    <TextView
+                        android:id="@+id/location_edit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:fontFamily="@font/segoeui"
+                        android:textColor="#ffffff"
+                        android:textSize="14dp"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/selfie_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/border_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:weightSum="100"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="80"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:paddingVertical="30dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="40"
+                        android:layout_gravity="center"
+                        >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_electronics"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:id="@+id/face_verify_selfy_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Face Verification: Selfie"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:fontFamily="@font/segoeui"
+                            />
+
+                        <TextView
+                            android:id="@+id/click_selfie"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Click"
+                            android:fontFamily="@font/segoeui"
+                            android:textColor="#090BCD"
+                            android:textSize="14dp"
+                            android:layout_marginTop="5dp"
+                            android:drawableLeft="@drawable/ic_upload"
+                            android:drawablePadding="5dp"
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/edit_lay_selfie"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingRight="30dp"
+                    android:paddingLeft="15dp"
+                    android:background="#005474"
+                    >
+
+                    <TextView
+                        android:id="@+id/edit_selfie_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:fontFamily="@font/segoeui"
+                        android:textColor="#ffffff"
+                        android:textSize="14dp"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/border_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:weightSum="100"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="80"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:paddingVertical="30dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="40"
+                        android:layout_gravity="center"
+                        >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_id_card"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:id="@+id/voter_front_text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Driving Lincense: Front"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:fontFamily="@font/segoeui"
+                            />
+
+                        <TextView
+                            android:id="@+id/upload_front"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload"
+                            android:fontFamily="@font/segoeui"
+                            android:textColor="#090BCD"
+                            android:textSize="14dp"
+                            android:layout_marginTop="5dp"
+                            android:drawableLeft="@drawable/ic_upload"
+                            android:drawablePadding="5dp"
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/front_voter_edit"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingRight="30dp"
+                    android:paddingLeft="15dp"
+                    android:background="#005474"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/edit_front_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:fontFamily="@font/segoeui"
+                        android:textColor="#ffffff"
+                        android:textSize="14dp"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical"-->
+                <!--android:background="@drawable/border_grey"-->
+                <!--android:layout_marginHorizontal="20dp"-->
+                <!--android:paddingVertical="30dp"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:weightSum="100"-->
+                    <!--&gt;-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:layout_weight="40"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--&gt;-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:src="@drawable/ic_id_card"-->
+                            <!--/>-->
+
+                    <!--</LinearLayout>-->
+
+
+
+                 <!---->
+
+                <!--</LinearLayout>-->
+
+
+
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/border_grey"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:weightSum="100"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="80"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:paddingVertical="30dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="40"
+                        android:layout_gravity="center"
+                        >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_id_card"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:id="@+id/voter_back_text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Driving Lincense:Back"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:fontFamily="@font/segoeui"
+                            />
+
+                        <TextView
+                            android:id="@+id/upload_voter_back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload"
+                            android:fontFamily="@font/segoeui"
+                            android:textColor="#090BCD"
+                            android:textSize="14dp"
+                            android:layout_marginTop="5dp"
+                            android:drawableLeft="@drawable/ic_upload"
+                            android:drawablePadding="5dp"
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/back_voter_edit"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingRight="30dp"
+                    android:paddingLeft="15dp"
+                    android:background="#005474"
+                    >
+
+                    <TextView
+                        android:id="@+id/edit_back_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit"
+                        android:fontFamily="@font/segoeui"
+                        android:textColor="#ffffff"
+                        android:textSize="14dp"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/continu_btn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="9"
+        android:background="@drawable/grey_curved_border"
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PROCEED"
+            android:textSize="20dp"
+            android:padding="15dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:fontFamily="@font/segoeui"
+            android:textColor="#fff"
+            android:visibility="visible"
+            android:id="@+id/proceed_btn" />
+
+    </LinearLayout>
+
+</LinearLayout>
+

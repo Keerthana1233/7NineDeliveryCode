@@ -84,10 +84,11 @@ public static String CurrentLocationFullAddress="";
         activity= this;
         coordinatorLayout =findViewById(R.id.coordinator);
         session = new SessionManager(getApplicationContext());
-        Window window = this.getWindow();
+       /* Window window = this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimaryDark));
 
-        selectedFragment = HomeMenuFragment.newInstance();
+      */
+       selectedFragment = HomeMenuFragment.newInstance();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout1, selectedFragment);
         transaction.commit();

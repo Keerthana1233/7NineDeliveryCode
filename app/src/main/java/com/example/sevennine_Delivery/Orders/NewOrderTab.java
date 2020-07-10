@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -53,6 +54,7 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
     JSONArray jsonArray;
     NewOrderBean bean;
     GPSTracker gpsTracker;
+
     public static NewOrderTab newInstance() {
         NewOrderTab itemOnFragment = new NewOrderTab();
         return itemOnFragment;
@@ -73,6 +75,7 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
                 android.R.color.holo_blue_dark);
         Window window = getActivity().getWindow();
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
+
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -81,14 +84,16 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
                 Log.i("ONBACK", "keyCodezzzzzzzzzq  : " + keyCode);
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     Log.i("ONBACK", "onKey Back listener is working!!!");
-                   // getFragmentManager().popBackStack("ORDER_FRAGMENT", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    getActivity().onBackPressed();
-                    // getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                 //  getFragmentManager().popBackStack("ORDER_FRAGMENT", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+               getActivity().onBackPressed();
+              getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     return true;
                 }
                 return false;
             }
         });
+
+
         gpsTracker = new GPSTracker(getActivity());
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
@@ -109,6 +114,7 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
         return view;
         
     }
+
 public  void  Newdata(){
     mSwipeRefreshLayout.setRefreshing(true);
 
@@ -126,10 +132,9 @@ public  void  Newdata(){
                     jsonArray = result.getJSONArray("orderfromcart");
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("FirstName"),jsonObject1.getString("CustAddress"),jsonObject1.getString("Amount"),jsonObject1.getString("mode"),jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"),jsonObject1.getString("CustLongitude"),jsonObject1.getString("CustLatitude"),jsonObject1.getString("Phone"),jsonObject1.getString("ProductName"),jsonObject1.getString("ProductIcon"),jsonObject1.getString("PayUTransactionId"));
+                        bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("FirstName"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),jsonObject1.getString("mode"),jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"),jsonObject1.getString("CustLongitude"),jsonObject1.getString("CustLatitude"),jsonObject1.getString("Phone"),jsonObject1.getString("ProductName"),jsonObject1.getString("ProductIcon"),jsonObject1.getString("PayUTransactionId"));
                         newOrderBeansList.add(bean);
-
-
+                        //jsonObject1.getString("Phone")
                     }
                     madapter=new OrderAdapter(getActivity(),newOrderBeansList);
                     recyclerView.setAdapter(madapter);
@@ -150,4 +155,5 @@ public  void  Newdata(){
        // sessionManager.saveLatLng(String.valueOf(gpsTracker.getLatitude()), String.valueOf(gpsTracker.getLongitude()));
 
     }
+
 }

@@ -97,54 +97,67 @@ public class Verification_Fragment extends Fragment {
                 return false;
             }
         });
+
         select_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("Edit_Fragment","shop_location");
                 selectedFragment = Shop_Current_Location_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
+                selectedFragment.setArguments(bundle);
                 transaction.addToBackStack("shop_locatn");
                 transaction.commit();
+
             }
         });
-
 
         voter_id_front.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* selectedFragment = Voter_Id_Front_Fragment.newInstance();
+                Bundle bundle = new Bundle();
+                bundle.putString("VoterFront_Fragment","voter_front");
+                selectedFragment = Voter_Id_Front_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("verify_voter");
-                transaction.commit();*/
+                selectedFragment.setArguments(bundle);
+                transaction.commit();
+
+
             }
         });
         voter_id_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle bundle = new Bundle();
+                bundle.putString("VoterBack_Fragment","voter_back");
                 selectedFragment = Voter_Id_Back_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
+                selectedFragment.setArguments(bundle);
                 transaction.addToBackStack("verify_voter");
                 transaction.commit();
+
             }
         });
 
         selfie_verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                Bundle bundle = new Bundle();
+                bundle.putString("Selfie_Edit","verify_selfie");
                 selectedFragment = Selfie_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
                 transaction.addToBackStack("verify_selfie");
+                selectedFragment.setArguments(bundle);
                 transaction.commit();
 
             }
         });
-
 
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override

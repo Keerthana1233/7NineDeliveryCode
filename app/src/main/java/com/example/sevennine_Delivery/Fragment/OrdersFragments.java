@@ -1,51 +1,35 @@
 package com.example.sevennine_Delivery.Fragment;
 
-import android.Manifest;
-import android.annotation.TargetApi;
-import android.app.Service;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.location.Criteria;
-import android.location.LocationListener;
-import android.location.LocationManager;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.sevennine_Delivery.Activity.GPSTracker;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.tabs.TabLayout;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
-import static com.android.volley.VolleyLog.TAG;
 
-
-public class OrdersFragments extends Fragment implements TabLayout.OnTabSelectedListener {
+public class OrdersFragments extends Fragment implements TabLayout.OnTabSelectedListener{
     private ViewPager viewPager;
     public static TabLayout tabLayout;
     Fragment selectedFragment=null;
-
+    private boolean isBackPressed = false;
+    private boolean isBackPressedOnce = false;
+    private List<Integer> tabsInBack = new ArrayList<>();
     SessionManager sessionManager;
     private static final int HANDLER_DELAY = 1000;
+    protected OnBackPressedListner onBackPress;
     public static OrdersFragments newInstance() {
         OrdersFragments fragment = new OrdersFragments();
         return fragment;
@@ -80,7 +64,7 @@ public class OrdersFragments extends Fragment implements TabLayout.OnTabSelected
         tabLayout.addTab(tabLayout.newTab().setText("  Delivered"));
         tabLayout.addTab(tabLayout.newTab().setText("  Cancelled"));
 
-        tabLayout.setOnTabSelectedListener(this);
+      //  tabLayout.setOnTabSelectedListener(this);
 
       //  tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -89,12 +73,69 @@ public class OrdersFragments extends Fragment implements TabLayout.OnTabSelected
          Pager adapter = new Pager(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                if(!isBackPressed){
+                    tabsInBack.add(tab.getPosition());}
+                else {
+                    isBackPressed = false;}
+            }
 
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         return view;
     }
-    @Override
+    public void onBackPressed() {
+        isBackPressed = true;
+        if (tabsInBack != null && tabsInBack.size() > 0) {
+            if (tabLayout.getSelectedTabPosition() == tabsInBack.get(tabsInBack.size() - 1)) {
+                tabsInBack.remove(tabsInBack.size() - 1);
+
+            }
+            if (tabsInBack != null && tabsInBack.size() > 0) {
+                tabLayout.getTabAt(tabsInBack.get(tabsInBack.size() - 1)).select();
+                tabsInBack.remove(tabsInBack.size() - 1);
+                if (isBackPressedOnce) {
+                    super.getActivity().onBackPressed();
+                } else {
+                    isBackPressedOnce = true;
+                }
+            } else {
+                super.getActivity().onBackPressed();
+            }
+        } else {
+            super.getActivity().onBackPressed();
+        }
+    }
+    public interface OnBackPressedListner{
+        boolean onBackPressed();
+    }
+@Override
     public void onTabSelected(TabLayout.Tab tab)  {
         viewPager.setCurrentItem(tab.getPosition());
+    if (viewPager.getCurrentItem() == 0) {
+
+        super.getActivity().onBackPressed();
+    }else {
+
+        //If any other tab is open, then switch to first tab
+        viewPager.setCurrentItem(0);
+    }
+
+    if(!isBackPressed){
+        tabsInBack.add(tab.getPosition());}
+    else {
+        isBackPressed = false;}
     }
 
     @Override
