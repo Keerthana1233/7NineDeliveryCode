@@ -7,16 +7,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Matrix;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -28,20 +25,40 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.sevennine_Delivery.R;
+import com.example.sevennine_Delivery.SessionManager;
+import com.example.sevennine_Delivery.Urls;
+import com.example.sevennine_Delivery.volleypost.VolleyMultipartRequest;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import org.json.JSONException;
+
 import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.android.volley.VolleyLog.TAG;
+
+
 public class Selfie_Preview_Fragment extends Fragment {
+
+
+
     public static RecyclerView recyclerView;
     LinearLayout back_feed,main_layout,upload_img,whatsapp,twitter,facebook,instagram;
     Fragment selectedFragment;
@@ -56,19 +73,27 @@ public class Selfie_Preview_Fragment extends Fragment {
     public static String imageUri;
     ImageView imageView,correct_icon,dismiss_icon;
     String status,message;
-
+    SessionManager sessionManager;
     LinearLayout tips_selfie_layout;
     BottomSheetDialog mBottomSheetDialog;
     View sheetView;
+
+
     public static Selfie_Preview_Fragment newInstance() {
         Selfie_Preview_Fragment fragment = new Selfie_Preview_Fragment();
+
         return fragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.shop_camera_preview, container, false);
+
+
+
         back_feed=view.findViewById(R.id.back_feed);
+
         // continue_4= view.findViewById(R.id.continue_4);
         // farm_name=view.findViewById(R.id.farm_name);
         // description=view.findViewById(R.id.desce);
@@ -76,16 +101,30 @@ public class Selfie_Preview_Fragment extends Fragment {
         upload_img=view.findViewById(R.id.upload_img);
         take_photo=view.findViewById(R.id.take_photo);
         tips_selfie_layout=view.findViewById(R.id.tips_selfie_layout);
+
         tips_selfie_layout.setVisibility(View.VISIBLE);
+
+
+
         upload_imge=view.findViewById(R.id.upload_imge);
+
         tips_selfie=view.findViewById(R.id.tips_selfie);
         toolbar_title = view.findViewById(R.id.toolbar_title);
         selfie_tips_1=view.findViewById(R.id.selfie_tips_1);
         selfie_tips_2=view.findViewById(R.id.selfie_tips_2);
         selfie_tips_3=view.findViewById(R.id.selfie_tips_3);
         selfie_tips_4=view.findViewById(R.id.selfie_tips_4);
+
+
+        sessionManager = new SessionManager(getActivity());
+
+
+
         String id= (getArguments().getString("name"));
         imageUri = id;
+
+
+
         Glide.with(getActivity()).load("file://" + id)
                 .thumbnail(0.5f)
                 // .crossFade()
@@ -130,7 +169,7 @@ public class Selfie_Preview_Fragment extends Fragment {
 //        });
 
         // mobile_no=view.findViewById(R.id.mobile_no);
-
+   //     b_arrow=view.findViewById(R.id.b_arrow);
 
         main_layout=view.findViewById(R.id.linearLayout);
         final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -199,10 +238,12 @@ public class Selfie_Preview_Fragment extends Fragment {
 
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
-
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Selfie_Edit",getArguments().getString("Selfie_Edit"));
                     selectedFragment = Selfie_Fragment.newInstance();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout1, selectedFragment);
+                    selectedFragment.setArguments(bundle);
                     transaction.commit();
 
 
@@ -218,10 +259,12 @@ public class Selfie_Preview_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-
+                Bundle bundle = new Bundle();
+                bundle.putString("Selfie_Edit","verify_selfie");
                 selectedFragment = Selfie_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
+                selectedFragment.setArguments(bundle);
                 transaction.commit();
 
             }
@@ -267,16 +310,16 @@ public class Selfie_Preview_Fragment extends Fragment {
             public void onClick(View view) {
 
 
-             //       uploadImage(getResizedBitmap(Selfie_Fragment.selectedImage, 100, 100));
+                    uploadImage(getResizedBitmap(Selfie_Fragment.selectedImage, 100, 100));
 
 
 
                 // uploadImage(getResizedBitmap(VoterId_Photo_Fragment.selectedImage, 100, 100));
 
-                selectedFragment = Verification_Fragment.newInstance();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout1, selectedFragment);
-                transaction.commit();
+//                selectedFragment = Shop_Camera_Fragment_Edit.newInstance();
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.frame_layout1, selectedFragment);
+//                transaction.commit();
 
 
             }
@@ -297,7 +340,118 @@ public class Selfie_Preview_Fragment extends Fragment {
 
 
 
+    private void uploadImage(final Bitmap bitmap){
+        final ProgressDialog progressDialog = ProgressDialog.show(getActivity(), "",
+                "Loading....Please wait.");
+        progressDialog.show();
 
+
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Urls.Add_Update_Image_Details,
+                new Response.Listener<NetworkResponse>(){
+
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        Log.e(TAG,"afaeftagsbillvalue"+response.data);
+                        Log.e(TAG,"afaeftagsbillvalue"+response);
+                        progressDialog.dismiss();  int duration=1000;
+
+
+                        selectedFragment = Edit_Verification_Fragment.newInstance();
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout1, selectedFragment);
+                        transaction.commit();
+
+//                        Toast.makeText(getActivity(),"Profile Details Updated Successfully", Toast.LENGTH_SHORT).show();
+//                        selectedFragment = SettingFragment.newInstance();
+//                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//                        ft.replace(R.id.frame_layout,selectedFragment);
+//                        ft.commit();
+                    }
+                },
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(),error.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                }) {
+
+
+            @Override
+            protected VolleyError parseNetworkError(VolleyError volleyError){
+                if(volleyError.networkResponse != null && volleyError.networkResponse.data != null){
+                    VolleyError error = new VolleyError(new String(volleyError.networkResponse.data));
+
+                    Toast.makeText(getActivity(),volleyError.getMessage(), Toast.LENGTH_SHORT).show();
+
+//                    int duration=1000;
+//                    Snackbar snackbar = Snackbar
+//                            .make(main_layout, volleyError.getMessage(),duration);
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+//                    tv.setTextColor(Color.WHITE);
+//
+//
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+//
+//                        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+//
+//                    } else {
+//
+//                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
+//                    }
+//
+//                    snackbar.show();
+
+
+                    volleyError = error;
+                }
+
+                return volleyError;
+            }
+
+
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                Log.e(TAG,"Im here " + params);
+
+                if (bitmap!=null) {
+
+                    params.put("Image1", new DataPart(imagename + ".png",getFileDataFromDrawable(bitmap)));
+
+                }
+
+                Log.e(TAG,"Im here " + params);
+                return params;
+
+            }
+
+
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("UserId", sessionManager.getRegId("userId"));
+
+                params.put("CImageId","0");
+
+                //  System.out.println("Latitude11111111"+String.valueOf(Farms_MapView_Fragment.a));
+                //  params.put("FarmDescription", description.getText().toString());
+                Log.e(TAG,"afaeftagsparams"+params);
+                return params;
+            }
+        };
+
+        volleyMultipartRequest.setRetryPolicy(new DefaultRetryPolicy(1000 * 60, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //adding the request to volley
+
+        Volley.newRequestQueue(getActivity()).add(volleyMultipartRequest);
+    }
 
 
     public Bitmap getResizedBitmap(Bitmap bm1, int newWidth, int newHeight) {

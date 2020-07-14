@@ -57,7 +57,7 @@ String orderid,latid,langid,custlatid,custlangid,modestr,phone;
             addr=view.findViewById(R.id.addr);
             username=view.findViewById(R.id.username);
             image=view.findViewById(R.id.image);
-            vieworder=view.findViewById(R.id.vieworder);
+          //  vieworder=view.findViewById(R.id.vieworder);
 
         }
 
@@ -89,8 +89,7 @@ String orderid,latid,langid,custlatid,custlangid,modestr,phone;
         }
         holder.cod.setText(modestr);
         if(products.getPhone().equalsIgnoreCase("")){
-            phone = "7899454922";
-            //+ "," + "76.48490166";
+            phone = "9999999999";
         }else{
             phone=products.getPhone();
         }
@@ -121,7 +120,7 @@ String orderid,latid,langid,custlatid,custlangid,modestr,phone;
 
         Glide.with(activity).load(products.getProducticon()).placeholder(R.drawable.ic_gallery__default).dontAnimate().into(holder.image);
 
-        holder.vieworder.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
@@ -140,10 +139,9 @@ String orderid,latid,langid,custlatid,custlangid,modestr,phone;
                 selectedFragment = AcceptOrderDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout1, selectedFragment);
-                transaction.addToBackStack("accept");
+                transaction.addToBackStack("acceptmap");
                 selectedFragment.setArguments(bundle);
                 System.out.println("bundlev"+bundle);
-
                 transaction.commit();
             }
         });

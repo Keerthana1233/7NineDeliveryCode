@@ -64,7 +64,7 @@ public class FirmShopDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_firm_details_layout, container, false);
 
-        Status_bar_change_singleton.getInstance().color_change(getActivity());
+       Status_bar_change_singleton.getInstance().color_change(getActivity());
 
         Continue = view.findViewById(R.id.continuebtn);
         shopname = view.findViewById(R.id.shopname);
@@ -111,9 +111,14 @@ public class FirmShopDetailsFragment extends Fragment {
             e.printStackTrace();
         }*/
 
+
+
+
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
+
+
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
@@ -508,6 +513,7 @@ public class FirmShopDetailsFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("verification_status","Edit_Page");
             status="Edit_Page";
+
             selectedFragment = Edit_Verification_Fragment.newInstance();
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame_layout1, selectedFragment);

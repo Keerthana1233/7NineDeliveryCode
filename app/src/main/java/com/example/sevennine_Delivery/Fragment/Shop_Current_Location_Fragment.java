@@ -1,4 +1,5 @@
 package com.example.sevennine_Delivery.Fragment;
+
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -19,20 +20,19 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.android.volley.VolleyLog;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 import com.example.sevennine_Delivery.Urls;
 import com.example.sevennine_Delivery.Volly_class.Crop_Post;
 import com.example.sevennine_Delivery.Volly_class.VoleyJsonObjectCallback;
 import com.google.android.gms.common.ConnectionResult;
-
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -53,20 +53,20 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.util.List;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
+import static com.android.volley.VolleyLog.TAG;
 
 
 public class Shop_Current_Location_Fragment extends Fragment implements
+
         OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener,View.OnClickListener {
+        LocationListener, View.OnClickListener {
+
     Fragment selectedFragment;
     private LocationRequest mLocationRequest;
     private GoogleMap.OnCameraIdleListener onCameraIdleListener;
@@ -82,7 +82,7 @@ public class Shop_Current_Location_Fragment extends Fragment implements
     int mDimension;
     SessionManager sessionManager;
     String curr_latitude,curr_longitude;
-    LatLng  latLag,latLng;
+    LatLng latLag,latLng;
     JSONArray get_location_array;
     String location_id;
     public static JSONObject lngObject;
@@ -102,7 +102,7 @@ public class Shop_Current_Location_Fragment extends Fragment implements
         displayLocationSettingsRequest(getActivity());
         //  resutText = (TextView) view.findViewById(R.id.curr_address);
 
-        sessionManager = new SessionManager(getActivity());
+
         back_feed = view.findViewById(R.id.back_feed);
         //    confirm_loc = view.findViewById(R.id.confirm_loc);
         capture_loc = view.findViewById(R.id.capture_loc);
@@ -127,6 +127,12 @@ public class Shop_Current_Location_Fragment extends Fragment implements
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
             layoutParams.setMargins(0, 0, 30, 30);
         }
+
+
+        sessionManager = new SessionManager(getActivity());
+
+
+
 
 
 
@@ -173,75 +179,9 @@ public class Shop_Current_Location_Fragment extends Fragment implements
         back_feed.setOnClickListener(this);
         capture_loc.setOnClickListener(this);
 
-      //  back_feed.setOnClickListener(this);
-        //capture_loc.setOnClickListener(this);
-
         return view;
     }
 
-
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        //stop location updates when Activity is no longer active
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-            mapFrag.getMapAsync(this);
-            configureCameraIdle();
-        }
-    }
-
-
-    @Override
-    public void onMapReady(GoogleMap googleMap)
-    {
-        mGoogleMap=googleMap;
-       // captured_location();
-        configureCameraIdle();
-        mGoogleMap.setOnCameraIdleListener(onCameraIdleListener);
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(getActivity(),
-
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
-                //Location Permission already granted
-                buildGoogleApiClient();
-                mGoogleMap.setMyLocationEnabled(true);
-
-            } else {
-                //Request Location Permission
-                checkLocationPermission();
-            }
-        }
-
-        else {
-            buildGoogleApiClient();
-            mGoogleMap.setMyLocationEnabled(true);
-        }
-
-
-
-    }
-
-
-
-
-
-
-
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-        mGoogleApiClient.connect();
-
-    }
 
     public void  shop_current_location(){
         System.out.println("hrrrjjkjlklohnklholk"+getArguments().getString("Edit_Fragment"));
@@ -308,7 +248,137 @@ public class Shop_Current_Location_Fragment extends Fragment implements
 
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //stop location updates when Activity is no longer active
+        if (mGoogleApiClient != null) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+            mapFrag.getMapAsync(this);
+            configureCameraIdle();
+        }
+    }
+
+
+    @Override
+    public void onMapReady(GoogleMap googleMap)
+    {
+        mGoogleMap=googleMap;
+        captured_location();
+        configureCameraIdle();
+        mGoogleMap.setOnCameraIdleListener(onCameraIdleListener);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(getActivity(),
+
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                //Location Permission already granted
+                buildGoogleApiClient();
+                mGoogleMap.setMyLocationEnabled(true);
+
+            } else {
+                //Request Location Permission
+                checkLocationPermission();
+            }
+        }
+
+        else {
+            buildGoogleApiClient();
+            mGoogleMap.setMyLocationEnabled(true);
+        }
+
+
+
+    }
+
+
+    private void captured_location() {
+
+
+
+        try{
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("UserId",sessionManager.getRegId("userId"));
+
+
+            Crop_Post.crop_posting(getActivity(), Urls. Get_Shop_Location, jsonObject, new VoleyJsonObjectCallback() {
+                @Override
+                public void onSuccessResponse(JSONObject result) {
+                    System.out.println("dhfjfjd" + result);
+
+
+                    try{
+                        get_location_array = result.getJSONArray("clocationList");
+
+                        for(int i = 0;i<get_location_array.length();i++){
+
+                            JSONObject jsonObject1 = get_location_array.getJSONObject(i);
+                            double lat,lng;
+
+                            // mClusterManager.addItem(new Person(jsonObject1.getDouble("Latitude"), jsonObject1.getDouble("Longitude"), jsonObject1.getString("CapturedLocation"), jsonObject1.getString("CLocationId")));
+
+                            location_id = jsonObject1.getString("CLocationId");
+                            System.out.println("khhcmnc"+location_id);
+                            curr_latitude = jsonObject1.getString("Latitude");
+                            curr_longitude = jsonObject1.getString("Longitude");
+                           location_captured = jsonObject1.getString("CapturedLocation");
+
+
+
+
+//                                    Glide.with(getActivity()).load(image_view)
+//                                           .thumbnail(0.5f)
+//                                           //.apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)
+//                                                   .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE)
+//                                                   .error(R.drawable.avatarmale))
+//                                           .into(capture_image);
+//
+
+                        }
+                        /*Setting Marker*/
+                        MarkerOptions markerOptions = new MarkerOptions();
+                        markerOptions.position(new LatLng(Double.valueOf(curr_latitude), Double.valueOf(curr_longitude)));
+                        markerOptions.title(location_captured);
+                        mGoogleMap.addMarker(markerOptions);
+
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+//
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+        mGoogleApiClient.connect();
+
+    }
+
+
+
     private void displayLocationSettingsRequest(Context context) {
+
 
         GoogleApiClient googleApiClient = new GoogleApiClient.Builder(context)
                 .addApi(LocationServices.API).build();
@@ -329,15 +399,17 @@ public class Shop_Current_Location_Fragment extends Fragment implements
             public void onResult(LocationSettingsResult result) {
 
                 final Status status = result.getStatus();
+
                 switch (status.getStatusCode()) {
+
                     case LocationSettingsStatusCodes.SUCCESS:
                         Log.i(TAG, "All location settings are satisfied.");
+
                         break;
 
 
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         Log.i(TAG, "Location settings are not satisfied. Show the user a dialog to upgrade location settings ");
-
 
                         try {
                             // Show the dialog by calling startResolutionForResult(), and check the result
@@ -346,6 +418,7 @@ public class Shop_Current_Location_Fragment extends Fragment implements
                         } catch (IntentSender.SendIntentException e) {
                             Log.i(TAG, "PendingIntent unable to execute request.");
                         }
+
 
                         break;
 
@@ -383,8 +456,7 @@ public class Shop_Current_Location_Fragment extends Fragment implements
     {
 
         mLastLocation = location;
-        Log.d(VolleyLog.TAG, "onLocationChanged");
-        updateUI(location);
+
         if (mCurrLocationMarker != null) {
             mCurrLocationMarker.remove();
 
@@ -409,7 +481,7 @@ public class Shop_Current_Location_Fragment extends Fragment implements
                     curr_latitude = String.valueOf(addressList.get(0).getLatitude());
                 curr_longitude = String.valueOf(addressList.get(0).getLongitude());
                 state = addressList.get(0).getLocality()+","+addressList.get(0).getAdminArea();
-                // statelatlongi=addressList.get(0).getLongitude()+","+addressList.get(0).getLatitude();
+               // statelatlongi=addressList.get(0).getLongitude()+","+addressList.get(0).getLatitude();
 
                 System.out.println("movelocation2"+ statelatlongi);
 
@@ -420,27 +492,17 @@ public class Shop_Current_Location_Fragment extends Fragment implements
 
         System.out.println("djhgfhfdhfddjksdh" + curr_latitude);
 
-        System.out.println("djhgfhfdhfddjksdh" + curr_latitude);
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
-try {
-    mGoogleMap.addCircle(new CircleOptions()
-            .center(latLng)
-            .radius(100)
-            .fillColor(getResources().getColor(R.color.lite_blue))
-            .strokeWidth(0));
-}catch (Exception e){
 
-}
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+
+        mGoogleMap.addCircle(new CircleOptions()
+                .center(latLng)
+                .radius(100)
+                .fillColor(getResources().getColor(R.color.lite_blue))
+                .strokeWidth(0));
+
         //   mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 18));
 
-    }
-    private void updateUI(Location loc) {
-        Log.d(VolleyLog.TAG, "updateUI");
-        Log.e(VolleyLog.TAG,Double.toString(loc.getLatitude()));
-        Log.e(VolleyLog.TAG,Double.toString(loc.getLongitude()));
-        Log.e(VolleyLog.TAG, DateFormat.getTimeInstance().format(loc.getTime()));
-        sessionManager.saveLatLng(String.valueOf(loc.getLatitude()), String.valueOf(loc.getLongitude()));
-        System.out.println("sessionManager" +loc.getLatitude()+loc.getLongitude());
     }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -448,6 +510,7 @@ try {
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Should we show an explanation?
+
             if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
                 // Show an explanation to the user *asynchronously* -- don't block
@@ -467,8 +530,11 @@ try {
                                         MY_PERMISSIONS_REQUEST_LOCATION );
                             }
                         })
+
                         .create()
                         .show();
+
+
             } else {
 
                 ActivityCompat.requestPermissions(getActivity(),
@@ -477,7 +543,10 @@ try {
             }
         }
     }
+
+
     private void configureCameraIdle() {
+
         onCameraIdleListener = new GoogleMap.OnCameraIdleListener() {
             @Override
             public void onCameraIdle() {
@@ -530,10 +599,12 @@ try {
                         }
                         mGoogleMap.setMyLocationEnabled(true);
                     }
+
                 } else {
 
                     Toast.makeText(getActivity(), "permission denied", Toast.LENGTH_LONG).show();
                 }
+
                 return;
             }
         }
@@ -556,6 +627,7 @@ try {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack("map_locatn", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 }
+
                 break;
 
             case R.id.capture_loc:
@@ -563,8 +635,6 @@ try {
                 break;
         }
     }
-
-
 
 
 

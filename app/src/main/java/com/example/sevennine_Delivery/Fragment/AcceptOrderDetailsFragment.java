@@ -107,7 +107,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
     Location loc;
-    TextView orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno,itemscosttxt,tamounttxt;
+    TextView orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno,itemscosttxt,tamounttxt,vieworder;
     ArrayList<String> permissions = new ArrayList<>();
     ArrayList<String> permissionsToRequest;
     ArrayList<String> permissionsRejected = new ArrayList<>();
@@ -124,10 +124,11 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.order_details_layout2, container, false);
-        recyclerView=view.findViewById(R.id.new_order_recy);
-        back_feed=view.findViewById(R.id.back_feed);
+    //    recyclerView=view.findViewById(R.id.new_order_recy);
+      //  back_feed=view.findViewById(R.id.back_feed);
         gpsTracker=new GPSTracker(getActivity());
-        orderidtxt=view.findViewById(R.id.orderid);
+        vieworder=view.findViewById(R.id.vieworder2);
+       /* orderidtxt=view.findViewById(R.id.orderid);
         orderdatetxt=view.findViewById(R.id.orderdate);
         modetxt=view.findViewById(R.id.mode);
         amounttxt=view.findViewById(R.id.amount);
@@ -136,7 +137,7 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         nametxt=view.findViewById(R.id.name);
         addrtxt=view.findViewById(R.id.addr);
         orderdatetxt=view.findViewById(R.id.orderdate);
-        phoneno=view.findViewById(R.id.phoneno);
+        phoneno=view.findViewById(R.id.phoneno);*/
         locationManager = (LocationManager) getActivity().getSystemService(Service.LOCATION_SERVICE);
         isGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         isNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -146,6 +147,20 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         gpsTracker = new GPSTracker(getActivity());
 
         toolbartxt=view.findViewById(R.id.toolbartxt);
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("acceptmap", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    return true;
+                }
+                return false;
+
+            }
+        });
         if (!isGPS && !isNetwork) {
             Log.d(TAG, "Connection off");
             showSettingsAlert();
@@ -176,17 +191,20 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
             createddate = bundle.getString("orderdate");
             addr = bundle.getString("addr");
             mode = bundle.getString("mode");
+            mobilestr = bundle.getString("mobile");
+            pronamestr = bundle.getString("proname");
+            proimgstr = bundle.getString("proimg");
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             String dtStart = createddate;
             System.out.println("getCreateddate"+dtStart);
 
             try {
                 date = format.parse(dtStart);
-                orderdatetxt.setText(date.getDate()+"/"+(1+date.getMonth())+"/"+(1900+date.getYear()+" "+date.getHours()+":"+date.getMinutes()));
+               // orderdatetxt.setText(date.getDate()+"/"+(1+date.getMonth())+"/"+(1900+date.getYear()+" "+date.getHours()+":"+date.getMinutes()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            orderidtxt.setText(orderid);
+         /*   orderidtxt.setText(orderid);
             amounttxt.setText(amount);
             tamounttxt.setText(amount);
             itemscosttxt.setText(amount);
@@ -195,14 +213,14 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
             addrtxt.setText(" "+s);
             //addrtxt.setText(addr);
             modetxt.setText(mode);
-            mobilestr = bundle.getString("mobile");
+
             try {
                 mask = maskString(mobilestr, 4, 10, '*');
             } catch (Exception e) {
                 e.printStackTrace();
             }
             // String result = number.substring(number.length() - 4).replace(String.valueOf(number.length()), "*");
-            phoneno.setText(mask);
+            phoneno.setText(mask);*/
            // phoneno.setText(mobilestr);
         }
         sessionManager = new SessionManager(getActivity());
@@ -210,56 +228,45 @@ public class AcceptOrderDetailsFragment extends Fragment implements LocationList
         dellang = sessionManager.getRegId("longtitude");
         Window window = getActivity().getWindow();
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
-        /*view.setFocusableInTouchMode(true);
-        view.requestFocus();
-        view.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                    selectedFragment = HomeMenuFragment.newInstance();
-                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_layout1, selectedFragment);
-                    transaction.commit();
-                    return true;
-                }
-                return false;
-
-            }
-        });
-*/
-        back_feed.setOnClickListener(new View.OnClickListener() {
+        vieworder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().onBackPressed();
+                Bundle bundle = new Bundle();
+                bundle.putString("proimg", proimgstr);
+                bundle.putString("proname",pronamestr);
+                bundle.putString("orderId", orderid);
+                bundle.putString("latidkey",latid);
+                bundle.putString("langidkey",langid);
+                bundle.putString("custlatidkey",custlat);
+                bundle.putString("custlangidkey",custlong);
+                bundle.putString("orderdate",createddate);
+                bundle.putString("totalamount",amount);
+                bundle.putString("addr",addr);
+                bundle.putString("mode",mode);
+                bundle.putString("mobile",mobilestr);
+                selectedFragment = AcceptOrderDetailsFragmentview.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout1, selectedFragment);
+                transaction.addToBackStack("acceptview");
+                selectedFragment.setArguments(bundle);
+                System.out.println("bundlev"+bundle);
+
+                transaction.commit();
             }
         });
-      view.setFocusableInTouchMode(true);
-        view.requestFocus();
-        view.setOnKeyListener( new View.OnKeyListener()
-        {
-            @Override
-            public boolean onKey( View v, int keyCode, KeyEvent event )
-            {
-                if( keyCode == KeyEvent.KEYCODE_BACK )
-                {
-                    return true;
-                }
-                return false;
-            }
-        } );
+
         Trackingmap();
         newOrderBeansList.clear();
-        GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
+      /*  GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        pronamestr = bundle.getString("proname");
-        proimgstr = bundle.getString("proimg");
+
         OrderDetailBean bean=new OrderDetailBean(pronamestr,"1",amount,"Rs.2","Rs.2",proimgstr);
         newOrderBeansList.add(bean);
        newOrderBeansList.add(bean);
         //   newOrderBeansList.add(bean);
         madapter=new AcceptOrderDetailsAdapter(getActivity(),newOrderBeansList);
-        recyclerView.setAdapter(madapter);
+        recyclerView.setAdapter(madapter);*/
         //    LoanInformation();
         return view;
 

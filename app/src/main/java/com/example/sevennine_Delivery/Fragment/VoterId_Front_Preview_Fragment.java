@@ -40,7 +40,6 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 import com.example.sevennine_Delivery.Urls;
@@ -54,8 +53,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.android.volley.VolleyLog.TAG;
-
-
 
 
 public class VoterId_Front_Preview_Fragment extends Fragment {

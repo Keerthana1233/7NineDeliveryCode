@@ -36,6 +36,8 @@ public class Urls {
    public static final String Add_Front_Voter_ID_Details = ROOT_URL + "MasterTable/AddUpdateDrivingLicenseFrontDetails";
    public static final String BankList=ROOT_URL+"Loan/GetBankList";
    public static final String Delete_Bank_Details = ROOT_URL + "MasterTable/DeleteBankDetails";
+    public static final String Add_Update_Image_Details = ROOT_URL+"MasterTable/AddUpdateCImageDetails";
+    public static final String Add_Back_Voter_ID_Details = ROOT_URL + "MasterTable/AddUpdateDrivingLicenseBackDetails";
 
     public static final String Get_New_Address = ROOT_URL+"MasterTable/GetUserAddress";
     // Wallet

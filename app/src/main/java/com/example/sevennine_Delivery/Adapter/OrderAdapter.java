@@ -1,6 +1,9 @@
 package com.example.sevennine_Delivery.Adapter;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +26,7 @@ import com.example.sevennine_Delivery.Bean.NewOrderBean;
 import com.example.sevennine_Delivery.Fragment.AcceptOrderDetailsFragment;
 import com.example.sevennine_Delivery.Fragment.CancelOrderDetailsFragment;
 import com.example.sevennine_Delivery.Fragment.OrderDetailsFragment;
+import com.example.sevennine_Delivery.Fragment.Verification_Last_Fragment;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 import com.example.sevennine_Delivery.Urls;
@@ -45,7 +49,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     SessionManager sessionManager;
     public LinearLayout linearLayout;
 GPSTracker gpsTracker;
-    String phonestr,modestr;
+    String phonestr,modestr,acceptorderid,amount,payuid,addrid,image,storelat,storelang,custlat,custlang;
     public static CardView cardView;
     Date date;
     public OrderAdapter(Activity activity, List<NewOrderBean> productList) {
@@ -89,6 +93,15 @@ GPSTracker gpsTracker;
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
     final NewOrderBean products = productList.get(position);
+    acceptorderid=products.getProd_name();
+        amount=products.getProd_price();
+        payuid=products.getPayuid();
+        addrid=products.getAddr();
+        image=products.getImage();
+        storelat=products.getLatitude();
+        storelang=products.getLongitude();
+        custlat=products.getCustlat();
+        custlang=products.getCustlong();
       holder.prod_name.setText(products.getProd_name());
         holder.prod_price.setText(products.getProd_price());
 
@@ -102,8 +115,7 @@ GPSTracker gpsTracker;
         }
         holder.cod.setText(modestr);
         if(products.getPhone().equalsIgnoreCase("")){
-            phonestr = "7899454922";
-            //+ "," + "76.48490166";
+            phonestr = "9999999999";
         }else{
             phonestr=products.getPhone();
         }
@@ -137,23 +149,45 @@ GPSTracker gpsTracker;
         holder.acceptorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertMessage();
+            }
+        });
+    }
+    private void AlertMessage() { // alert dialog box
+
+
+        final TextView ok_btn,cancel_btn,text_desc;
+        final Dialog dialog = new Dialog(activity);
+        dialog.setContentView(R.layout.acceptorderpopup);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        //   dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+
+
+
+        ok_btn =  dialog.findViewById(R.id.ok_btn);
+        cancel_btn =  dialog.findViewById(R.id.cancel_btn);
+        text_desc =  dialog.findViewById(R.id.text_desc);
+        ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 JSONObject params = new JSONObject();
                 try {
                     params.put("UserId",sessionManager.getRegId("userId"));
-                    params.put("AcceptOrdersId",products.getProd_name());  // amount
-                    params.put("Amount",products.getProd_price());  // amount
-                    params.put("PayUTransactionId",products.getPayuid());  //transaction fees
-                    params.put("ProductInfo",products.getAddr());
+                    params.put("AcceptOrdersId",acceptorderid);  // amount
+                    params.put("Amount",amount);  // amount
+                    params.put("PayUTransactionId",payuid);  //transaction fees
+                    params.put("ProductInfo",addrid);
                     params.put("SellingListName","flower");
                     params.put("CategoryName","testingfruit");
                     params.put("SelectedQuantity","1"); //using status
                     params.put("UnitOfPrice","ampers");
-                    params.put("SellingListIcon",products.getImage());
-                    params.put("Latitude",products.getLatitude());  //tarnsaction id
-                    params.put("Longitude",products.getLongitude());
+                    params.put("SellingListIcon",image);
+                    params.put("Latitude",storelat);  //tarnsaction id
+                    params.put("Longitude",storelang);
                     params.put("CustomerName","test");
-                    params.put("CustLatitude",products.getCustlat());
-                    params.put("CustLongitude",products.getCustlong());
+                    params.put("CustLatitude",custlat);
+                    params.put("CustLongitude",custlang);
                     params.put("CreatedBy",sessionManager.getRegId("userId"));
                     System.out.println("RESPMsgdsfadf"+params);
                     Login_post.login_posting(activity, Urls.AddAccept, params, new VoleyJsonObjectCallback() {
@@ -164,10 +198,7 @@ GPSTracker gpsTracker;
                                 System.out.println("nnnnnmnm" + result.toString());
                                 String status=result.getString("Status");
                                 if(status.equals("1")){
-
-                                    Toast toast = Toast.makeText(activity,"Order details Accepted for Delhivery Successfully", Toast.LENGTH_LONG);
-                                    toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
-                                    toast.show();
+                                    dialog.dismiss();
                                 }
                                 else {
                                     Toast toast = Toast.makeText(activity,"Order details  Not Accepted", Toast.LENGTH_LONG);
@@ -183,10 +214,53 @@ GPSTracker gpsTracker;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         });
-    }
 
+
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+            }
+        });
+
+        dialog.show();
+
+
+//
+//
+//CInventory_Adapter.MyViewHolder viewHolder1 =(CInventory_Adapter.MyViewHolder) CInventory_Fragment.recyclerView.findViewHolderForAdapterPosition(CInventory_Adapter.selected_position);
+
+//        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity(),R.style.AppCompatAlertDialogStyle);
+//        alertDialogBuilder.setMessage("Do you want to submit the details for verification?");
+//        //alertDialogBuilder.setMessage(Html.fromHtml("<font size = '18dp'>Do You want to submit the details for verification?</font>"));
+//        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                selectedFragment = Verification_Last_Fragment.newInstance();
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.frame_layout1, selectedFragment);
+//                transaction.commit();
+//
+//            }
+//        });
+//
+//        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                dialogInterface.dismiss();
+//            }
+//        });
+//
+//        alertDialogBuilder.setCancelable(false);
+//        alertDialogBuilder.show();
+
+
+    }
     @Override
     public int getItemCount() {
         System.out.println("lengthhhhhhh"+productList.size());

@@ -1,8 +1,7 @@
 package com.example.sevennine_Delivery.Fragment;
 
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
+
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -39,10 +38,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-
-public class OrderDetailsFragment extends Fragment {
-//commit code eod
+public class AcceptOrderDetailsFragmentview extends Fragment {
+    //commit code eod
     public static List<OrderDetailBean> newOrderBeansList = new ArrayList<>();
     public static RecyclerView recyclerView;
     LinearLayout back_feed;
@@ -55,14 +52,14 @@ public class OrderDetailsFragment extends Fragment {
     Date date;
     String mask;
     String orderid,addr,mode,amount,createddate,lat,longi,mobilestr,pronamestr,proimgstr,payuidstr,cuslat,cuslongi;
-    public static OrderDetailsFragment newInstance() {
-        OrderDetailsFragment fragment = new OrderDetailsFragment();
+    public static AcceptOrderDetailsFragmentview newInstance() {
+        AcceptOrderDetailsFragmentview fragment = new AcceptOrderDetailsFragmentview();
         return fragment;
     }
     //git push -u https://github.com/Keerthana1233/7NineDeliveryCode.git master
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.order_details_layout, container, false);
+        View view = inflater.inflate(R.layout.order_details_layoutview, container, false);
         recyclerView=view.findViewById(R.id.new_order_recy);
         orderidtxt=view.findViewById(R.id.orderid);
         orderdatetxt=view.findViewById(R.id.orderdate);
@@ -85,7 +82,7 @@ public class OrderDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.popBackStack("new", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("acceptview", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
         });
         view.setFocusableInTouchMode(true);
@@ -98,7 +95,7 @@ public class OrderDetailsFragment extends Fragment {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("new", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack("acceptview", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
                     return true;
                 }
@@ -109,46 +106,46 @@ public class OrderDetailsFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             orderid = bundle.getString("orderId");
+          /*  latid = bundle.getString("latidkey");
+            langid = bundle.getString("langidkey");
+            custlat= bundle.getString("custlatidkey");
+            custlong= bundle.getString("custlangidkey");
+            System.out.println("rtyr"+custlat);*/
             amount = bundle.getString("totalamount");
-            mobilestr = bundle.getString("mobile");
-            String number = mobilestr;
-
-            try {
-                mask = maskString(number, 4, 10, '*');
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            // String result = number.substring(number.length() - 4).replace(String.valueOf(number.length()), "*");
-            phoneno.setText(mask);
-            phoneno1.setText(mask);
-           // phoneno.setText(mobilestr);
             createddate = bundle.getString("orderdate");
+            addr = bundle.getString("addr");
+            mode = bundle.getString("mode");
+            mobilestr = bundle.getString("mobile");
+            pronamestr = bundle.getString("proname");
+            proimgstr = bundle.getString("proimg");
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-
             String dtStart = createddate;
             System.out.println("getCreateddate"+dtStart);
 
             try {
                 date = format.parse(dtStart);
-                orderdatetxt.setText(date.getDate()+"/"+(1+date.getMonth())+"/"+(1900+date.getYear()+" "+date.getHours()+":"+date.getMinutes()));
+                // orderdatetxt.setText(date.getDate()+"/"+(1+date.getMonth())+"/"+(1900+date.getYear()+" "+date.getHours()+":"+date.getMinutes()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            addr = bundle.getString("addr");
-            mode = bundle.getString("mode");
-            lat = bundle.getString("lat");
-            longi = bundle.getString("long");
-            cuslat = bundle.getString("cuslat");
-            cuslongi = bundle.getString("cuslong");
-
-            orderidtxt.setText(orderid);
+        orderidtxt.setText(orderid);
             amounttxt.setText("₹"+Double.parseDouble(amount));
             tamounttxt.setText("₹"+Double.parseDouble(amount));
             itemscosttxt.setText("₹"+Double.parseDouble(amount));
-            String s = addr;
+          String s = addr;
             s = s.replace(",",",\n");
             addrtxt.setText(" "+s);
+            //addrtxt.setText(addr);
             modetxt.setText(mode);
+
+           /* try {
+                mask = maskString(mobilestr, 4, 10, '*');
+            } catch (Exception e) {
+                e.printStackTrace();
+            }*/
+            // String result = number.substring(number.length() - 4).replace(String.valueOf(number.length()), "*");
+          //  phoneno.setText(mask);
+            // phoneno.setText(mobilestr);
         }
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
@@ -160,24 +157,112 @@ public class OrderDetailsFragment extends Fragment {
         OrderDetailBean bean=new OrderDetailBean(pronamestr,"1",amount,"₹0","₹0",proimgstr);
         newOrderBeansList.add(bean);
         //newOrderBeansList.add(bean);
-     //   newOrderBeansList.add(bean);
+        //   newOrderBeansList.add(bean);
 
         madapter=new OrderDetailsAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(madapter);
 
-        acceptbtn1.setOnClickListener(new View.OnClickListener() {
+       /* acceptbtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertMessage();
+                JSONObject params = new JSONObject();
+                try {
+                    params.put("UserId",sessionManager.getRegId("userId"));
+                    params.put("AcceptOrdersId",orderid);  // amount
+                    params.put("Amount",amount);  // amount
+                    params.put("PayUTransactionId",payuidstr);  //transaction fees
+                    params.put("ProductInfo",addr);
+                    params.put("SellingListName","flower");
+                    params.put("CategoryName","testingfruit");
+                    params.put("SelectedQuantity","1"); //using status
+                    params.put("UnitOfPrice","ampers");
+                    params.put("SellingListIcon","");
+                    params.put("Latitude",lat);  //tarnsaction id
+                    params.put("Longitude",longi);
+                    params.put("CustomerName","test");
+                    params.put("CustLatitude",cuslat);
+                    params.put("CustLongitude",cuslongi);
+                    params.put("CreatedBy",sessionManager.getRegId("userId"));
+                    System.out.println("RESPMsgdsfadf"+params);
+                    Login_post.login_posting(getActivity(), Urls.AddAccept, params, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.println("llllllllllllllllllllllllllll"+result);
+                            try {
+                                System.out.println("nnnnnmnm" + result.toString());
+                                String status=result.getString("Status");
+                                if(status.equals("1")){
+                                    Toast toast = Toast.makeText(getActivity(),"Order details Accepted for Delhivery Successfully", Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
+                                    toast.show();
+                                }
+                                else {
+                                    Toast toast = Toast.makeText(getActivity(),"Order details  Not Accepted", Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
+                                    toast.show();
+                                    //  Toast.makeText(getActivity(),"Transaction Incomplete",Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
-    //LoanInformation();
+        //    LoanInformation();
         acceptbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertMessage();
+                JSONObject params = new JSONObject();
+                try {
+                    params.put("UserId",sessionManager.getRegId("userId"));
+                    params.put("AcceptOrdersId",orderid);  // amount
+                    params.put("Amount",amount);  // amount
+                    params.put("PayUTransactionId",payuidstr);  //transaction fees
+                    params.put("ProductInfo",addr);
+                    params.put("SellingListName","flower");
+                    params.put("CategoryName","testingfruit");
+                    params.put("SelectedQuantity","1"); //using status
+                    params.put("UnitOfPrice","ampers");
+                    params.put("SellingListIcon","");
+                    params.put("Latitude",lat);  //tarnsaction id
+                    params.put("Longitude",longi);
+                    params.put("CustomerName","test");
+                    params.put("CustLatitude",cuslat);
+                    params.put("CustLongitude",cuslongi);
+                    params.put("CreatedBy",sessionManager.getRegId("userId"));
+                    System.out.println("RESPMsgdsfadf"+params);
+                    Login_post.login_posting(getActivity(), Urls.AddAccept, params, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.println("llllllllllllllllllllllllllll"+result);
+                            try {
+                                System.out.println("nnnnnmnm" + result.toString());
+                                String status=result.getString("Status");
+                                if(status.equals("1")){
+                                    Toast toast = Toast.makeText(getActivity(),"Order details Accepted for Delhivery Successfully", Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
+                                    toast.show();
+                                }
+                                else {
+                                    Toast toast = Toast.makeText(getActivity(),"Order details  Not Accepted", Toast.LENGTH_LONG);
+                                    toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
+                                    toast.show();
+                                    //  Toast.makeText(getActivity(),"Transaction Incomplete",Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-        });
+        });*/
         return view;
     }
 
@@ -210,114 +295,5 @@ public class OrderDetailsFragment extends Fragment {
         return strText.substring(0, start)
                 + sbMaskString.toString()
                 + strText.substring(start + maskLength);
-    }
-
-    private void AlertMessage() { // alert dialog box
-
-
-        final TextView ok_btn,cancel_btn,text_desc;
-        final Dialog dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.acceptorderpopup);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        //   dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-
-
-
-        ok_btn =  dialog.findViewById(R.id.ok_btn);
-        cancel_btn =  dialog.findViewById(R.id.cancel_btn);
-        text_desc =  dialog.findViewById(R.id.text_desc);
-        ok_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                JSONObject params = new JSONObject();
-                try {
-                    params.put("UserId",sessionManager.getRegId("userId"));
-                    params.put("AcceptOrdersId",orderid);  // amount
-                    params.put("Amount",amount);  // amount
-                    params.put("PayUTransactionId",payuidstr);  //transaction fees
-                    params.put("ProductInfo",addr);
-                    params.put("SellingListName","flower");
-                    params.put("CategoryName","testingfruit");
-                    params.put("SelectedQuantity","1"); //using status
-                    params.put("UnitOfPrice","ampers");
-                    params.put("SellingListIcon","");
-                    params.put("Latitude",lat);  //tarnsaction id
-                    params.put("Longitude",longi);
-                    params.put("CustomerName","test");
-                    params.put("CustLatitude",cuslat);
-                    params.put("CustLongitude",cuslongi);
-                    params.put("CreatedBy",sessionManager.getRegId("userId"));
-                    System.out.println("RESPMsgdsfadf"+params);
-                    Login_post.login_posting(getActivity(), Urls.AddAccept, params, new VoleyJsonObjectCallback() {
-                        @Override
-                        public void onSuccessResponse(JSONObject result) {
-                            System.out.println("llllllllllllllllllllllllllll"+result);
-                            try {
-                                System.out.println("nnnnnmnm" + result.toString());
-                                String status=result.getString("Status");
-                                if(status.equals("1")){
-                                    dialog.dismiss();
-                                }
-                                else {
-                                    Toast toast = Toast.makeText(getActivity(),"Order details  Not Accepted", Toast.LENGTH_LONG);
-                                    toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
-                                    toast.show();
-                                    //  Toast.makeText(getActivity(),"Transaction Incomplete",Toast.LENGTH_LONG).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-
-
-        cancel_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-
-            }
-        });
-
-        dialog.show();
-
-
-//
-//
-//CInventory_Adapter.MyViewHolder viewHolder1 =(CInventory_Adapter.MyViewHolder) CInventory_Fragment.recyclerView.findViewHolderForAdapterPosition(CInventory_Adapter.selected_position);
-
-//        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity(),R.style.AppCompatAlertDialogStyle);
-//        alertDialogBuilder.setMessage("Do you want to submit the details for verification?");
-//        //alertDialogBuilder.setMessage(Html.fromHtml("<font size = '18dp'>Do You want to submit the details for verification?</font>"));
-//        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                selectedFragment = Verification_Last_Fragment.newInstance();
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                transaction.replace(R.id.frame_layout1, selectedFragment);
-//                transaction.commit();
-//
-//            }
-//        });
-//
-//        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                dialogInterface.dismiss();
-//            }
-//        });
-//
-//        alertDialogBuilder.setCancelable(false);
-//        alertDialogBuilder.show();
-
-
     }
 }

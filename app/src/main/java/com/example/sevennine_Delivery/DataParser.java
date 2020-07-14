@@ -99,3 +99,31 @@ public class DataParser {
         return poly;
     }
 }
+/*
+
+    // icon need to chnage
+    Delhivery name..
+        localization is required(p3)
+        icons lanug should be chnage
+        content should chnage in splash screen
+        in login screen content should change
+        design Seperator line light black
+        7)gio location icon for address
+        8)address should change and use cardview
+        9)0 replace two digits 00 -take 7nine essentails
+        10)postage and package--same like 7nine essentails
+        11)cod take from essentails.
+        12)order number -first
+        13)order date -second
+        14)shipiining address 1 nd half line
+        15)down buttons accept buttons shouls static
+16)Tomato -local
+        17)discount
+        18)Confirmation popup accept design..
+        19)View and cancel button should remove
+        20 sME Cardview page need to add essentails
+        21)Order details remove
+        22)mapview 100 percent like uber
+        23)order details toolbar should remove
+        24)Start tracking button should fix bottom..
+        25)cancel button replace order details page..same like...*/

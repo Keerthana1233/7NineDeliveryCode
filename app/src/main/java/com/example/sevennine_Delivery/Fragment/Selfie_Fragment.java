@@ -13,7 +13,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -26,7 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
@@ -34,7 +32,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.sevennine_Delivery.Activity.Status_bar_change_singleton;
 import com.example.sevennine_Delivery.R;
+import com.example.sevennine_Delivery.SessionManager;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.json.JSONException;
@@ -66,9 +66,9 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
     View sheetView;
     public static JSONObject lngObject;
     private static final int REQUEST_PERMISSIONS = 100;
-    public  static  Bitmap selectedImage;
+    public  static Bitmap selectedImage;
     Fragment selectedFragment;
-
+    SessionManager sessionManager;
 
 
 
@@ -84,19 +84,49 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
         View view = inflater.inflate(R.layout.activity_camera, container, false);
         //  getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
+        Status_bar_change_singleton.getInstance().color_change(getActivity());
         //  HomePage_With_Bottom_Navigation.linear_bottonsheet.setVisibility(View.GONE);
 
         //  System.out.println("sdfjhsdfgjsgfjsd"+ HomePage_With_Bottom_Navigation.farm_latitude);
 
 
-        imageView=view.findViewById(R.id.image);
+         imageView=view.findViewById(R.id.image);
         backfeed=view.findViewById(R.id.backfeed);
 
-        //  selfie=view.findViewById(R.id.selfie);
+        sessionManager = new SessionManager(getActivity());
+      //  selfie=view.findViewById(R.id.selfie);
 
 
         constraintLayout=view.findViewById(R.id.const_lyt);
+
+        backfeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                if (FirmShopDetailsFragment.status.equals("Verify_Page")) {
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("verification_status","Verify_Page");
+                    selectedFragment = Verification_Fragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout1, selectedFragment);
+                    selectedFragment.setArguments(bundle);
+                    transaction.commit();
+
+
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("verification_status","Edit_Page");
+                    selectedFragment = Edit_Verification_Fragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout1, selectedFragment);
+                    transaction.commit();
+
+                }
+
+            }
+        });
 
 
 
@@ -131,13 +161,14 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
 
                     }
 
-
                     return true;
 
                 }
                 return false;
             }
         });
+
+
 
 
 
@@ -174,11 +205,42 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
 
         final TextView title_details_front = sheetView.findViewById(R.id.selfie_details);
 
-        final TextView  front_tips1 = sheetView.findViewById(R.id.selfie_tips1);
+        final TextView front_tips1 = sheetView.findViewById(R.id.selfie_tips1);
         final TextView front_tips2 = sheetView.findViewById(R.id.selfie_tips2);
         final TextView front_tips3 = sheetView.findViewById(R.id.selfie_tips3);
         final TextView front_tips4 = sheetView.findViewById(R.id.selfie_tips4);
 
+
+        try {
+
+
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+            System.out.println("llllllllllllkkkkkkkkkkkkkkk" + lngObject.getString("EnterPhoneNo"));
+
+
+            tips.setText(lngObject.getString("Tips"));
+            title.setText(lngObject.getString("ClickaSelfie"));
+            title_details_front.setText(lngObject.getString("Weverifyyourselfiebycomparingitwiththephotoonyourvoteridcard"));
+
+            front_tips1.setText(lngObject.getString("Placeyourfacewithintheframe"));
+            front_tips2.setText(lngObject.getString("Ensurethattheroomhasgoodlighting"));
+            front_tips3.setText(lngObject.getString("Photoshouldbeclearandsharp"));
+            front_tips4.setText(lngObject.getString("Dontincludeobjectsinthebackground").replace("\n",""));
+
+
+
+
+            //  pass.setHint(lngObject.getString("Password"));
+            //  remember_me.setText(lngObject.getString("RememberMe"));
+
+
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -223,7 +285,7 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
 //            @Override
 //            public void onClick(View view) {
 
-        //
+                //
 
 //        camera.takePicture(null, null, jpegCallback);
 //                camera.stopPreview();
@@ -235,38 +297,43 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
 //swap the id of the camera to be used
 //                if (currentCameraId == Camera.CameraInfo.CAMERA_FACING_BACK) {
 
-        currentCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
+                    currentCameraId = Camera.CameraInfo.CAMERA_FACING_FRONT;
 
 //                } else {
 //
 //                    currentCameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
 //                }
+try {
+    camera = Camera.open(currentCameraId);
+    camera.setDisplayOrientation(90);
+    Camera.Parameters param;
+    param = camera.getParameters();
+    try {
+        // The Surface has been created, now tell the camera where to draw
+        // the preview.
+        // modify parameter
+        // param.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
+        param.setPreviewSize(352, 288);
+        param.setPictureSize(1200, 900);
+        //camera.setParameters(param);
 
-        camera = Camera.open(currentCameraId);
-
-        camera.setDisplayOrientation(90);
-        Camera.Parameters param;
-        param = camera.getParameters();
-
-        try {
-            // The Surface has been created, now tell the camera where to draw
-            // the preview.
-            // modify parameter
-            // param.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
-            param.setPreviewSize(352, 288);
-            param.setPictureSize(1200, 900);
-            //camera.setParameters(param);
-
-            camera.getParameters().getSupportedPreviewSizes();
-            camera.startPreview();
-            camera.setPreviewDisplay(surfaceHolder);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        camera.getParameters().getSupportedPreviewSizes();
         camera.startPreview();
+        camera.setPreviewDisplay(surfaceHolder);
 
-        surfaceView = view.findViewById(R.id.surfaceView);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    camera.startPreview();
+}
+    catch (Exception e){
+
+    }
+
+
+
+
+    surfaceView = view.findViewById(R.id.surfaceView);
         surfaceHolder = surfaceView.getHolder();
 
         // Install a SurfaceHolder.Callback so we get notified when the
@@ -520,10 +587,10 @@ public class Selfie_Fragment extends Fragment implements SurfaceHolder.Callback 
 
                 }else {
 
-                    Toast.makeText(getActivity().getApplicationContext(), "You haven't picked Image",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "You haven't picked Image", Toast.LENGTH_LONG).show();
                 }
 
-            } catch (FileNotFoundException e) {
+               } catch (FileNotFoundException e) {
                 e.printStackTrace();
 
                 Toast.makeText(getActivity().getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();

@@ -5,12 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:weightSum="100"
     android:background="#fff">
 
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green"
@@ -48,22 +47,20 @@
 
 
 
-    </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    </LinearLayout>-->
+
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:weightSum="100"
             android:background="#fff"
-            android:weightSum="585"
             android:orientation="vertical">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="185"
+                android:layout_weight="92"
                 >
                 <fragment
                     android:id="@+id/map"
@@ -71,11 +68,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </FrameLayout>
-            <LinearLayout
+    <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="30"
-                android:layout_marginTop="@dimen/dimen_2dp"
+                android:layout_weight="8"
+                android:layout_marginTop="@dimen/dimen_10dp"
                 android:weightSum="100"
                 android:orientation="horizontal"
                 >
@@ -83,7 +80,7 @@
                 <TextView
                     android:id="@+id/phoneno"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/dimen_30dp"
+                    android:layout_height="@dimen/dimen_40dp"
                     android:layout_marginLeft="@dimen/dimen_10dp"
                     android:layout_marginRight="@dimen/dimen_10dp"
                     android:layout_weight="30"
@@ -96,7 +93,7 @@
                 <TextView
                     android:id="@+id/vieworder2"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="@dimen/dimen_10dp"
                     android:layout_marginRight="@dimen/dimen_10dp"
                     android:layout_weight="30"
@@ -105,11 +102,11 @@
                     android:textStyle="bold"
                     android:background="@drawable/border_black"
                     android:fontFamily="@font/segoeui"
-                    android:text="Cancel" />
+                    android:text="View" />
                 <TextView
                     android:id="@+id/cancef3"
                     android:layout_width="0dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="@dimen/dimen_10dp"
                     android:layout_marginRight="@dimen/dimen_10dp"
                     android:layout_weight="40"
@@ -121,7 +118,7 @@
                     android:text="Start Tracking"
                     />
             </LinearLayout>
-            <LinearLayout
+        <!--    <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="170"
@@ -363,13 +360,13 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <!--    <android.support.v7.widget.RecyclerView
+                    &lt;!&ndash;    <android.support.v7.widget.RecyclerView
                 android:id="@+id/new_order_recy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff">
 
-            </android.support.v7.widget.RecyclerView>-->
+            </android.support.v7.widget.RecyclerView>&ndash;&gt;
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -474,7 +471,7 @@
 
                 </LinearLayout>
 
-       <!--         <TextView
+       &lt;!&ndash;         <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -797,7 +794,7 @@
                             />
                     </LinearLayout>
                 </LinearLayout>
--->
+&ndash;&gt;
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -895,7 +892,9 @@
 
             </LinearLayout>
 
+        </LinearLayout>&ndash;&gt;-->
         </LinearLayout>
-    </ScrollView>
+
+
 
 </LinearLayout>

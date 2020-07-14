@@ -117,13 +117,13 @@
 
 
     </LinearLayout>
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="right"
         android:layout_marginBottom="@dimen/dimen_10dp">
-      <!--  <TextView
+      &lt;!&ndash;  <TextView
             android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="39dp"
@@ -136,7 +136,7 @@
             android:drawablePadding="@dimen/dimen_10dp"
             android:drawableLeft="@drawable/ic_phone_call"
             android:fontFamily="@font/segoeui"
-            android:text="99********" />-->
+            android:text="99********" />&ndash;&gt;
         <TextView
             android:id="@+id/vieworder"
             android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
             android:fontFamily="@font/segoeui"
             android:text="Cancel"
             />
-    </LinearLayout>
+    </LinearLayout>-->
     <View
         android:id="@+id/view_line"
         android:layout_width="match_parent"

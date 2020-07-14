@@ -143,38 +143,12 @@
             android:textSize="16dp"
             android:textStyle="bold" />
 
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="4"
-            android:layout_marginTop="10dp"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Order Date"
-            android:textSize="14dp"
-            android:fontFamily="@font/segoeui"
-            android:layout_weight="1.5"
-            android:layout_marginLeft="10dp"
-            />
 
-            <TextView
-                android:id="@+id/orderdate"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="2.5"
-                android:fontFamily="@font/segoeui"
-                android:text="22-Mar-2020"
-                android:textColor="#000"
-                android:textSize="14dp" />
-    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="10dp"
             android:weightSum="4"
             >
             <TextView
@@ -201,7 +175,34 @@
                 />
 
         </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4"
 
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Order Date"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/segoeui"
+                    android:layout_weight="1.5"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/orderdate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2.5"
+                    android:fontFamily="@font/segoeui"
+                    android:text="22-Mar-2020"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -233,7 +234,6 @@
                         android:layout_height="wrap_content"
                         android:text=" 417.80"
                         android:textSize="14dp"
-                        android:drawableLeft="@drawable/ic_rupee_indian"
                         android:fontFamily="@font/segoeui"
                         android:textColor="#000"
                         />
@@ -412,7 +412,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" 417.80"
-                        android:drawableLeft="@drawable/ic_rupee_indian"
                         android:textSize="14dp"
                         android:textColor="#000"
                         android:fontFamily="@font/segoeui"
@@ -484,7 +483,6 @@
                         android:text=" 502.00"
                         android:textSize="14dp"
                         android:textStyle="bold"
-                        android:drawableLeft="@drawable/ic_rupee_indianred"
                         android:fontFamily="@font/segoeui"
                         android:textColor="@color/red"
                         />
