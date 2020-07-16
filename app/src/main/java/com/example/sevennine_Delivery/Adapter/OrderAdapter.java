@@ -49,8 +49,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     SessionManager sessionManager;
     public LinearLayout linearLayout;
 GPSTracker gpsTracker;
-    String phonestr,modestr,acceptorderid,amount,payuid,addrid,image,storelat,storelang,custlat,custlang;
+    String phonestr,modestr,acceptorderid,amount,payuid,addrid,image,storelat,storelang,custlat,custlang,quantity;
     public static CardView cardView;
+    String dtStart;
     Date date;
     public OrderAdapter(Activity activity, List<NewOrderBean> productList) {
         this.productList = productList;
@@ -63,20 +64,22 @@ GPSTracker gpsTracker;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView image;
-        public TextView prod_price,prod_name,cod,addr,username,vieworder,acceptorder;
+        public TextView prod_price,prod_name,cod,addr,username,vieworder,acceptorder,orderdate;
 
 
 
         public MyViewHolder(View view) {
             super(view);
             prod_name=view.findViewById(R.id.prod_name);
-            prod_price=view.findViewById(R.id.amount);
-            cod=view.findViewById(R.id.cod);
-            addr=view.findViewById(R.id.addr);
-            username=view.findViewById(R.id.username);
+            orderdate=view.findViewById(R.id.dispatched);
             image=view.findViewById(R.id.image);
             vieworder=view.findViewById(R.id.vieworder);
             acceptorder=view.findViewById(R.id.accept);
+          /*  cod=view.findViewById(R.id.cod);
+            addr=view.findViewById(R.id.addr);
+            username=view.findViewById(R.id.username);
+
+           */
         }
 
     }
@@ -102,18 +105,37 @@ GPSTracker gpsTracker;
         storelang=products.getLongitude();
         custlat=products.getCustlat();
         custlang=products.getCustlong();
-      holder.prod_name.setText(products.getProd_name());
-        holder.prod_price.setText(products.getProd_price());
-
-      holder.username.setText(products.getUsername());
-        holder.addr.setText(products.getAddr());
         if(products.getCod().equalsIgnoreCase("")){
             modestr = "COD";
             //+ "," + "76.48490166";
         }else{
             modestr=products.getCod();
         }
-        holder.cod.setText(modestr);
+     //   holder.prod_price.setText(products.getProd_price());
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String dtStart = products.getCreateddate();
+        System.out.println("getCreateddate"+dtStart);
+
+        try {
+            date = format.parse(dtStart);
+            //holder.orderdate.setText("Ordered On "+date.getYear()+"-"+(1+date.getMonth())+"-"+(date.getDate()+" "+date.getHours()+":"+date.getMinutes()));
+            holder.orderdate.setText("Ordered On "+date.getDate()+"-"+(1+date.getMonth())+"-"+(1900+date.getYear()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+     // holder.username.setText(products.getUsername());
+      //  holder.addr.setText(products.getAddr());
+
+        /*if(products.getQuantity().equals("")){
+            quantity = "1";
+            //+ "," + "76.48490166";
+        }else{
+            quantity=products.getQuantity();
+        }*/
+        holder.prod_name.setText(products.getProductname()+","+"1" +" Kg"+","+"₹"+Double.parseDouble(products.getProd_price()));
+
+        // holder.cod.setText(modestr);
         if(products.getPhone().equalsIgnoreCase("")){
             phonestr = "9999999999";
         }else{
@@ -154,8 +176,6 @@ GPSTracker gpsTracker;
         });
     }
     private void AlertMessage() { // alert dialog box
-
-
         final TextView ok_btn,cancel_btn,text_desc;
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.acceptorderpopup);

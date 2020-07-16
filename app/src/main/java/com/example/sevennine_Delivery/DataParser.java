@@ -101,8 +101,8 @@ public class DataParser {
 }
 /*
 
-    // icon need to chnage
-    Delhivery name..
+     // icon need to chnage
+        Delhivery name..
         localization is required(p3)
         icons lanug should be chnage
         content should chnage in splash screen

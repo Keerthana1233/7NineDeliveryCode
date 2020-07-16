@@ -248,7 +248,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/Postage"
+                        android:text="Shipping Fee"
                         android:textSize="14dp"
                         android:fontFamily="@font/segoeui"
                         android:layout_weight="70"
@@ -263,11 +263,11 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/sf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/segoeui"
                             android:text=" 00.00"
-                            android:drawableLeft="@drawable/ic_rupee_indian"
                             android:textColor="#000"
                             android:textSize="14dp" />
                     </LinearLayout>
@@ -297,45 +297,11 @@
                         >
 
                         <TextView
+                            android:id="@+id/tbt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_rupee_indian"
                             android:fontFamily="@font/segoeui"
                             android:text=" 00.00"
-                            android:textColor="#000"
-                            android:textSize="14dp" />
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="100"
-                    >
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Items Cost:"
-                        android:textSize="14dp"
-                        android:layout_weight="70"
-                        android:fontFamily="@font/segoeui"
-                        android:layout_marginLeft="10dp"
-                        />
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="30"
-                        android:gravity="right"
-                        android:orientation="horizontal"
-                        >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:drawableLeft="@drawable/ic_rupee_indian"
-                            android:fontFamily="@font/segoeui"
-                            android:text=" 00.00"
-
                             android:textColor="#000"
                             android:textSize="14dp" />
                     </LinearLayout>
@@ -363,11 +329,10 @@
                         android:orientation="horizontal"
                         >
                         <TextView
+                            android:id="@+id/tax"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=" 00.00"
-                            android:drawableLeft="@drawable/ic_rupee_indian"
-
+                            android:text="0.0"
                             android:textSize="14dp"
                             android:textColor="#000"
                             android:fontFamily="@font/segoeui"
@@ -422,39 +387,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="100"
-                    >
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Discount Applied:"
-                        android:textSize="14dp"
-                        android:fontFamily="@font/segoeui"
-                        android:layout_weight="70"
-                        android:layout_marginLeft="10dp"
-                        />
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="30"
-                        android:gravity="right"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" 00.00"
-                            android:drawableLeft="@drawable/ic_rupee_indian"
-                            android:textSize="14dp"
-                            android:fontFamily="@font/segoeui"
-                            android:textColor="#000"
-                            />
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="100"
                     android:layout_marginTop="10dp"
                     >
                     <TextView
@@ -494,6 +426,36 @@
                 android:layout_height="0.8dp"
                 android:layout_marginTop="10dp"
                 android:background="#dcdcdc" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Items - 1 Item"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/segoeui"
+                    android:textColor="#000"
+                    android:layout_marginLeft="10dp"
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/new_order_recy"
+                    android:layout_marginTop="@dimen/dimen_5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff">
+
+                </androidx.recyclerview.widget.RecyclerView>
+                <View
+                    android:id="@+id/view_line3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:background="#dcdcdc" />
+            </LinearLayout>
             <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -584,7 +546,13 @@
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"
                 android:weightSum="100">
-
+                <TextView
+                    android:id="@+id/cod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/mode"
                     android:layout_width="wrap_content"
@@ -604,51 +572,13 @@
                     android:textSize="14dp" />
 
 
-                <TextView
-                    android:id="@+id/coupon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/segoeui"
-                    android:layout_marginBottom="10dp"
-                    android:textColor="#000"
-                    android:textSize="14dp" />
-
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="10dp"
                 android:background="#dcdcdc" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Items - 1 Item"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/segoeui"
-                    android:textColor="#000"
-                    android:layout_marginLeft="10dp"
-                    />
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/new_order_recy"
-                    android:layout_marginTop="@dimen/dimen_5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#fff">
 
-                </androidx.recyclerview.widget.RecyclerView>
-                <View
-                    android:id="@+id/view_line3"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.8dp"
-                    android:background="#dcdcdc" />
-            </LinearLayout>
            <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

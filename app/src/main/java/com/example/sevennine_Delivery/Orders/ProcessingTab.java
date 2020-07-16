@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -79,8 +80,7 @@ SessionManager sessionManager;
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     Log.i("ONBACK", "onKey Back listener is working!!!");
                     // getFragmentManager().popBackStack("ORDER_FRAGMENT", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    getActivity().onBackPressed();
-                    // getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+             getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     return true;
                 }
                 return false;
@@ -124,7 +124,7 @@ SessionManager sessionManager;
                         jsonArray = result.getJSONArray("acceptorderfordelhivery");
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                            bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("FirstName"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),jsonObject1.getString("mode"),jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"),jsonObject1.getString("CustLongitude"),jsonObject1.getString("CustLatitude"),"8861948875",jsonObject1.getString("ProductName"),jsonObject1.getString("ProductIcon"),jsonObject1.getString("PayUTransactionId"));
+                            bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("FirstName"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),jsonObject1.getString("mode"),jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"),jsonObject1.getString("CustLongitude"),jsonObject1.getString("CustLatitude"),jsonObject1.getString("Phone"),jsonObject1.getString("ProductName"),jsonObject1.getString("ProductIcon"),jsonObject1.getString("PayUTransactionId"),jsonObject1.getString("SelectedQuantity"));
                             newOrderBeansList.add(bean);
                         }
                         madapter=new AcceptOrderAdapter(getActivity(),newOrderBeansList);

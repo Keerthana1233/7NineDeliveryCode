@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="100"
+    android:weightSum="150"
     android:background="#fff">
 
 
@@ -56,81 +56,86 @@
 
     </LinearLayout>
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        >
+        <TextView
+            android:id="@+id/phoneno"
+            android:layout_width="0dp"
+            android:layout_height="39dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:layout_weight="30"
+            android:padding="@dimen/dimen_10dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/border_black"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:fontFamily="@font/segoeui"
+            android:text="99********" />
+        <TextView
+            android:id="@+id/vieworder"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:layout_weight="30"
+            android:padding="@dimen/dimen_10dp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:background="@drawable/border_black"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:drawableLeft="@drawable/ic_close_cross"
+            android:fontFamily="@font/segoeui"
+            android:text="Cancel" />
+        <TextView
+            android:id="@+id/acceptbtn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:layout_weight="30"
+            android:padding="@dimen/dimen_10dp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:background="@drawable/border_black"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:drawableLeft="@drawable/ic_correct"
+            android:fontFamily="@font/segoeui"
+            android:text="Accept"
+            />
+    </LinearLayout>
+   <!-- <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:background="#dcdcdc" />-->
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="120">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="120"
         android:background="#fff"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dimen_10dp"
-           >
-            <TextView
-                android:id="@+id/phoneno"
-                android:layout_width="0dp"
-                android:layout_height="39dp"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:layout_marginRight="@dimen/dimen_10dp"
-                android:layout_weight="30"
-                android:padding="@dimen/dimen_10dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:background="@drawable/border_black"
-                android:drawablePadding="@dimen/dimen_10dp"
-                android:fontFamily="@font/segoeui"
-                android:text="99********" />
-            <TextView
-                android:id="@+id/vieworder"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:layout_marginRight="@dimen/dimen_10dp"
-                android:layout_weight="30"
-                android:padding="@dimen/dimen_10dp"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:background="@drawable/border_black"
-                android:drawablePadding="@dimen/dimen_10dp"
-                android:drawableLeft="@drawable/ic_close_cross"
-                android:fontFamily="@font/segoeui"
-                android:text="Cancel" />
-            <TextView
-                android:id="@+id/acceptbtn"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:layout_marginRight="@dimen/dimen_10dp"
-                android:layout_weight="30"
-                android:padding="@dimen/dimen_10dp"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:background="@drawable/border_black"
-                android:drawablePadding="@dimen/dimen_10dp"
-                android:drawableLeft="@drawable/ic_correct"
-                android:fontFamily="@font/segoeui"
-                android:text="Accept"
-                />
-        </LinearLayout>
-        <View
-            android:id="@+id/view_line"
-            android:layout_width="match_parent"
-            android:layout_height="0.8dp"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:background="#dcdcdc" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_5dp"
             android:background="#fff"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginHorizontal="15dp"
             android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
@@ -138,7 +143,7 @@
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/segoeui"
             android:text="Order Summary"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/dimen_5dp"
             android:textColor="#000"
             android:textSize="16dp"
             android:textStyle="bold" />
@@ -249,7 +254,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/Postage"
+                    android:text="Shipping Fee"
                     android:textSize="14dp"
                     android:fontFamily="@font/segoeui"
                     android:layout_weight="70"
@@ -264,11 +269,11 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/sf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/segoeui"
-                        android:text=" 00.00"
-                        android:drawableLeft="@drawable/ic_rupee_indian"
+                        android:text="0.0"
                         android:textColor="#000"
                         android:textSize="14dp" />
                 </LinearLayout>
@@ -298,45 +303,11 @@
                     >
 
                     <TextView
+                        android:id="@+id/tbt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_rupee_indian"
                         android:fontFamily="@font/segoeui"
-                        android:text=" 00.00"
-                        android:textColor="#000"
-                        android:textSize="14dp" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="100"
-                >
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Items Cost:"
-                    android:textSize="14dp"
-                    android:layout_weight="70"
-                    android:fontFamily="@font/segoeui"
-                    android:layout_marginLeft="10dp"
-                    />
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="30"
-                    android:gravity="right"
-                    android:orientation="horizontal"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:drawableLeft="@drawable/ic_rupee_indian"
-                        android:fontFamily="@font/segoeui"
-                        android:text=" 00.00"
-
+                        android:text="00.00"
                         android:textColor="#000"
                         android:textSize="14dp" />
                 </LinearLayout>
@@ -364,11 +335,10 @@
                     android:orientation="horizontal"
                     >
                     <TextView
+                        android:id="@+id/tax"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" 00.00"
-                        android:drawableLeft="@drawable/ic_rupee_indian"
-
+                        android:text="0.0"
                         android:textSize="14dp"
                         android:textColor="#000"
                         android:fontFamily="@font/segoeui"
@@ -411,46 +381,14 @@
                         android:id="@+id/tamount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" 417.80"
+                        android:text="417.80"
                         android:textSize="14dp"
                         android:textColor="#000"
                         android:fontFamily="@font/segoeui"
                         />
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="100"
-                >
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Discount Applied:"
-                    android:textSize="14dp"
-                    android:fontFamily="@font/segoeui"
-                    android:layout_weight="70"
-                    android:layout_marginLeft="10dp"
-                    />
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="30"
-                    android:gravity="right"
-                    android:orientation="horizontal"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" 00.00"
-                        android:drawableLeft="@drawable/ic_rupee_indian"
-                        android:textSize="14dp"
-                        android:fontFamily="@font/segoeui"
-                        android:textColor="#000"
-                        />
-                </LinearLayout>
-            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -495,6 +433,36 @@
             android:layout_height="0.8dp"
             android:layout_marginTop="10dp"
             android:background="#dcdcdc" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Items - 1 Item"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                android:layout_marginLeft="10dp"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/new_order_recy"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+            </androidx.recyclerview.widget.RecyclerView>
+            <View
+                android:id="@+id/view_line3"
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="#dcdcdc" />
+        </LinearLayout>
 <!--<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -545,13 +513,13 @@
             android:weightSum="100">
             <TextView
                 android:id="@+id/addr"
+                android:layout_height="fill_parent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_5dp"
                 android:fontFamily="@font/segoeui"
                 android:text=" BEML 5th stage, RR Nagar"
                 android:textColor="#000"
-                android:textSize="14dp" />
+                android:textSize="14dp"/>
         </LinearLayout>
 
         <View
@@ -585,7 +553,13 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:weightSum="100">
-
+            <TextView
+                android:id="@+id/cod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                android:textSize="14dp" />
             <TextView
                 android:id="@+id/mode"
                 android:layout_width="wrap_content"
@@ -596,114 +570,64 @@
                 android:textSize="14dp" />
 
 
-            <TextView
-                android:id="@+id/visa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/segoeui"
-                android:textColor="#000"
-                android:textSize="14dp" />
-
-
-            <TextView
-                android:id="@+id/coupon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/segoeui"
-                android:layout_marginBottom="10dp"
-                android:textColor="#000"
-                android:textSize="14dp" />
-
     </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.8dp"
-            android:layout_marginTop="10dp"
-            android:background="#dcdcdc" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Items - 1 Item"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:fontFamily="@font/segoeui"
-                android:textColor="#000"
-                android:layout_marginLeft="10dp"
-                />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/new_order_recy"
-                android:layout_marginTop="@dimen/dimen_5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff">
 
-            </androidx.recyclerview.widget.RecyclerView>
-            <View
-                android:id="@+id/view_line3"
-                android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:background="#dcdcdc" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_5dp"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/dimen_5dp"
-
-            >
-            <TextView
-                android:id="@+id/phoneno1"
-                android:layout_width="0dp"
-                android:layout_height="39dp"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:layout_marginRight="@dimen/dimen_10dp"
-                android:layout_weight="30"
-                android:padding="@dimen/dimen_10dp"
-                android:gravity="center_vertical"
-                android:background="@drawable/border_black"
-                android:drawablePadding="@dimen/dimen_10dp"
-                android:fontFamily="@font/segoeui"
-                android:text="99********" />
-            <TextView
-                android:id="@+id/vieworder1"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:layout_marginRight="@dimen/dimen_10dp"
-                android:layout_weight="30"
-                android:padding="@dimen/dimen_10dp"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:background="@drawable/border_black"
-                android:drawablePadding="@dimen/dimen_10dp"
-                android:drawableLeft="@drawable/ic_close_cross"
-                android:fontFamily="@font/segoeui"
-                android:text="Cancel" />
-            <TextView
-                android:id="@+id/acceptbtn1"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:layout_marginRight="@dimen/dimen_10dp"
-                android:layout_weight="30"
-                android:padding="@dimen/dimen_10dp"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:background="@drawable/border_black"
-                android:drawablePadding="@dimen/dimen_10dp"
-                android:drawableLeft="@drawable/ic_correct"
-                android:fontFamily="@font/segoeui"
-                android:text="Accept"
-                />
-        </LinearLayout>
     </LinearLayout>
     </ScrollView>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="10dp"
+        android:background="#dcdcdc" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/phoneno1"
+            android:layout_width="0dp"
+            android:layout_height="39dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:layout_weight="30"
+            android:padding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/border_black"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:fontFamily="@font/segoeui"
+            android:text="99********" />
+        <TextView
+            android:id="@+id/vieworder1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:layout_weight="30"
+            android:padding="@dimen/dimen_10dp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:background="@drawable/border_black"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:drawableLeft="@drawable/ic_close_cross"
+            android:fontFamily="@font/segoeui"
+            android:text="Cancel" />
+        <TextView
+            android:id="@+id/acceptbtn1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:layout_weight="30"
+            android:padding="@dimen/dimen_10dp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:background="@drawable/border_black"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:drawableLeft="@drawable/ic_correct"
+            android:fontFamily="@font/segoeui"
+            android:text="Accept"
+            />
+    </LinearLayout>
 </LinearLayout>

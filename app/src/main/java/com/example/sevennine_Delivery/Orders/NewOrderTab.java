@@ -85,7 +85,6 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     Log.i("ONBACK", "onKey Back listener is working!!!");
                  //  getFragmentManager().popBackStack("ORDER_FRAGMENT", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-               getActivity().onBackPressed();
               getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     return true;
                 }
@@ -117,8 +116,6 @@ public class NewOrderTab extends Fragment implements SwipeRefreshLayout.OnRefres
 
 public  void  Newdata(){
     mSwipeRefreshLayout.setRefreshing(true);
-
-
     try{
         newOrderBeansList.clear();
         final JSONObject jsonObject = new JSONObject();
@@ -132,7 +129,7 @@ public  void  Newdata(){
                     jsonArray = result.getJSONArray("orderfromcart");
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("FirstName"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),jsonObject1.getString("mode"),jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"),jsonObject1.getString("CustLongitude"),jsonObject1.getString("CustLatitude"),jsonObject1.getString("Phone"),jsonObject1.getString("ProductName"),jsonObject1.getString("ProductIcon"),jsonObject1.getString("PayUTransactionId"));
+                        bean=new NewOrderBean(jsonObject1.getString("AcceptOrdersId"),jsonObject1.getString("FirstName"),jsonObject1.getString("ProductInfo"),jsonObject1.getString("Amount"),jsonObject1.getString("mode"),jsonObject1.getString("SellingListIcon"),jsonObject1.getString("Latitude"),jsonObject1.getString("Longitude"),jsonObject1.getString("CreatedOn"),jsonObject1.getString("CustLongitude"),jsonObject1.getString("CustLatitude"),jsonObject1.getString("Phone"),jsonObject1.getString("ProductName"),jsonObject1.getString("ProductIcon"),jsonObject1.getString("PayUTransactionId"),jsonObject1.getString("SelectedQuantity"));
                         newOrderBeansList.add(bean);
                         //jsonObject1.getString("Phone")
                     }

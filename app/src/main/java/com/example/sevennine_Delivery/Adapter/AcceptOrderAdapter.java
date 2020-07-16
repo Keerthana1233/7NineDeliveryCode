@@ -22,6 +22,9 @@ import com.example.sevennine_Delivery.Fragment.CancelOrderDetailsFragment;
 import com.example.sevennine_Delivery.R;
 import com.example.sevennine_Delivery.SessionManager;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -32,7 +35,7 @@ public class AcceptOrderAdapter extends RecyclerView.Adapter<AcceptOrderAdapter.
     SessionManager sessionManager;
 String orderid,latid,langid,custlatid,custlangid,modestr,phone;
     public LinearLayout linearLayout;
-
+    Date date;
     public static CardView cardView;
     public AcceptOrderAdapter(Activity activity, List<NewOrderBean> productList) {
         this.productList = productList;
@@ -45,17 +48,17 @@ String orderid,latid,langid,custlatid,custlangid,modestr,phone;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView image;
-        public TextView prod_price,prod_name,cod,addr,username,vieworder;
+        public TextView prod_price,prod_name,cod,addr,username,vieworder,orderdate;
 
 
 
         public MyViewHolder(View view) {
             super(view);
             prod_name=view.findViewById(R.id.prod_name);
-            prod_price=view.findViewById(R.id.amount);
-            cod=view.findViewById(R.id.cod);
-            addr=view.findViewById(R.id.addr);
-            username=view.findViewById(R.id.username);
+            orderdate=view.findViewById(R.id.dispatched);
+            //cod=view.findViewById(R.id.cod);
+           // addr=view.findViewById(R.id.addr);
+           // username=view.findViewById(R.id.username);
             image=view.findViewById(R.id.image);
           //  vieworder=view.findViewById(R.id.vieworder);
 
@@ -74,20 +77,31 @@ String orderid,latid,langid,custlatid,custlangid,modestr,phone;
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final NewOrderBean products = productList.get(position);
-        holder.prod_name.setText(products.getProd_name());
-        holder.prod_price.setText(products.getProd_price());
+        holder.prod_name.setText(products.getProductname()+","+"1" +" Kg"+","+"₹"+Double.parseDouble(products.getProd_price()));
+   //     holder.prod_price.setText(products.getProd_price());
 
-      holder.username.setText(products.getUsername());
-        holder.addr.setText(products.getAddr());
+    /*  holder.username.setText(products.getUsername());
+        holder.addr.setText(products.getAddr());*/
         orderid=products.getProd_name();
 
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String dtStart = products.getCreateddate();
+        System.out.println("getCreateddate"+dtStart);
+
+        try {
+            date = format.parse(dtStart);
+            //holder.orderdate.setText("Ordered On "+date.getYear()+"-"+(1+date.getMonth())+"-"+(date.getDate()+" "+date.getHours()+":"+date.getMinutes()));
+            holder.orderdate.setText("Ordered On "+date.getDate()+"-"+(1+date.getMonth())+"-"+(1900+date.getYear()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         if(products.getCod().equalsIgnoreCase("")){
             modestr = "COD";
             //+ "," + "76.48490166";
         }else{
             modestr=products.getCod();
         }
-        holder.cod.setText(modestr);
+      //  holder.cod.setText(modestr);
         if(products.getPhone().equalsIgnoreCase("")){
             phone = "9999999999";
         }else{

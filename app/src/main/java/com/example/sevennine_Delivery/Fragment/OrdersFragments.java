@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class OrdersFragments extends Fragment implements TabLayout.OnTabSelectedListener{
-    private ViewPager viewPager;
+public class OrdersFragments extends Fragment{
+    public static ViewPager viewPager;
     public static TabLayout tabLayout;
     Fragment selectedFragment=null;
     private boolean isBackPressed = false;
@@ -29,7 +29,6 @@ public class OrdersFragments extends Fragment implements TabLayout.OnTabSelected
     private List<Integer> tabsInBack = new ArrayList<>();
     SessionManager sessionManager;
     private static final int HANDLER_DELAY = 1000;
-    protected OnBackPressedListner onBackPress;
     public static OrdersFragments newInstance() {
         OrdersFragments fragment = new OrdersFragments();
         return fragment;
@@ -39,7 +38,7 @@ public class OrdersFragments extends Fragment implements TabLayout.OnTabSelected
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.order_fragment, container, false);
         tabLayout = view. findViewById(R.id.simpleTabLayout1);
-        HomeMenuFragment.toolbartxt.setText("7Nine Delhivery");
+        HomeMenuFragment.toolbartxt.setText("Delhivery");
         sessionManager = new SessionManager(getActivity());
 
         view.setFocusableInTouchMode(true);
@@ -70,6 +69,7 @@ public class OrdersFragments extends Fragment implements TabLayout.OnTabSelected
 
         viewPager = view.findViewById(R.id.simpleViewPager);
         //Creating our pager adapter
+
          Pager adapter = new Pager(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -77,17 +77,12 @@ public class OrdersFragments extends Fragment implements TabLayout.OnTabSelected
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                if(!isBackPressed){
-                    tabsInBack.add(tab.getPosition());}
-                else {
-                    isBackPressed = false;}
+
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
-
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
@@ -95,55 +90,6 @@ public class OrdersFragments extends Fragment implements TabLayout.OnTabSelected
         });
         return view;
     }
-    public void onBackPressed() {
-        isBackPressed = true;
-        if (tabsInBack != null && tabsInBack.size() > 0) {
-            if (tabLayout.getSelectedTabPosition() == tabsInBack.get(tabsInBack.size() - 1)) {
-                tabsInBack.remove(tabsInBack.size() - 1);
 
-            }
-            if (tabsInBack != null && tabsInBack.size() > 0) {
-                tabLayout.getTabAt(tabsInBack.get(tabsInBack.size() - 1)).select();
-                tabsInBack.remove(tabsInBack.size() - 1);
-                if (isBackPressedOnce) {
-                    super.getActivity().onBackPressed();
-                } else {
-                    isBackPressedOnce = true;
-                }
-            } else {
-                super.getActivity().onBackPressed();
-            }
-        } else {
-            super.getActivity().onBackPressed();
-        }
-    }
-    public interface OnBackPressedListner{
-        boolean onBackPressed();
-    }
-@Override
-    public void onTabSelected(TabLayout.Tab tab)  {
-        viewPager.setCurrentItem(tab.getPosition());
-    if (viewPager.getCurrentItem() == 0) {
-
-        super.getActivity().onBackPressed();
-    }else {
-
-        //If any other tab is open, then switch to first tab
-        viewPager.setCurrentItem(0);
-    }
-
-    if(!isBackPressed){
-        tabsInBack.add(tab.getPosition());}
-    else {
-        isBackPressed = false;}
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-    }
 
 }

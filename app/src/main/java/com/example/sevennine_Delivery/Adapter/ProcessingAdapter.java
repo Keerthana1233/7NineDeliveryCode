@@ -47,9 +47,9 @@ public class ProcessingAdapter extends RecyclerView.Adapter<ProcessingAdapter.My
             super(view);
             prod_name=view.findViewById(R.id.prod_name);
             prod_price=view.findViewById(R.id.amount);
-            cod=view.findViewById(R.id.cod);
+          //  cod=view.findViewById(R.id.cod);
             addr=view.findViewById(R.id.addr);
-            username=view.findViewById(R.id.username);
+          //  username=view.findViewById(R.id.username);
             image=view.findViewById(R.id.image);
             vieworder=view.findViewById(R.id.vieworder);
 

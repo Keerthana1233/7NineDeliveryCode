@@ -67,9 +67,9 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
       holder.prod_name.setText(products1.getProd_name());
       holder.quantity.setText("Quantity : "+products1.getQuantity());
-      holder.amount.setText(products1.getAmount());
-      holder.shipping_fee.setText("Shipping Fee: "+products1.getShipping_fee());
-      holder.shipping_iscount.setText("Shipping discount: "+products1.getShippng_discount());
+      holder.amount.setText("₹"+Double.parseDouble(products1.getAmount()));
+      holder.shipping_fee.setText("Delivery Charges: "+products1.getShipping_fee());
+   //   holder.shipping_iscount.setText("Shipping discount: "+products1.getShippng_discount());
 if (position==(productList.size()-1)){
     holder.view_line.setVisibility(View.GONE);
 }

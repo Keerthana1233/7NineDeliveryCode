@@ -92,7 +92,6 @@
                     android:gravity="center_vertical"
                     android:text="Rs.100"
                     android:drawablePadding="@dimen/dimen_5dp"
-                    android:drawableLeft="@drawable/ic_rupee_indian"
                     android:textColor="#000"
                     android:layout_marginLeft="5dp"
                     android:textSize="13dp" />
@@ -111,9 +110,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/segoeui"
                     android:gravity="center_vertical"
-                    android:text="Shipping discount : Rs.2"
+                    android:text="save : ₹0.50"
                     android:layout_marginLeft="5dp"
-                    android:textSize="13dp" />
+                    android:textSize="10dp" />
             </LinearLayout>
 
             <LinearLayout

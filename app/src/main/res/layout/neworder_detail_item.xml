@@ -10,114 +10,142 @@
     android:weightSum="100"
     android:background="#fff"
     android:layout_marginBottom="2dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_marginLeft="5dp"
+        android:paddingVertical="15dp"
+        android:layout_marginTop="0dp"
+        >
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="100"
-            android:layout_marginLeft="5dp"
-            android:paddingVertical="20dp"
-            android:layout_marginTop="0dp">
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="30">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="70dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_weight="30">
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/biscuit_milk_glucose" />
 
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/biscuit_milk_glucose" />
-
-                <TextView
-                    android:id="@+id/loan_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/segoeui"
-                    android:gravity="center"
-                    android:text=""
-                    android:textColor="#000"
-                    android:textSize="16dp" />
-
-                <!--<de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/bank_img"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/avatarmale"
-                    app:civ_border_color="#dcdcdc"
-                    app:civ_border_width="0.0dp" />-->
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/loan_type"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="5dp"
-                android:layout_weight="55">
+                android:fontFamily="@font/segoeui"
+                android:gravity="center"
+                android:text=""
+                android:textColor="#000"
+                android:textSize="16dp" />
 
-                <TextView
-                    android:id="@+id/prod_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/segoeui"
-                    android:gravity="center_vertical"
+            <!--<de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/bank_img"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/avatarmale"
+                app:civ_border_color="#dcdcdc"
+                app:civ_border_width="0.0dp" />-->
 
-                    android:textColor="#000"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="16dp" />
-                <TextView
-                    android:id="@+id/username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/segoeui"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="14dp" />
-                <TextView
-                    android:id="@+id/addr"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/segoeui"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="14dp" />
-                <TextView
-                    android:id="@+id/amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/segoeui"
-                    android:gravity="center_vertical"
-                    android:textColor="#000"
-                    android:text=" "
-                    android:drawableLeft="@drawable/ic_rupee_indian"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="16dp" />
-                <TextView
-                android:id="@+id/cod"
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="55">
+
+            <TextView
+                android:id="@+id/prod_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoeui"
-                    android:layout_marginLeft="5dp"
                 android:gravity="center_vertical"
+                android:text="Parle-G Gold Milk Glucose"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
                 android:textSize="14dp" />
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/dispatched"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:fontFamily="@font/segoeui"
+                android:gravity="center_vertical"
+                android:text="Ordered On 2020-07-15"
+                android:textSize="13dp" />
 
 
         </LinearLayout>
+
+       <!-- <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="15">
+
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_right_angle_arrow" />
+
+        </LinearLayout>-->
+
+    </LinearLayout>
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:weightSum="100">
+
+        <TextView
+            android:id="@+id/vieworder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center_vertical"
+            android:text="View Order"
+            android:paddingVertical="5dp"
+            android:layout_marginRight="15dp"
+            android:textColor="#064a8e"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center_vertical"
+            android:text="Accept"
+            android:paddingVertical="5dp"
+            android:layout_marginRight="15dp"
+            android:textColor="#064a8e"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+  <!--  <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
-        <!-- <TextView
+        &lt;!&ndash; <TextView
              android:id="@+id/view"
              android:layout_width="0dp"
              android:layout_height="39dp"
@@ -130,7 +158,7 @@
             android:drawablePadding="@dimen/dimen_10dp"
              android:drawableLeft="@drawable/ic_phone_call"
              android:fontFamily="@font/segoeui"
-             android:text="99********" />-->
+             android:text="99********" />&ndash;&gt;
         <TextView
             android:id="@+id/vieworder"
             android:layout_width="wrap_content"
@@ -158,13 +186,13 @@
             android:fontFamily="@font/segoeui"
             android:text="Accept"
             />
-    </LinearLayout>
-    <View
+    </LinearLayout>-->
+ <!---->   <View
         android:id="@+id/view_line"
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:background="#dcdcdc" />
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:background="#F5F5F5" />
 
     </LinearLayout>
 

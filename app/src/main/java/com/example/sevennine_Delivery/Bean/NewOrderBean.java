@@ -2,25 +2,10 @@ package com.example.sevennine_Delivery.Bean;
 public class NewOrderBean {
 
     String prod_price,prod_name,cod,addr,username;
-    String image,Latitude,Longitude,createddate,custlat,custlong,phone,productname,producticon,payuid;
+    String image,Latitude,Longitude,createddate,custlat,custlong,phone,productname,producticon,payuid,quantity;
 
-    public String getCustlat() {
-        return custlat;
-    }
 
-    public void setCustlat(String custlat) {
-        this.custlat = custlat;
-    }
-
-    public String getCustlong() {
-        return custlong;
-    }
-
-    public void setCustlong(String custlong) {
-        this.custlong = custlong;
-    }
-
-    public NewOrderBean(String prod_name, String username, String addr, String prod_price, String cod, String image, String Latitude, String Longitude, String createddate, String custlat, String custlong,String phone,String productname,String producticon,String payuid) {
+    public NewOrderBean(String prod_name, String username, String addr, String prod_price, String cod, String image, String Latitude, String Longitude, String createddate, String custlat, String custlong, String phone, String productname, String producticon, String payuid, String quantity) {
 
         this.prod_price = prod_price;
         this.prod_name = prod_name;
@@ -37,6 +22,29 @@ public class NewOrderBean {
         this.productname = productname;
         this.producticon = producticon;
         this.payuid = payuid;
+    }
+    public String getCustlat() {
+        return custlat;
+    }
+
+    public void setCustlat(String custlat) {
+        this.custlat = custlat;
+    }
+
+    public String getCustlong() {
+        return custlong;
+    }
+
+    public void setCustlong(String custlong) {
+        this.custlong = custlong;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
     public String getPayuid() {

@@ -49,8 +49,8 @@ public class OrderDetailsFragment extends Fragment {
     SessionManager sessionManager;
     OrderDetailsAdapter madapter;
     JSONObject lngObject;
-    TextView acceptbtn;
-    TextView toolbar_title,orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno,acceptbtn1,phoneno1,itemscosttxt,tamounttxt;
+    TextView acceptbtn,codtxt;
+    TextView sf,tbt,tax,toolbar_title,orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno,acceptbtn1,phoneno1,itemscosttxt,tamounttxt;
     Fragment selectedFragment;
     Date date;
     String mask;
@@ -67,9 +67,13 @@ public class OrderDetailsFragment extends Fragment {
         orderidtxt=view.findViewById(R.id.orderid);
         orderdatetxt=view.findViewById(R.id.orderdate);
         modetxt=view.findViewById(R.id.mode);
+        codtxt=view.findViewById(R.id.cod);
         amounttxt=view.findViewById(R.id.amount);
         itemscosttxt=view.findViewById(R.id.itemscost);
         tamounttxt=view.findViewById(R.id.tamount);
+        sf=view.findViewById(R.id.sf);
+        tbt=view.findViewById(R.id.tbt);
+        tax=view.findViewById(R.id.tax);
         nametxt=view.findViewById(R.id.name);
         addrtxt=view.findViewById(R.id.addr);
         orderdatetxt=view.findViewById(R.id.orderdate);
@@ -130,7 +134,7 @@ public class OrderDetailsFragment extends Fragment {
 
             try {
                 date = format.parse(dtStart);
-                orderdatetxt.setText(date.getDate()+"/"+(1+date.getMonth())+"/"+(1900+date.getYear()+" "+date.getHours()+":"+date.getMinutes()));
+                orderdatetxt.setText(date.getDate()+"-"+(1+date.getMonth())+"-"+(1900+date.getYear()+" "+date.getHours()+":"+date.getMinutes()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -145,10 +149,14 @@ public class OrderDetailsFragment extends Fragment {
             amounttxt.setText("₹"+Double.parseDouble(amount));
             tamounttxt.setText("₹"+Double.parseDouble(amount));
             itemscosttxt.setText("₹"+Double.parseDouble(amount));
+            sf.setText("₹"+Double.parseDouble("0"));
+            tbt.setText("₹"+Double.parseDouble("0"));
+            tax.setText("₹"+Double.parseDouble("0"));
             String s = addr;
             s = s.replace(",",",\n");
             addrtxt.setText(" "+s);
-            modetxt.setText(mode);
+            codtxt.setText(mode);
+            modetxt.setText("Mode: "+mode);
         }
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
@@ -157,7 +165,7 @@ public class OrderDetailsFragment extends Fragment {
         pronamestr = bundle.getString("proname");
         proimgstr = bundle.getString("proimg");
         payuidstr = bundle.getString("payuid");
-        OrderDetailBean bean=new OrderDetailBean(pronamestr,"1",amount,"₹0","₹0",proimgstr);
+        OrderDetailBean bean=new OrderDetailBean(pronamestr,"1",amount,"2","0",proimgstr);
         newOrderBeansList.add(bean);
         //newOrderBeansList.add(bean);
      //   newOrderBeansList.add(bean);
@@ -221,9 +229,6 @@ public class OrderDetailsFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         //   dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
-
-
-
         ok_btn =  dialog.findViewById(R.id.ok_btn);
         cancel_btn =  dialog.findViewById(R.id.cancel_btn);
         text_desc =  dialog.findViewById(R.id.text_desc);

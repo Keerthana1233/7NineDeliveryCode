@@ -47,7 +47,7 @@ public class AcceptOrderDetailsFragmentview extends Fragment {
     OrderDetailsAdapter madapter;
     JSONObject lngObject;
     TextView acceptbtn;
-    TextView toolbar_title,orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno,acceptbtn1,phoneno1,itemscosttxt,tamounttxt;
+    TextView codtxt,sf,tbt,tax,toolbar_title,orderidtxt,modetxt,amounttxt,addrtxt,nametxt,orderdatetxt,phoneno,acceptbtn1,phoneno1,itemscosttxt,tamounttxt;
     Fragment selectedFragment;
     Date date;
     String mask;
@@ -67,6 +67,9 @@ public class AcceptOrderDetailsFragmentview extends Fragment {
         amounttxt=view.findViewById(R.id.amount);
         itemscosttxt=view.findViewById(R.id.itemscost);
         tamounttxt=view.findViewById(R.id.tamount);
+        sf=view.findViewById(R.id.sf);
+        tbt=view.findViewById(R.id.tbt);
+        tax=view.findViewById(R.id.tax);
         nametxt=view.findViewById(R.id.name);
         addrtxt=view.findViewById(R.id.addr);
         orderdatetxt=view.findViewById(R.id.orderdate);
@@ -77,6 +80,7 @@ public class AcceptOrderDetailsFragmentview extends Fragment {
         sessionManager = new SessionManager(getActivity());
         Window window = getActivity().getWindow();
         back_feed=view.findViewById(R.id.back_feed);
+        codtxt=view.findViewById(R.id.cod);
         window.setStatusBarColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +92,6 @@ public class AcceptOrderDetailsFragmentview extends Fragment {
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
-
-
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
@@ -124,7 +126,7 @@ public class AcceptOrderDetailsFragmentview extends Fragment {
 
             try {
                 date = format.parse(dtStart);
-                // orderdatetxt.setText(date.getDate()+"/"+(1+date.getMonth())+"/"+(1900+date.getYear()+" "+date.getHours()+":"+date.getMinutes()));
+             orderdatetxt.setText(date.getDate()+"-"+(1+date.getMonth())+"-"+(1900+date.getYear()+" "+date.getHours()+":"+date.getMinutes()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -132,12 +134,15 @@ public class AcceptOrderDetailsFragmentview extends Fragment {
             amounttxt.setText("₹"+Double.parseDouble(amount));
             tamounttxt.setText("₹"+Double.parseDouble(amount));
             itemscosttxt.setText("₹"+Double.parseDouble(amount));
+            sf.setText("₹"+Double.parseDouble("0"));
+            tbt.setText("₹"+Double.parseDouble("0"));
+            tax.setText("₹"+Double.parseDouble("0"));
           String s = addr;
             s = s.replace(",",",\n");
             addrtxt.setText(" "+s);
             //addrtxt.setText(addr);
-            modetxt.setText(mode);
-
+            modetxt.setText("Mode: "+mode);
+            codtxt.setText(mode);
            /* try {
                 mask = maskString(mobilestr, 4, 10, '*');
             } catch (Exception e) {
@@ -154,7 +159,7 @@ public class AcceptOrderDetailsFragmentview extends Fragment {
         pronamestr = bundle.getString("proname");
         proimgstr = bundle.getString("proimg");
         payuidstr = bundle.getString("payuid");
-        OrderDetailBean bean=new OrderDetailBean(pronamestr,"1",amount,"₹0","₹0",proimgstr);
+        OrderDetailBean bean=new OrderDetailBean(pronamestr,"1",amount,"2","0",proimgstr);
         newOrderBeansList.add(bean);
         //newOrderBeansList.add(bean);
         //   newOrderBeansList.add(bean);

@@ -17,7 +17,7 @@
         android:orientation="horizontal"
         android:weightSum="100"
         android:layout_marginLeft="5dp"
-        android:paddingVertical="20dp"
+        android:paddingVertical="15dp"
         android:layout_marginTop="0dp"
         >
 
@@ -36,7 +36,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/biscuit_milk_glucose" />
 
-            <TextView
+          <!--  <TextView
                 android:id="@+id/loan_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="#000"
-                android:textSize="16dp" />
+                android:textSize="16dp" />-->
 
             <!--<de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/bank_img"
@@ -70,51 +70,41 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoeui"
                 android:gravity="center_vertical"
-                android:text="#10989876"
+                android:text="Parle-G Gold Milk Glucose"
                 android:textColor="#000"
-                android:layout_marginLeft="5dp"
-                android:textSize="16dp" />
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/segoeui"
-                android:gravity="center_vertical"
-                android:text="HimaBindhu"
+                android:textStyle="bold"
                 android:layout_marginLeft="5dp"
                 android:textSize="14dp" />
+
             <TextView
-                android:id="@+id/addr"
+                android:id="@+id/dispatched"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:fontFamily="@font/segoeui"
                 android:gravity="center_vertical"
-                android:text="567, 4th Cross, Banshankari,\n560091.."
-                android:layout_marginLeft="5dp"
-                android:textSize="14dp" />
-            <TextView
-                android:id="@+id/amount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/segoeui"
-                android:gravity="center_vertical"
-                android:text=" 100"
-                android:drawableLeft="@drawable/ic_rupee_indian"
-                android:textColor="#000"
-                android:layout_marginLeft="5dp"
-                android:textSize="16dp" />
-            <TextView
-                android:id="@+id/cod"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/segoeui"
-                android:layout_marginLeft="5dp"
-                android:gravity="center_vertical"
-                android:text="Cash On Delivery"
-               android:textSize="14dp" />
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:text="Ordered On 2020-07-15"
+                android:textSize="13dp" />
+
 
         </LinearLayout>
+<LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+             android:layout_gravity="center"
+             android:gravity="center"
+             android:layout_weight="15">
 
+             <ImageView
+                 android:id="@+id/arrow"
+                 android:layout_width="20dp"
+                 android:layout_height="20dp"
+                 android:scaleType="fitXY"
+                 android:src="@drawable/ic_right_angle_arrow" />
+
+         </LinearLayout>
 
     </LinearLayout>
    <!-- <LinearLayout
@@ -170,7 +160,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
         android:layout_marginTop="@dimen/dimen_20dp"
-        android:background="#dcdcdc" />
+        android:background="#F5F5F5" />
 
 </LinearLayout>
 
